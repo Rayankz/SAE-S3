@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane stylesheets="@../Stylesheet/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.Red_Line_Defense.Controleurs.ControleurMP">
+    <center>
+        <AnchorPane prefHeight="562.0" prefWidth="1000.0">
+            <children>
+                <ImageView fitHeight="589.0" fitWidth="1015.0" layoutX="-8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/ComposantesMenuPrincipal/luffy-shanks.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="lancerButton" fitHeight="109" fitWidth="109" layoutX="317.0" layoutY="345.0" onMouseClicked="#onJouerButtonClick" styleClass="tour">
+                    <Image url="@../Images/ComposantesMenuPrincipal/luffy.gif" />
+                </ImageView>
+                <ImageView fx:id="aide" fitHeight="109" fitWidth="109" layoutX="569.0" layoutY="345.0" onMouseClicked="#onAideButtonClick" styleClass="tour">
+                    <Image url="@../Images/ComposantesMenuPrincipal/usopp.gif" />
+                </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="200.0" layoutX="559.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ComposantesMenuPrincipal/aideTxt.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="200.0" layoutX="292.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ComposantesMenuPrincipal/jouer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="117.0" fitWidth="550.0" layoutX="245.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ComposantesMenuPrincipal/titleO.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
