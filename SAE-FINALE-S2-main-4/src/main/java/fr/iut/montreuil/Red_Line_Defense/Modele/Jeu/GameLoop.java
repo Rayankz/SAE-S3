@@ -38,7 +38,6 @@ public class GameLoop {
             if (terrain.getBasePrincipale().getPointsDeVieValue()<=0){
             }
         });
-
         timelineDeplacement.getKeyFrames().add(keyFrame2);
         timelineDeplacement.setCycleCount(Timeline.INDEFINITE);
     }

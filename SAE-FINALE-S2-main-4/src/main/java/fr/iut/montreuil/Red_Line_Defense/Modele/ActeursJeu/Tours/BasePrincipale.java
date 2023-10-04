@@ -2,6 +2,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.geometry.Point2D;
 
 import java.util.HashSet;
@@ -14,8 +15,8 @@ public class BasePrincipale extends Tour {
 
     Set<Point2D> zone;
 
-    public BasePrincipale(int x0, int y0) {
-        super(x0, y0, 10000); // 2 tiles de portéé
+    public BasePrincipale(int x0, int y0, Environnement e) {
+        super(x0, y0, 10000,e); // 2 tiles de portéé
          zone = new HashSet<>();
          initializeZone();
     }

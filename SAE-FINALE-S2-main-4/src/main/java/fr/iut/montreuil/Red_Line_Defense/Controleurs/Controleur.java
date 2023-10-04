@@ -184,7 +184,7 @@ public class Controleur implements Initializable {
     }
 
     private void initializeBasePrincipale() {
-        basePrincipale = new BasePrincipale(700, 335);
+        basePrincipale = new BasePrincipale(700, 335,terrain);
     }
     private void initializeVueBasePrincipale(){
         vueBasePrincipale = new VueBasePrincipale(centerPane, basePrincipale);
