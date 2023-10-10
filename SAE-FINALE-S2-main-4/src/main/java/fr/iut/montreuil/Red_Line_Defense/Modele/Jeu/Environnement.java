@@ -327,45 +327,40 @@ public class Environnement {
     }          // Ajouter un Soldat
 
     public void supprimerSoldat(Soldat soldat) {
+
         this.listeSoldats.remove(soldat);
     }     // Supprimer un Soldat
 
     public ListProperty<Soldat> getSoldatsProperty() {
+
         return this.listeSoldats;
     }       // Retourne la liste observable
 
     public ObservableList<Soldat> getSoldats() {
+
         return this.listeSoldats.get();
     }       // Retourne la property qui contient la liste observable
 
 
-
-
-
-    //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- JOUEUR --------------------------------------------------------------------
-    //--------------------------------------------------------------------------------------------------------------------------------
-
-
     public Joueur getJoueur() {return this.joueur;}
 
-    //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- BASE PRINCIPALE --------------------------------------------------------------------
-    //--------------------------------------------------------------------------------------------------------------------------------
+    public void setBasePrincipale(BasePrincipale basePrincipale) {
 
-    public void setBasePrincipale(BasePrincipale basePrincipale){
         this.basePrincipale = basePrincipale;
     }
-    public BasePrincipale getBasePrincipale(){
+
+    public BasePrincipale getBasePrincipale() {
+
         return this.basePrincipale;
     }
-    public Vagues getVagues(){
+
+    public Vagues getVagues() {
+
         return this.vaguesDeJeu;
     }
 
+    public IntegerProperty getVague() {
 
-    public IntegerProperty getVague(){return this.vague;}
-    //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- FIN --------------------------------------------------------------------
-    //--------------------------------------------------------------------------------------------------------------------------------
+        return this.vague;
+    }
 }

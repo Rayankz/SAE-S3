@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public abstract class Tour extends Acteurs {
+
     private IntegerProperty prix; // prix d'achat de l'acteur
 
     protected Environnement terrain;

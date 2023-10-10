@@ -4,16 +4,17 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class BFS {
-    Environnement e;
-    public BFS(Environnement e) {
-        this.e=e;
-    }
-        // Méthode modifiée pour calculer les distances à la destination
 
+    Environnement environnement;
+
+    public BFS(Environnement environnement) {
+
+        this.environnement = environnement;
+    }
 
     public void calculerChemin(int destX, int destY) {  // Méthode modifiée pour calculer les distances à la destination
 
-        boolean[][] visited = new boolean[e.getYmax()][e.getXmax()];
+        boolean[][] visited = new boolean[environnement.getYmax()][environnement.getXmax()];
 
         Queue<Integer> queue = new ArrayDeque<>();
         queue.offer(destX);
@@ -31,11 +32,11 @@ public class BFS {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if (e.isValidMove(nx, ny) && !visited[ny][nx]) {
+                if (environnement.isValidMove(nx, ny) && !visited[ny][nx]) {
                     queue.offer(nx);
                     queue.offer(ny);
                     visited[ny][nx] = true;
-                    e.distances[ny][nx] = e.distances[y][x] + 1;
+                    environnement.distances[ny][nx] = environnement.distances[y][x] + 1;
                 }
             }
         }
