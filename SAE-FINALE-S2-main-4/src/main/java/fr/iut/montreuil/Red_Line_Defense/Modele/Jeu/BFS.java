@@ -32,7 +32,7 @@ public class BFS {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if (environnement.isValidMove(nx, ny) && !visited[ny][nx]) {
+                if (isValidMove(nx, ny) && !visited[ny][nx]) {
                     queue.offer(nx);
                     queue.offer(ny);
                     visited[ny][nx] = true;
@@ -40,6 +40,11 @@ public class BFS {
                 }
             }
         }
+    }
+
+    public boolean isValidMove(int x, int y) {
+
+        return x >= 0 && x < this.environnement.distances[0].length && y >= 0 && y < this.environnement.distances.length && this.environnement.valeurDeLaCase(y, x) == 1;
     }
     }
 

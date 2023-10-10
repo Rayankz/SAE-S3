@@ -20,28 +20,28 @@ public abstract class Soldat extends Acteurs {
 
     private Set<Point2D> zone;
 
-    private Environnement e;
+    private Environnement environnement;
 
     private int pointsDeVie;
     private boolean estPiégé;
     private int valeur; // valeur du soldat, permet de déterminer combien le joueur gagne en le tuant
 
-    public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, double destinationX, double destinationY,Environnement e) {
+    public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, double destinationX, double destinationY,Environnement environnement) {
         super(x0, y0, pointsDeVie, degats, defense);
         this.destinationX = destinationX;
         this.destinationY = destinationY;
         this.zone = new HashSet<Point2D>();
-        this.e = e;
+        this.environnement = environnement;
         estPiégé=false;
         créerZone();
     }
 
-    public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, int valeur, double destinationX, double destinationY,Environnement e) {
+    public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, int valeur, double destinationX, double destinationY,Environnement environnement) {
         super(x0, y0, pointsDeVie, degats, defense);
         this.valeur = valeur;
         this.destinationX = destinationX;
         this.destinationY = destinationY;
-        this.e = e;
+        this.environnement = environnement;
         this.zone = new HashSet<Point2D>();
         estPiégé=false;
         créerZone();
@@ -62,10 +62,10 @@ public abstract class Soldat extends Acteurs {
             int nx = startX + dx[i];
             int ny = startY + dy[i];
 
-            if (this.e.isValidMove(nx, ny) && this.e.distances[ny][nx] < minDistance) {
+            if (this.environnement.getBFS().isValidMove(nx, ny) && this.environnement.distances[ny][nx] < minDistance) {
                 nextX = nx;
                 nextY = ny;
-                minDistance = this.e.distances[ny][nx];
+                minDistance = this.environnement.distances[ny][nx];
             }
         }
 
