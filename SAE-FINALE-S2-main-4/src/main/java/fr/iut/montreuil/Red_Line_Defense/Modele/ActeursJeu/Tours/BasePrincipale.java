@@ -16,8 +16,8 @@ public class BasePrincipale extends Tour {
     Set<Point2D> zone;
 
     public BasePrincipale(int x0, int y0, Environnement e) {
-        super(x0, y0, 10000,e); // 2 tiles de portéé
-         zone = new HashSet<>();
+        super(x0, y0, 1,e); // 2 tiles de portéé
+         this.zone = new HashSet<>();
          initializeZone();
     }
 
@@ -52,7 +52,7 @@ public class BasePrincipale extends Tour {
         }
     }
 
-    public Set<Point2D> getZone(){
+    public Set<Point2D> getZone() {
 
         return zone;
     }

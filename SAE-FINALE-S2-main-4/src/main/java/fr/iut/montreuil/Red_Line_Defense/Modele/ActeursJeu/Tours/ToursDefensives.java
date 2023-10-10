@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ToursDefensives extends Tour{
-
     private ArrayList<Soldat> soldatsPiégés;
-
     public ToursDefensives(int x0, int y0, Environnement terrain) {
         super(x0, y0, 1500, 3, 600, 200, terrain, 100);
         soldatsPiégés = new ArrayList<>();
@@ -19,29 +17,23 @@ public class ToursDefensives extends Tour{
     public void agit(int n) {
         for (Soldat s: terrain.getSoldats()) {
             if (s != null) {
-
                 s.estPiégés();
                 soldatsPiégés.add(s);
             }
         }
         if (!soldatsPiégés.isEmpty()) {
-
             Iterator<Soldat> iterator = soldatsPiégés.iterator();
             while (iterator.hasNext()) {
-
                 Soldat sP = iterator.next();
                 if (!vérificationEstÀPorter(sP.getX0Value(), sP.getY0Value())) {
-
                     sP.libéré();
-                    suppSoldatPiégés(sP);
                     iterator.remove();
                 }
             }
         }
     }
 
-    public void suppSoldatPiégés(Soldat s) {
-
+    public void suppSoldatPiégés(Soldat s){
         soldatsPiégés.remove(s);
     }
 }

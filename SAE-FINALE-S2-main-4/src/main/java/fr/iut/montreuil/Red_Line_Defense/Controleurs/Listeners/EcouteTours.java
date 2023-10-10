@@ -13,24 +13,23 @@ import java.util.List;
 
 public class EcouteTours {
 
-    private ListProperty<Tour> listeTours;
-
     private Joueur joueur;
+
     private Environnement terrain;
 
     private Pane centerPane;
 
     public EcouteTours(Environnement terrain, Pane centerPane) {
+
         this.terrain = terrain;
         this.centerPane = centerPane;
         this.joueur = terrain.getJoueur();
-        this.listeTours = this.terrain.getToursProperty();
         ajouterEcouteurSurTours();
     }
 
     public void ajouterEcouteurSurTours() {
 
-        this.listeTours.addListener(new ListChangeListener<Tour>() {
+        this.terrain.getToursProperty().addListener(new ListChangeListener<Tour>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Tour> t) {
                 while (t.next()) {
