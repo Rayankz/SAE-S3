@@ -33,19 +33,13 @@ public class ControleurMP implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         mediaOpening = new Media(getClass().getResource(OPENING_PATH).toString());
         Audio.chargerMedia(mediaOpening);
-        /*mediaOpening = new Media(getClass().getResource(OPENING_PATH).toString());
-        mediaPlayerOpening = new MediaPlayer(mediaOpening);
-        mediaPlayerOpening.play();
-      //  mediaPlayerOpening.stop();
-        ediaOpening = new Media(getClass().getResource(OK).toString());
-        mediaPlayerOpening = new MediaPlayer(mediaOpening);
-        mediaPlayerOpening.play();*/
     }
     @FXML
     private void onJouerButtonClick(MouseEvent event) throws IOException {
-        //Audio.arreterMediaPlayer();
+
         System.out.println("media stop");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/iut/montreuil/Red_Line_Defense/Vues/vueDeJeu.fxml"));
         root = loader.load();

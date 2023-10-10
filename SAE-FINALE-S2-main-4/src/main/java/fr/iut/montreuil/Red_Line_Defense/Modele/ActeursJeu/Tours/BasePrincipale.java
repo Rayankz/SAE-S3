@@ -23,46 +23,43 @@ public class BasePrincipale extends Tour {
 
     public void agit(int n) {
 
-        setPointsDeVieValue(this.getPointsDeVieValue()-this.porteeBP().getDegatValue());
-        System.out.println("---pv base : " + this.getPointsDeVieValue());
-            for (Soldat s: terrain.getSoldatsProperty().getValue()) {
+        if (porteeBP() != null) {
+
+            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.porteeBP().getDegatValue());
+            System.out.println("---pv base : " + this.getPointsDeVieValue());
+            for (Soldat s: this.getTerrain().getSoldatsProperty().getValue()) {
+
                 Point2D positionSoldat = new Point2D(s.getX0Value()/8, s.getY0Value()/8);
+
                 if (getZone().contains(positionSoldat)) {
+
                     infligerDegats(300);
                     s.setPointsDeVieValue(-1);
                 }
             }
         }
+    }
 
 
-    private void initializeZone(){
+    private void initializeZone() {
+
         for (int x = 88; x <= 90; x++) {
+
             for (int y = 47; y <= 49; y++) {
-                zone.add(new Point2D(x, y));
+
+                this.zone.add(new Point2D(x, y));
             }
         }
     }
 
     public Set<Point2D> getZone(){
+
         return zone;
     }
 
-    public void testPv() {
-        this.setPointsDeVieValue(this.getPointsDeVieValue()-1000);
-    }
-
-    /*public void afficherPorteeB(Pane p){
-        double rayon = this.getPortée()+30;
-        Circle c = new Circle(this.getX0Value(), this.getY0Value(), rayon);
-        c.setStroke(Color.GREY);
-        c.setFill(Color.TRANSPARENT);
-        p.getChildren().add(c);
-        System.out.println("portée affichée");
-    }*/
-
     public Soldat porteeBP() {
             System.out.println("entrer fonction");
-            for (Soldat s : terrain.getSoldats()) {
+            for (Soldat s : this.getTerrain().getSoldats()) {
                 System.out.println("entrer boucle");
                 if (s.estVivant()) {
                     System.out.println("vivant");
@@ -75,8 +72,6 @@ public class BasePrincipale extends Tour {
                 }
             }
             return null;
-
-        // return Math.abs(this.getY0Value() - s.getY0Value()) <= this.getPortée();
     }
 
 
