@@ -56,7 +56,6 @@ public class Environnement {
         listeProjectiles = new SimpleListProperty<>(projectileObservableList);
 
         this.vaguesDeJeu  = new Vagues(this);
-
         this.BFS=new BFS(this);
         this.distances = new int[getYmax()][getXmax()];  // Initialisation du tableau de distances
         BFS.calculerChemin(89, 47);
