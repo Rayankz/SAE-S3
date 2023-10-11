@@ -147,5 +147,10 @@ public abstract class Tour extends Acteurs {
         return id;
     }
 
+    public void setPortee(double portee) {
+        this.portee = portee;
+    }
+
     public abstract void agit(int n);
+
 }

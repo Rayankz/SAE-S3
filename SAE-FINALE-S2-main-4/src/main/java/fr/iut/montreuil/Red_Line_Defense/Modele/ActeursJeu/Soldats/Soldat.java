@@ -18,9 +18,9 @@ public abstract class Soldat extends Acteurs {
     private List<Point2D> chemin;
     private int pathPosition = 0;
 
-    private Set<Point2D> zone;
+    private final Set<Point2D> zone;
 
-    private Environnement e;
+    private final Environnement e;
 
     private int pointsDeVie;
     private boolean estPiégé;

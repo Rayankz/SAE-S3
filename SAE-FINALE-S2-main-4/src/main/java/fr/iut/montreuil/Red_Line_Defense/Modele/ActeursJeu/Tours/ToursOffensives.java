@@ -51,7 +51,7 @@ public abstract class ToursOffensives extends Tour {
         if (s != null) {
             if (s.estVivant()) {
                 if(nTemps%getCadence()==0)
-                creationProjectile(s);
+                    creationProjectile(s);
                }
         }
     }

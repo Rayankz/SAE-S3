@@ -14,8 +14,11 @@ public class ToursDeffensives extends Tour{
         soldatsPiégés = new ArrayList<>();
     }
 
-    @Override
-    public void agit(int n) {
+    public void agit(int n){
+        ralentissement();
+    }
+
+    public void ralentissement() {
         for (Soldat s: terrain.getSoldats()) {
             if (s != null) {
                 s.estPiégés();

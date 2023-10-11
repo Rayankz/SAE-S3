@@ -160,7 +160,7 @@ public class Environnement {
         if (!listeSoldats.isEmpty()) {
             for (Soldat soldat : listeSoldats) {
                 if(!soldat.isEstPiégé() || n%2==0)
-                soldat.agit();
+                    soldat.agit();
             }
         }
     }
@@ -188,7 +188,6 @@ public class Environnement {
             listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
         }
     }
-
 
 
 

@@ -34,15 +34,15 @@ public class VueProjectile {
             orientationImage(p,bouleDeFeu);
             projectile=bouleDeFeu;
         }
-        else if(p instanceof Blast){
-            ImageView blastLaser = new ImageView(loadImage(BLAST_PATH));
-            orientationImage(p,blastLaser);
-            projectile=blastLaser;
-        }
-        else {
+        else if(p instanceof Missile){
         ImageView bombe = new ImageView(loadImage(BOMBE_PATH));
         orientationImage(p,bombe);
         projectile=bombe;
+        }
+        else {
+            ImageView blastLaser = new ImageView(loadImage(BLAST_PATH));
+            orientationImage(p,blastLaser);
+            projectile=blastLaser;
         }
 
         if(p instanceof Missile) {
