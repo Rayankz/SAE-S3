@@ -11,7 +11,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Point2D;
 
 import java.util.*;
 
@@ -134,16 +133,16 @@ public class Environnement {
 
     public void unTour(){
 
-        vaguesDeJeu.unTour();
-        deplacementSoldat(nbrTours);
-        verificationMorts();
-        actionTours(nbrTours);
+        this.vaguesDeJeu.unTour(); //validé
+        actionDesSoldats(this.nbrTours); //validé
+        verificationMorts(); //validé
+        actionTours(this.nbrTours); //validé
         suppressionTour();
-        basePrincipale.agit(1);
+        this.basePrincipale.agit(1);
         checkNouvelleVagues();
         verificationDefaite();
 
-        nbrTours++;
+        this.nbrTours++;
     }
 
     public void checkNouvelleVagues() {
@@ -154,14 +153,13 @@ public class Environnement {
         }
     }
 
+   public void actionDesSoldats(int n) {
 
-
-
-    public void deplacementSoldat(int n){
         if (!listeSoldats.isEmpty()) {
+
             for (Soldat soldat : listeSoldats) {
-                if(!soldat.isEstPiégé() || n%2==0)
-                soldat.agit();
+
+                soldat.déplacementSoldat(n);
             }
         }
     }
@@ -169,23 +167,28 @@ public class Environnement {
 
 
     public void verificationDefaite(){
-        if (basePrincipale.getPointsDeVieValue() < 1){
+        if (basePrincipale.getPointsDeVieValue() < 1) {
             this.vague.setValue(-1);
         }
     }
 
 
-    public void actionTours(int n){
-        if(!listeTours.isEmpty()){
-            for (Tour t : listeTours){
+    public void actionTours(int n) {
+
+        if(!listeTours.isEmpty()) {
+
+            for (Tour t : listeTours) {
+
                 t.agit(n);
-            t.infligerDegats(2);
+                t.infligerDegats(2);
             }
         }
     }
 
    public void suppressionTour() {
+
         if (!listeTours.isEmpty()) {
+
             listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
         }
     }
@@ -194,10 +197,13 @@ public class Environnement {
 
 
     public void verificationMorts(){
+
         Iterator<Soldat> iterator = listeSoldats.iterator();
         while (iterator.hasNext()) {
+
             Soldat soldat = iterator.next();
             if (soldat.getPointsDeVieValue() <= 0) {
+
                 iterator.remove(); // Supprimer l'élément de la liste en utilisant l'itérateur
                 joueur.crediterSolde(soldat.getValeurGagnee());
                 ennemisTues.setValue(ennemisTues.getValue() + 1);

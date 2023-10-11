@@ -44,6 +44,11 @@ public abstract class Tour extends Acteurs {
         compteur++;
     }
 
+    public void setPortée(double n) {
+
+        this.portee = n;
+    }
+
     // Getter Prix
     public int getPrixValue() {
         return this.prix.getValue();

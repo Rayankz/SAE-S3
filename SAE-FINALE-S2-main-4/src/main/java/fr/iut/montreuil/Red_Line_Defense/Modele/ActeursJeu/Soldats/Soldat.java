@@ -74,6 +74,15 @@ public abstract class Soldat extends Acteurs {
         setY0(nextY * 8);
     }
 
+    public void déplacementSoldat(int n) {
+
+        if(!this.isEstPiégé() || n % 2 == 0) {
+
+            this.agit();
+        }
+
+    }
+
 
     public boolean estVivant(){
         return (this.getPointsDeVieValue() > 0);
@@ -83,8 +92,6 @@ public abstract class Soldat extends Acteurs {
     public int getValeurGagnee() {
         return this.valeur;
     }
-
-
 
     public void créerZone() {
         for (int xZone = 88; xZone <= 90; xZone++) {
@@ -98,7 +105,7 @@ public abstract class Soldat extends Acteurs {
         return this.couleur;
     }
 
-    public Set<Point2D> getZone(){
+    public Set<Point2D> getZone() {
         return this.zone;
     }
 
@@ -110,13 +117,13 @@ public abstract class Soldat extends Acteurs {
         return this.destinationY;
     }
 
-    public boolean isEstPiégé(){
+    public boolean isEstPiégé() {
         return estPiégé;
     }
-    public void estPiégés(){
+    public void estPiégés() {
         estPiégé=true;
     }
-    public void libéré(){
+    public void libéré() {
         estPiégé=false;
     }
 

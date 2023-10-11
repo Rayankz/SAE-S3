@@ -103,7 +103,7 @@ public class Vagues {
 
 
 
-    public void premiereVague(){
+    public void premiereVague() {
         ennemisAFaireSpawnType1 = 12;
         totalSoldats = ennemisAFaireSpawnType1;
 
@@ -114,7 +114,7 @@ public class Vagues {
         }
     }
 
-    public void deuxiemeVague(){
+    public void deuxiemeVague() {
 
         int maxSoldiersType1 = 8;
         int maxSoldiersType2 = 6;
@@ -141,8 +141,7 @@ public class Vagues {
         }
     }
 
-
-    public void troisiemeVague(){
+    public void troisiemeVague() {
         int maxSoldiersType1 = 10;
         int maxSoldiersType2 = 8;
 
@@ -168,7 +167,7 @@ public class Vagues {
         }
     }
 
-    public void quatriemeVague(){
+    public void quatriemeVague() {
         int maxSoldiersType1 = 9;
         int maxSoldiersType2 = 7;
         int maxSoldiersType3 = 3;
@@ -200,7 +199,7 @@ public class Vagues {
     }
 
 
-    public void cinquiemeVague(){
+    public void cinquiemeVague() {
         int maxSoldiersType1 = 11;
         int maxSoldiersType2 = 9;
         int maxSoldiersType3 = 5;
@@ -231,10 +230,7 @@ public class Vagues {
         }
     }
 
-
-
-
-    public void vagueParDefault(){premiereVague();
+    public void vagueParDefault() {premiereVague();
     }
 
     public int getTotalSoldats(){
