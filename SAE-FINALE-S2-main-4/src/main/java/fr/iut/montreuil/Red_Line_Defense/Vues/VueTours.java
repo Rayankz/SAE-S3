@@ -145,18 +145,18 @@ public class VueTours {
         int startY = mapY - 3;
 
         // Vérifier si la case est valide et si elle est libre
-        if (this.terrain.valeurDeLaCase(mapY, mapX) == 1){
+        if (this.terrain.getBFS().valeurDeLaCase(mapY, mapX) == 1){
 
             showErrorCheminMessage(x, y);
         }
         else {
-            if (mapX >= 0 && mapX < this.terrain.getXmax() && mapY >= 0 && mapY < this.terrain.getYmax()) {
+            if (mapX >= 0 && mapX < this.terrain.getBFS().getXmax() && mapY >= 0 && mapY < this.terrain.getBFS().getYmax()) {
                 // Vérifier si aucune tour n'est déjà positionnée sur cette case ou sur les cases entourant celle-ci
                 for (int i = startX; i <= startX + 6; i++) {
 
                     for (int j = startY; j <= startY + 6; j++) {
 
-                        if (i >= 0 && i < this.terrain.getXmax() && j >= 0 && j < this.terrain.getYmax()) {
+                        if (i >= 0 && i < this.terrain.getBFS().getXmax() && j >= 0 && j < this.terrain.getBFS().getYmax()) {
 
                             for (Tour tour : this.terrain.getTours()) {
 
