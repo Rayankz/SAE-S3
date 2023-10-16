@@ -19,7 +19,7 @@ public class ControleurAide implements Initializable {
     private Parent root;
     @FXML
     private void onJouerButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/iut/montreuil/Red_Line_Defense/Vues/vueMenuPRincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/iut/montreuil/Red_Line_Defense/Vues/vueMenuPrincipal.fxml"));
         root = loader.load();
         ControleurMP controleur = loader.getController(); // Retrieve the controller instance
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

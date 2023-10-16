@@ -11,7 +11,7 @@ public class TourMitrailleuse extends ToursOffensives {
 
     }
     public void creationProjectile(Soldat s){
-        Boulet p = new Boulet(getX0Value(), getY0Value(), s.getX0Value(),s.getY0Value(), getVitesseProjectile(), getDegatValue(), getTerrain());
+        Boulet p = new Boulet(getX0Value(), getY0Value(), s, getVitesseProjectile(), getDegatValue(), getTerrain());
         getTerrain().ajouterProjectile(p);
         p.animationProjectile();
     }

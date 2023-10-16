@@ -17,7 +17,7 @@ public class BasePrincipale extends Tour {
 
     public BasePrincipale(int x0, int y0, Environnement e) {
 
-        super(x0, y0, 100,e); // 2 tiles de portée
+        super(x0, y0, 1000,e); // 2 tiles de portée
         this.zone = new HashSet<>();
         this.setPortée(55);
         initializeZone();
@@ -29,16 +29,7 @@ public class BasePrincipale extends Tour {
 
             this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter().getDegatValue());
             System.out.println("---pv base : " + this.getPointsDeVieValue());
-            for (Soldat s: this.getTerrain().getSoldatsProperty().getValue()) {
-
-                Point2D positionSoldat = new Point2D(s.getX0Value()/8, s.getY0Value()/8);
-
-                if (getZone().contains(positionSoldat)) {
-
-                    infligerDegats(300);
-                    s.setPointsDeVieValue(-1);
-                }
-            }
+            this.ennemiÀPorter().setPointsDeVieValue(-2);
         }
     }
 

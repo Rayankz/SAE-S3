@@ -7,44 +7,46 @@ import javafx.beans.property.DoubleProperty;
 
 import javafx.beans.property.SimpleDoubleProperty;
 
-public abstract class Projectile {
+public class Projectile {
     private DoubleProperty x;
     private DoubleProperty y;
-    private DoubleProperty xCible;
-    private DoubleProperty yCible;
     private double xDirection;
     private double yDirection;
     private double v;//Vitesse de l'obus
-
+    private Soldat s;
     private Environnement terrain;
     private boolean touché;
-
     private int degats;
-
     private String id;
-
     public static int compteur =1;
 
-    public Projectile(double x, double y, double xCible, double yCible, double v, int degats, Environnement terrain) {
+    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain) {
 
         this.x = new SimpleDoubleProperty(x);
 
         this.y = new SimpleDoubleProperty(y);
 
-        this.xCible = new SimpleDoubleProperty(xCible);
-
-        this.yCible = new SimpleDoubleProperty(yCible);
+        this.s=s;
 
         this.v = v;
 
         this.degats = degats;
+
         this.terrain=terrain;
+
         this.id=("p"+compteur);
+
         compteur++;
+
         touché=false;
-        double distance = Math.sqrt(Math.pow(xCible - x, 2) + Math.pow(yCible - y, 2));
-        this.xDirection = (xCible - x) / distance;
-        this.yDirection = (yCible - y) / distance;
+
+        setDirection();
+    }
+
+    public void setDirection(){
+        double distance = calculeDistance();
+        this.xDirection = (getxCible() - getX()) / distance;
+        this.yDirection = (getyCible() - getY()) / distance;
     }
 
     public boolean isTouché() {
@@ -55,7 +57,15 @@ public abstract class Projectile {
         this.touché = touché;
     }
 
-    public abstract void deplacement(double elapsedTime);
+    public void deplacement(double elapsedTime) {
+        double deltaX = getxDirection() * getV()*elapsedTime;
+        double deltaY = getyDirection() * getV()*elapsedTime;
+
+        if (!(getX()==getxCible()) || (getY()==getyCible())) {
+            setX(getX() + deltaX);
+            setY(getY() + deltaY);
+        }
+    }
 
     public void animationProjectile(){
         Projectile p = this;
@@ -102,10 +112,7 @@ public abstract class Projectile {
     public Soldat ennemiÀPorter() {
         for (Soldat s : terrain.getSoldats()) {
             if (s.estVivant()) {
-                double distanceX = Math.abs(s.getX0Value() - getX());
-                double distanceY = Math.abs(s.getY0Value() - getY());
-                double distanceTotale = distanceX + distanceY;
-                if (distanceTotale <= 10) {
+                if (calculeDistance() <= 10) {
                     return s;
                 }
             }
@@ -113,21 +120,19 @@ public abstract class Projectile {
         return null;
     }
 
-
-    public double getxCible() {
-        return xCible.get();
+    public double calculeDistance(){
+        double distanceX = Math.abs(s.getX0Value() - getX());
+        double distanceY = Math.abs(s.getY0Value() - getY());
+        return distanceX + distanceY;
     }
 
-    public DoubleProperty xCibleProperty() {
-        return xCible;
+
+    public double getxCible() {
+        return s.getX0Value();
     }
 
     public double getyCible() {
-        return yCible.get();
-    }
-
-    public DoubleProperty yCibleProperty() {
-        return yCible;
+        return s.getY0Value();
     }
 
     public double getxDirection() {
@@ -166,25 +171,6 @@ public abstract class Projectile {
         this.y.set(y);
     }
 
-    public void setxCible(double xCible) {
-        this.xCible.set(xCible);
-    }
-
-    public void setyCible(double yCible) {
-        this.yCible.set(yCible);
-    }
-
-    public void setxDirection(double xDirection) {
-        this.xDirection = xDirection;
-    }
-
-    public void setyDirection(double yDirection) {
-        this.yDirection = yDirection;
-    }
-
-    public void setV(double v) {
-        this.v = v;
-    }
 
     public String getId() {
         return id;
@@ -201,5 +187,9 @@ public abstract class Projectile {
     }
     public Environnement getTerrain() {
         return terrain;
+    }
+
+    public Soldat getS() {
+        return s;
     }
 }
