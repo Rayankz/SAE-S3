@@ -34,22 +34,22 @@ public class VueTours {
     public static final String CLIC_CHEMIN_IMAGE_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/errChemin.png";
     public static final String CLIC_NO_MONEY_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/noMoney.png";
 
-
     private Environnement terrain;
 
     @FXML
     private Pane centerPane;
 
-
     private String idTourClicked = "0";
 
     public VueTours(Environnement terrain, Pane centerPane) {
+
         this.terrain = terrain;
         this.centerPane = centerPane;
     }
 
     @FXML
     public void positionTour(MouseEvent event) {
+
         double x = event.getX();
         double y = event.getY();
         DoubleProperty progression = new SimpleDoubleProperty(1.0);;
@@ -60,19 +60,19 @@ public class VueTours {
         //StackPane stackPane = new StackPane();
         //stackPane.setPadding(new Insets(10));
 
-        if (idTourClicked.equals("0")) {
+        if (this.idTourClicked.equals("0")) {
             // Aucune tour sélectionnée, afficher ce message d'erreur
             showErrorMessage(x, y);
-        } else if (terrain.getJoueur().getSoldeJoueurValue()<=0)  {
+        } else if (this.terrain.getJoueur().getSoldeJoueurValue() <= 0)  {
             // Message d'erreur en cas de clic sans avoir le solde necéssaire
             showErrorMoneyMessage(x, y);
         } else {
             if (tourPosable(x, y)) {
-                switch (idTourClicked) {
+                switch (this.idTourClicked) {
                     case "tour200b":
                         i = createTourImageView(x, y, MAP_TOUR_ENFER_PATH);
-                        ToursDeffensives td = new ToursDeffensives((int) x,(int) y, terrain);
-                        terrain.ajouterTour(td);
+                        ToursDefensives td = new ToursDefensives((int) x,(int) y, this.terrain);
+                        this.terrain.ajouterTour(td);
                         i.setId(td.getId());
                         hpb.setId(td.getId()+"p");
                         progression.bind(Bindings.divide(td.getPointsDeVieProperty(), (double) td.getPointsDeVieValue()));
@@ -81,7 +81,7 @@ public class VueTours {
                     case "tour400b":
                         i = createTourImageView(x, y, MAP_TOUR_SORCIER_PATH);
                         TourMitrailleuse tm = new TourMitrailleuse((int) x, (int) y,terrain);
-                        terrain.ajouterTour(tm);
+                        this.terrain.ajouterTour(tm);
                         i.setId(tm.getId());
                         hpb.setId(tm.getId()+"p");
                         progression.bind(Bindings.divide(tm.getPointsDeVieProperty(), (double) tm.getPointsDeVieValue()));
@@ -89,8 +89,8 @@ public class VueTours {
 
                     case "tour600b":
                         i = createTourImageView(x, y, MAP_TOUR_SNIPER_PATH);
-                        TourSniper ts = new TourSniper((int) x, (int) y,terrain);
-                        terrain.ajouterTour(ts);
+                        TourSniper ts = new TourSniper((int) x, (int) y, this.terrain);
+                        this.terrain.ajouterTour(ts);
                         i.setId(ts.getId());
                         hpb.setId((ts.getId()+"p"));
                         progression.bind(Bindings.divide(ts.getPointsDeVieProperty(), (double) ts.getPointsDeVieValue()));
@@ -98,21 +98,22 @@ public class VueTours {
                     case "tour800b":
                         i = createTourImageView(x, y, MAP_TOUR_MORTIER_PATH);
                         TourLanceMissile tlm = new TourLanceMissile((int) x, (int) y,terrain);
-                        terrain.ajouterTour(tlm);
+                        this.terrain.ajouterTour(tlm);
                         i.setId(tlm.getId());
                         hpb.setId((tlm.getId()+"p"));
                         progression.bind(Bindings.divide(tlm.getPointsDeVieProperty(), (double) tlm.getPointsDeVieValue()));
                         break;
                 }
                 //afficherBarreDeVie(stackPane, i, hpb);
-                centerPane.getChildren().addAll(i, hpb);
+                this.centerPane.getChildren().addAll(i, hpb);
 
-                idTourClicked = "0"; // Réinitialiser la sélection de la tour
+                this.idTourClicked = "0"; // Réinitialiser la sélection de la tour
             }
         }
     }
 
     public ProgressBar creerBarreDeVie(DoubleProperty d, double x, double y){
+
         ProgressBar hpBarre = new ProgressBar();
         hpBarre.progressProperty().bind(d);
         //hpBarre.setPadding(new Insets(2));
@@ -126,6 +127,7 @@ public class VueTours {
 
 
     private ImageView createTourImageView(double x, double y, String path) {
+
         ImageView maTour = new ImageView(loadImage(path));
         maTour.setX(x - 15);
         maTour.setY(y - 22);
@@ -134,6 +136,7 @@ public class VueTours {
 
 
     private boolean tourPosable(double x, double y) {
+
         int mapX = (int) x / 8;
         int mapY = (int) y / 8;
 
@@ -142,17 +145,23 @@ public class VueTours {
         int startY = mapY - 3;
 
         // Vérifier si la case est valide et si elle est libre
-        if (terrain.valeurDeLaCase(mapY, mapX) == 1){
+        if (this.terrain.getBFS().valeurDeLaCase(mapY, mapX) == 1){
+
             showErrorCheminMessage(x, y);
         }
         else {
-            if (mapX >= 0 && mapX < terrain.getXmax() && mapY >= 0 && mapY < terrain.getYmax()) {
+            if (mapX >= 0 && mapX < this.terrain.getBFS().getXmax() && mapY >= 0 && mapY < this.terrain.getBFS().getYmax()) {
                 // Vérifier si aucune tour n'est déjà positionnée sur cette case ou sur les cases entourant celle-ci
                 for (int i = startX; i <= startX + 6; i++) {
+
                     for (int j = startY; j <= startY + 6; j++) {
-                        if (i >= 0 && i < terrain.getXmax() && j >= 0 && j < terrain.getYmax()) {
-                            for (Tour tour : terrain.getTours()) {
+
+                        if (i >= 0 && i < this.terrain.getBFS().getXmax() && j >= 0 && j < this.terrain.getBFS().getYmax()) {
+
+                            for (Tour tour : this.terrain.getTours()) {
+
                                 if (((int) (tour.getX0Value() / 8) == i) && ((int) (tour.getY0Value() / 8) == j)) {
+
                                     System.out.println("Tour deja posée sur " + tour.getX0Value() + " (" + ((int) tour.getX0Value() / 8) + ") " + tour.getY0Value() + " (" + ((int) tour.getY0Value() / 8) + ") ");
                                     return false; // Une tour est déjà positionnée sur cette case ou sur une case entourante
                                 }
@@ -166,43 +175,48 @@ public class VueTours {
         return false; // La case est invalide ou déjà occupée par une tour ou une case environnante est occupée par une tour
     }
 
-
-
-
     private void showErrorMessage(double x, double y) {
+
         ImageView errorImageView = createErrorImageView(x, y);
-        centerPane.getChildren().add(errorImageView);
-        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> centerPane.getChildren().remove(errorImageView))).play();
+        this.centerPane.getChildren().add(errorImageView);
+        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
 
     private ImageView createErrorImageView(double x, double y) {
+
         ImageView err = new ImageView(loadImage(BAD_CLICK_IMAGE_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
         return err;
     }
+
     private void showErrorMoneyMessage(double x, double y) {
+
         ImageView errorImageView = createMoneyErrorImageView(x, y);
-        centerPane.getChildren().add(errorImageView);
-        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> centerPane.getChildren().remove(errorImageView))).play();
+        this.centerPane.getChildren().add(errorImageView);
+        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
 
     private ImageView createMoneyErrorImageView(double x, double y) {
+
         ImageView err = new ImageView(loadImage(CLIC_NO_MONEY_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
         return err;
     }
+
     private void showErrorCheminMessage(double x, double y) {
+
         ImageView errorImageView = createCheminErrorMessage(x, y);
-        centerPane.getChildren().add(errorImageView);
-        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> centerPane.getChildren().remove(errorImageView))).play();
+        this.centerPane.getChildren().add(errorImageView);
+        new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
 
     private ImageView createCheminErrorMessage(double x, double y) {
+
         ImageView err = new ImageView(loadImage(CLIC_CHEMIN_IMAGE_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
@@ -211,11 +225,13 @@ public class VueTours {
 
     @FXML
     public void selectionTour(MouseEvent event) {
+
         ImageView image = (ImageView) event.getSource();
         this.idTourClicked = image.getId();
     }
 
     private Image loadImage(String path) {
+
         try {
             InputStream inputStream = getClass().getResourceAsStream(path);
             if (inputStream != null) {
@@ -225,6 +241,7 @@ public class VueTours {
                 return null;
             }
         } catch (Exception e) {
+
             e.printStackTrace();
             return null;
         }

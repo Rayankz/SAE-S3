@@ -14,20 +14,9 @@ import java.util.Random;
 
 public class Vagues {
 
-    private ListProperty<Soldat> listeSoldats;
-
-    private IntegerProperty nbrTours;
     private Environnement environnement;
 
     private int currentWave;
-
-    private int numeroDeVague;
-
-    private int ennemisAFaireSpawnType1;
-
-    private int ennemisAFaireSpawnType2;
-
-    private int ennemisAFaireSpawnType3;
 
     private int nbreSpawnsType1;
     private int nbreSpawnsType2;
@@ -35,23 +24,21 @@ public class Vagues {
 
     private int totalSoldats;
 
-
     public Vagues(Environnement environnement) {
+
         this.environnement = environnement;
-        this.listeSoldats = environnement.getSoldatsProperty();
-        this.numeroDeVague = environnement.getVagueValue();
         this.nbreSpawnsType1 = 0;
         this.nbreSpawnsType2 = 0;
         this.nbreSpawnsType3 = 0;
     }
 
-    public void unTour(){
+    public void unTour() {
 
-        int envWave = environnement.getVagueValue();
+        int envWave = this.environnement.getVagueValue();
 
-        if (envWave != currentWave) {
+        if (envWave != this.currentWave) {
             resetNbreSpawns();
-            currentWave = envWave;
+            this.currentWave = envWave;
         }
 
         switch (envWave) {
@@ -81,14 +68,17 @@ public class Vagues {
     }
 
     public void resetNbreSpawns() {
-        nbreSpawnsType1 = 0;
-        nbreSpawnsType2 = 0;
-        nbreSpawnsType3 = 0;
-        totalSoldats = 0;
+
+        this.nbreSpawnsType1 = 0;
+        this.nbreSpawnsType2 = 0;
+        this.nbreSpawnsType3 = 0;
+        this.totalSoldats = 0;
     }
 
     public void majDefenseSoldats() {
-        for (Soldat s : environnement.getSoldats()) {
+
+        for (Soldat s : this.environnement.getSoldats()) {
+
             if (s.getPointsDeVieValue() > 5) {
                 s.setPointsDeVieValue(s.getPointsDeVieValue() - 5);
             }
@@ -96,149 +86,154 @@ public class Vagues {
     }
 
     public void resetTours() {
-        for (Tour t : environnement.getTours()){
+
+        for (Tour t : this.environnement.getTours()){
             t.setPointsDeVieValue(0);
         }
     }
 
+    public void premiereVague() {
 
+        int maxSoldiersType1 = 12;
+        this.totalSoldats = maxSoldiersType1;
 
-    public void premiereVague(){
-        ennemisAFaireSpawnType1 = 12;
-        totalSoldats = ennemisAFaireSpawnType1;
+        if (((this.environnement.getNbrTours() % 20) == 0) && (this.nbreSpawnsType1 < maxSoldiersType1)) {
 
-        if (((environnement.getNbrTours() % 20) == 0) && (ennemisAFaireSpawnType1 > nbreSpawnsType1)) {
             System.out.println("Un nouveau Soldat Apparait !");
             nouveauSpawnSoldat(1,9);
-            nbreSpawnsType1++;
+            this.nbreSpawnsType1++;
         }
     }
 
-    public void deuxiemeVague(){
+    public void deuxiemeVague() {
 
         int maxSoldiersType1 = 8;
         int maxSoldiersType2 = 6;
 
-        totalSoldats = maxSoldiersType1 + maxSoldiersType2;
+        this.totalSoldats = maxSoldiersType1 + maxSoldiersType2;
 
         Random random = new Random();
 
-        if ((environnement.getNbrTours() % 15) == 0){
+        if ((this.environnement.getNbrTours() % 15) == 0){
 
-            if ((nbreSpawnsType1 < maxSoldiersType1) || (nbreSpawnsType2 < maxSoldiersType2)) {
+            if ((this.nbreSpawnsType1 < maxSoldiersType1) || (this.nbreSpawnsType2 < maxSoldiersType2)) {
                 int soldierTypeToSpawn = random.nextInt(2) + 1; // Cela générere soit 1 soit 2
 
-                if ((soldierTypeToSpawn == 1) && (nbreSpawnsType1 < maxSoldiersType1)) {
+                if ((soldierTypeToSpawn == 1) && (this.nbreSpawnsType1 < maxSoldiersType1)) {
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 9);
-                    nbreSpawnsType1++;
-                } else if ((soldierTypeToSpawn == 2) && (nbreSpawnsType2 < maxSoldiersType2)) {
+                    this.nbreSpawnsType1++;
+                }
+                else if ((soldierTypeToSpawn == 2) && (this.nbreSpawnsType2 < maxSoldiersType2)) {
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 9);
-                    nbreSpawnsType2++;
+                    this.nbreSpawnsType2++;
                 }
             }
         }
     }
 
-
-    public void troisiemeVague(){
+    public void troisiemeVague() {
         int maxSoldiersType1 = 10;
         int maxSoldiersType2 = 8;
 
-        totalSoldats = maxSoldiersType1 + maxSoldiersType2;
+        this.totalSoldats = maxSoldiersType1 + maxSoldiersType2;
 
         Random random = new Random();
 
-        if ((environnement.getNbrTours() % 12) == 0) {
+        if ((this.environnement.getNbrTours() % 12) == 0) {
 
-            if ((nbreSpawnsType1 < maxSoldiersType1) || (nbreSpawnsType2 < maxSoldiersType2)) {
+            if ((this.nbreSpawnsType1 < maxSoldiersType1) || (this.nbreSpawnsType2 < maxSoldiersType2)) {
                 int soldierTypeToSpawn = random.nextInt(2) + 1; // Cela générere soit 1 soit 2
 
-                if ((soldierTypeToSpawn == 1) && (nbreSpawnsType1 < maxSoldiersType1)) {
+                if ((soldierTypeToSpawn == 1) && (this.nbreSpawnsType1 < maxSoldiersType1)) {
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 12);
-                    nbreSpawnsType1++;
-                } else if ((soldierTypeToSpawn == 2) && (nbreSpawnsType2 < maxSoldiersType2)) {
+                    this.nbreSpawnsType1++;
+                }
+                else if ((soldierTypeToSpawn == 2) && (this.nbreSpawnsType2 < maxSoldiersType2)) {
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 12);
-                    nbreSpawnsType2++;
+                    this.nbreSpawnsType2++;
                 }
             }
         }
     }
 
-    public void quatriemeVague(){
+    public void quatriemeVague() {
         int maxSoldiersType1 = 9;
         int maxSoldiersType2 = 7;
         int maxSoldiersType3 = 3;
 
-        totalSoldats = maxSoldiersType1 + maxSoldiersType2 + maxSoldiersType3;
+        this.totalSoldats = maxSoldiersType1 + maxSoldiersType2 + maxSoldiersType3;
 
         Random random = new Random();
 
-        if ((environnement.getNbrTours() % 10) == 0) {
+        if ((this.environnement.getNbrTours() % 10) == 0) {
 
-            if ((nbreSpawnsType1 < maxSoldiersType1) || (nbreSpawnsType2 < maxSoldiersType2) || (nbreSpawnsType3 < maxSoldiersType3)) {
+            if ((this.nbreSpawnsType1 < maxSoldiersType1) || (this.nbreSpawnsType2 < maxSoldiersType2) || (this.nbreSpawnsType3 < maxSoldiersType3)) {
                 int soldierTypeToSpawn = random.nextInt(3) + 1; // Cela générera soit 1, soit 2 ou 3
 
-                if ((soldierTypeToSpawn == 1) && (nbreSpawnsType1 < maxSoldiersType1)) {
+                if ((soldierTypeToSpawn == 1) && (this.nbreSpawnsType1 < maxSoldiersType1)) {
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 16);
-                    nbreSpawnsType1++;
-                } else if ((soldierTypeToSpawn == 2) && (nbreSpawnsType2 < maxSoldiersType2)) {
+                    this.nbreSpawnsType1++;
+                }
+                else if ((soldierTypeToSpawn == 2) && (this.nbreSpawnsType2 < maxSoldiersType2)) {
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 10);
-                    nbreSpawnsType2++;
-                } else if ((soldierTypeToSpawn == 3) && (nbreSpawnsType3 < maxSoldiersType3)) {
+                    this.nbreSpawnsType2++;
+                }
+                else if ((soldierTypeToSpawn == 3) && (this.nbreSpawnsType3 < maxSoldiersType3)) {
                     System.out.println("Un nouveau Shichibukai apparait !");
                     nouveauSpawnSoldat(3, 9);
-                    nbreSpawnsType3++;
+                    this.nbreSpawnsType3++;
                 }
             }
         }
     }
 
-
-    public void cinquiemeVague(){
+    public void cinquiemeVague() {
         int maxSoldiersType1 = 11;
         int maxSoldiersType2 = 9;
         int maxSoldiersType3 = 5;
 
-        totalSoldats = maxSoldiersType1 + maxSoldiersType2 + maxSoldiersType3;
+        this.totalSoldats = maxSoldiersType1 + maxSoldiersType2 + maxSoldiersType3;
 
         Random random = new Random();
 
-        if ((environnement.getNbrTours() % 9) == 0) {
+        if ((this.environnement.getNbrTours() % 9) == 0) {
 
-            if ((nbreSpawnsType1 < maxSoldiersType1) || (nbreSpawnsType2 < maxSoldiersType2) || (nbreSpawnsType3 < maxSoldiersType3)) {
+            if ((this.nbreSpawnsType1 < maxSoldiersType1) || (this.nbreSpawnsType2 < maxSoldiersType2) || (this.nbreSpawnsType3 < maxSoldiersType3)) {
                 int soldierTypeToSpawn = random.nextInt(3) + 1; // Cela générera soit 1, soit 2 ou 3
 
-                if ((soldierTypeToSpawn == 1) && (nbreSpawnsType1 < maxSoldiersType1)) {
+                if ((soldierTypeToSpawn == 1) && (this.nbreSpawnsType1 < maxSoldiersType1)) {
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 16);
-                    nbreSpawnsType1++;
-                } else if ((soldierTypeToSpawn == 2) && (nbreSpawnsType2 < maxSoldiersType2)) {
+                    this.nbreSpawnsType1++;
+                }
+                else if ((soldierTypeToSpawn == 2) && (this.nbreSpawnsType2 < maxSoldiersType2)) {
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 16);
-                    nbreSpawnsType2++;
-                } else if ((soldierTypeToSpawn == 3) && (nbreSpawnsType3 < maxSoldiersType3)) {
+                    this.nbreSpawnsType2++;
+                }
+                else if ((soldierTypeToSpawn == 3) && (this.nbreSpawnsType3 < maxSoldiersType3)) {
                     System.out.println("Un nouveau Shichibukai apparait !");
                     nouveauSpawnSoldat(3, 9);
-                    nbreSpawnsType3++;
+                    this.nbreSpawnsType3++;
                 }
             }
         }
     }
 
+    public void vagueParDefault() {
 
-
-
-    public void vagueParDefault(){premiereVague();
+        premiereVague();
     }
 
     public int getTotalSoldats(){
-        return totalSoldats;
+
+        return this.totalSoldats;
     }
 
     public Soldat nouveauSpawnSoldat(int typeSoldat, int spawn) {
@@ -251,16 +246,13 @@ public class Vagues {
         return soldat;
     }
 
-
-
     public Soldat afficherSoldat(double startX, double startY, int typeSoldat) {
+
         Soldat s = selectionSoldat(typeSoldat, startX, startY);
-        listeSoldats.add(s);
+        this.environnement.getSoldatsProperty().add(s);
 
         return s;
     }
-
-
 
     public Soldat selectionSoldat(int typeSoldat, double startX, double startY) {
 
@@ -268,24 +260,23 @@ public class Vagues {
 
         switch(typeSoldat) {
             case 1:
-                s = new Rookie((int) startX, (int) startY, 89, 49,environnement);
+                s = new Rookie((int) startX, (int) startY, 89, 49, this.environnement);
                 break;
             case 2:
-                s = new SuperNova((int) startX, (int) startY, 89, 49,environnement);
+                s = new SuperNova((int) startX, (int) startY, 89, 49, this.environnement);
                 break;
             case 3:
-                s = new Shichibukais((int) startX, (int) startY, 89, 49,environnement);
+                s = new Shichibukais((int) startX, (int) startY, 89, 49, this.environnement);
                 break;
             default:
-                s = new Rookie((int) startX, (int) startY, 89, 49,environnement);
+                s = new Rookie((int) startX, (int) startY, 89, 49, this.environnement);
         }
 
         return s;
     }
 
-
-
     public int[] randomSelection(int i) {
+
         int[] resultat = new int[4];
 
         // 0-9 10-16
@@ -328,14 +319,7 @@ public class Vagues {
     }
 
     public Environnement getEnvironnement() {
+
         return environnement;
-    }
-
-    public int getListeSoldats() {
-        return listeSoldats.size();
-    }
-
-    public ListProperty<Soldat> listeSoldatsProperty() {
-        return listeSoldats;
     }
 }

@@ -56,8 +56,9 @@ public class ControleurMP implements Initializable {
     }
     @FXML
     private void onAideButtonClick(MouseEvent event) throws IOException {
+
         System.out.println("media stop");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/iut/montreuil/Red_Line_Defense/Vues/vueAide.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/iut/montreuil/Red_Line_Defense/Vues/VueAide.fxml"));
         root = loader.load();
         ControleurAide controleur = loader.getController(); // Retrieve the controller instance
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

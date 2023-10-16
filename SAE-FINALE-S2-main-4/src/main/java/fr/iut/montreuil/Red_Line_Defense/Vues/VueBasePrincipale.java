@@ -25,7 +25,7 @@ public class VueBasePrincipale {
         afficherBase();
     }
 
-    public void afficherBase(){
+    public void afficherBase() {
 
         ImageView img = creerImageBP();
         img.setLayoutX(this.basePrincipale.getX0Value()-40);
@@ -38,7 +38,7 @@ public class VueBasePrincipale {
         this.p.getChildren().addAll(img, this.barreDeVieBasePrincipale);
     }
 
-    public ProgressBar creerBarreDeVie(DoubleProperty d, double x, double y){
+    public ProgressBar creerBarreDeVie(DoubleProperty d, double x, double y) {
 
         ProgressBar hpBarre = new ProgressBar();
         hpBarre.progressProperty().bind(d);

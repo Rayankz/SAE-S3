@@ -74,19 +74,16 @@ public class Controleur implements Initializable {
     private VueTours vueTours;
     private VueSoldats vueSoldats;
 
-    private VueProjectile vueProjectile;
-
     private BasePrincipale basePrincipale;
 
     private EcouteVictoireEtDefaite ecouteVictoireEtDefaite;
-
 
     private VueBasePrincipale vueBasePrincipale;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // coucou madame pour lancer le jeu appuyez sur P :)
-        centerPane.getChildren().add(new ImageView(loadImage("/fr/iut/montreuil/Red_Line_Defense/Images/ElementsCarte/map.png")));
+        this.centerPane.getChildren().add(new ImageView(loadImage("/fr/iut/montreuil/Red_Line_Defense/Images/ElementsCarte/map.png")));
         initializeJoueur();
         initializeEnvironnement();
         initializeVueTours();
@@ -100,7 +97,7 @@ public class Controleur implements Initializable {
         initializeVueBasePrincipale();
 
 
-        terrain.setBasePrincipale(basePrincipale);
+        this.terrain.setBasePrincipale(this.basePrincipale);
     }
 
     public Stage getStage() {
@@ -144,108 +141,87 @@ public class Controleur implements Initializable {
         initializeEcouteInterface();
     }
 
-    private void initializeEcouteInterface(){
-        ecouteInterface = new EcouteInterface(terrain, vueInterface);
+    private void initializeEcouteInterface() {
+
+        this.ecouteInterface = new EcouteInterface(this.terrain, this.vueInterface);
     }
 
-    private void initializeEcouteSoldats(){
-        ecouteSoldats = new EcouteSoldats(terrain, vueSoldats);
+    private void initializeEcouteSoldats() {
+
+        this.ecouteSoldats = new EcouteSoldats(this.terrain, this.vueSoldats);
     }
 
+    private void initializeEcouteTours() {
 
-    private void initializeEcouteTours(){ ecouteTours = new EcouteTours(terrain,centerPane);}
-
+        this.ecouteTours = new EcouteTours(this.terrain, this.centerPane);
+    }
 
     private void initializeEnvironnement() {
 
-        terrain = new Environnement(joueur);
-    }
-
-    @FXML
-    private void lancerTours() {
-
-        gameLoop.lancerTimeline();
-        FonctionsDeTests fonctionsDeTests = new FonctionsDeTests(terrain, getScene());
+        this.terrain = new Environnement(this.joueur);
     }
 
     private void initializeBasePrincipale() {
 
         basePrincipale = new BasePrincipale(700, 335,terrain);
     }
-    private void initializeVueBasePrincipale(){
+
+    private void initializeVueBasePrincipale() {
 
         vueBasePrincipale = new VueBasePrincipale(centerPane, basePrincipale);
         initializeEcouteBasePrincipale();
     }
 
-    private void initializeEcouteBasePrincipale(){ ecouteBasePrincipale = new EcouteBasePrincipale(vueBasePrincipale, gameLoop);}
+    private void initializeEcouteBasePrincipale() {
+
+        this.ecouteBasePrincipale = new EcouteBasePrincipale(this.vueBasePrincipale, this.gameLoop);
+    }
 
     private void initializeVueTours() {
-        vueTours = new VueTours(terrain, centerPane);
+
+        this.vueTours = new VueTours(this.terrain, this.centerPane);
         initializeEcouteTours();
     }
 
     private void initializeVueSoldats() {
-        vueSoldats = new VueSoldats(centerPane);
+
+        this.vueSoldats = new VueSoldats(this.centerPane);
         initializeEcouteSoldats();
     }
-    private void initializeVueProjectile(){
+
+    private void initializeVueProjectile() {
+
         initializeEcouteProjectiles();
     }
 
-    private void initializeEcouteProjectiles(){
-        ecouteProjectiles =new EcouteProjectiles(terrain,centerPane);
+    private void initializeEcouteProjectiles() {
+
+        this.ecouteProjectiles = new EcouteProjectiles(this.terrain, this.centerPane);
     }
 
     private void initializeGameLoop() {
 
-        gameLoop = new GameLoop(centerPane, vueSoldats, terrain);
+        this.gameLoop = new GameLoop(this.centerPane, this.vueSoldats, this.terrain);
     }
 
-    private void remplissage() {
-        int xmax = terrain.getXmax();
-        int ymax = terrain.getYmax();
-
-        for (int i = 0; i < ymax; i++) {
-            for (int j = 0; j < xmax; j++) {
-                centerPane.getChildren().add(createTerrainImageView(i, j));
-            }
-        }
-    }
-
-    private ImageView createTerrainImageView(int i, int j) {
-
-        int n = terrain.valeurDeLaCase(i, j);
-        ImageView imageView = new ImageView(getTerrainImage(n));
-        imageView.setTranslateX(j * TAILLE_IMAGE);
-        imageView.setTranslateY(i * TAILLE_IMAGE);
-        return imageView;
-    }
-
-    private Image getTerrainImage(int n) {
-
-        switch (n) {
-            case 1:
-                return loadImage("/fr/iut/montreuil/Red_Line_Defense/Images/ElementsCarte/chemin.png");
-            default:
-                return loadImage("/fr/iut/montreuil/Red_Line_Defense/Images/ElementsCarte/herbeVierge.png");
-        }
-    }
 
     public GameLoop getGameLoop() {
-        return gameLoop;
+
+        return this.gameLoop;
     }
 
-
     public void positionTour(MouseEvent event) {
-        vueTours.positionTour(event);
+
+        this.vueTours.positionTour(event);
     }
 
     public void selectionTour(MouseEvent event) {
-        vueTours.selectionTour(event);
+
+        this.vueTours.selectionTour(event);
     }
 
     private Image loadImage(String path) {
+
         return new Image(getClass().getResourceAsStream(path));
     }
 }

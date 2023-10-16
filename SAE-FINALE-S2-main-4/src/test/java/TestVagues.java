@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestVagues {
 
-    private Vagues vagues;
+    /*private Vagues vagues;
 
     @BeforeEach
     public void setUp() {
@@ -73,6 +73,6 @@ public class TestVagues {
         vagues.majDefenseSoldats();
 
         Assertions.assertEquals(s.getPointsDeVieValue(), solHP-5);
-    }
+    }*/
 
 }

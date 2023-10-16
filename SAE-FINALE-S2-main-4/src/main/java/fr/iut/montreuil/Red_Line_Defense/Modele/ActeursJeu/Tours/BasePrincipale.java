@@ -16,16 +16,18 @@ public class BasePrincipale extends Tour {
     Set<Point2D> zone;
 
     public BasePrincipale(int x0, int y0, Environnement e) {
-        super(x0, y0, 10000,e); // 2 tiles de portéé
-         zone = new HashSet<>();
-         initializeZone();
+
+        super(x0, y0, 100,e); // 2 tiles de portée
+        this.zone = new HashSet<>();
+        this.setPortée(55);
+        initializeZone();
     }
 
     public void agit(int n) {
 
-        if (porteeBP() != null) {
+        if (ennemiÀPorter() != null) {
 
-            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.porteeBP().getDegatValue());
+            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter().getDegatValue());
             System.out.println("---pv base : " + this.getPointsDeVieValue());
             for (Soldat s: this.getTerrain().getSoldatsProperty().getValue()) {
 
@@ -52,27 +54,8 @@ public class BasePrincipale extends Tour {
         }
     }
 
-    public Set<Point2D> getZone(){
+    public Set<Point2D> getZone() {
 
         return zone;
     }
-
-    public Soldat porteeBP() {
-            System.out.println("entrer fonction");
-            for (Soldat s : this.getTerrain().getSoldats()) {
-                System.out.println("entrer boucle");
-                if (s.estVivant()) {
-                    System.out.println("vivant");
-                    double distanceY = Math.abs(s.getY0Value() - getY0Value());
-                    System.out.println(distanceY);
-                    if (distanceY <= this.getPortée()) {
-                        System.out.println("bonne portée");
-                        return s;
-                    }
-                }
-            }
-            return null;
-    }
-
-
 }

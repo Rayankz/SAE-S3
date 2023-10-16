@@ -22,7 +22,7 @@ public class EcouteBasePrincipale {
         this.barreDeVieBasePrincipale = vueBasePrincipale.getBarreDeVieBasePrincipale();
         this.progression = new SimpleDoubleProperty(1.0);
         this.gameLoop = gameLoop;
-        barreDeVieBasePrincipale.progressProperty().bind(progression);
+        this.barreDeVieBasePrincipale.progressProperty().bind(this.progression);
         ajouterEcouteurBarreDeVie();
         ajouterEcouteurPointsDeVie();
     }

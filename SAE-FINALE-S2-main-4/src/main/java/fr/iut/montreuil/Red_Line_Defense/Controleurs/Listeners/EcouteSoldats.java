@@ -1,7 +1,4 @@
-
 package fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners;
-
-
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
@@ -15,21 +12,25 @@ import java.util.List;
 
 public class EcouteSoldats {
 
-    private ListProperty<Soldat> listeSoldat;
-
     private VueSoldats vueSoldat;
 
-    private Environnement terrain;
+    private Environnement environnement;
 
-    public EcouteSoldats(Environnement terrain, VueSoldats vueSoldat) {
-        this.terrain = terrain;
-        this.listeSoldat = this.terrain.getSoldatsProperty();
+    public EcouteSoldats(Environnement environnement, VueSoldats vueSoldat) {
+
+        this.environnement = environnement;
         this.vueSoldat = vueSoldat;
         ajouterEcouteurSurSoldat();
     }
 
+    public Environnement getEnvironnement() {
+
+        return this.environnement;
+    }
+
     public void ajouterEcouteurSurSoldat() {
-        this.listeSoldat.addListener(new ListChangeListener<Soldat>() {
+
+        this.environnement.getSoldatsProperty().addListener(new ListChangeListener<Soldat>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Soldat> c) {
                 while (c.next()) {
@@ -53,11 +54,15 @@ public class EcouteSoldats {
     }
 
     public void ajouterEcouteurSurCoordonneesSoldat(Soldat s) {
-           s.getX0Property().addListener(new ChangeListener<Number>() {
+
+        s.getX0Property().addListener(new ChangeListener<Number>() {
                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
                    if (newValue.intValue() > oldValue.intValue()) {
+
                        vueSoldat.mettreAJourSkin(3, s);
                    } else {
+
                        vueSoldat.mettreAJourSkin(2, s);
                    }
                }
@@ -65,9 +70,12 @@ public class EcouteSoldats {
 
            s.getY0Property().addListener(new ChangeListener<Number>() {
                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
                    if (newValue.intValue() > oldValue.intValue()) {
+
                        vueSoldat.mettreAJourSkin(1, s);
                    } else {
+
                        vueSoldat.mettreAJourSkin(0, s);
                    }
                }

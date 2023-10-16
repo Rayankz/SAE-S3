@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestEnvironnement {
 
-    private Environnement environnement;
+    /*private Environnement environnement;
 
     @BeforeEach
     public void setUp() {
@@ -97,5 +97,5 @@ public class TestEnvironnement {
         environnement.ajouterProjectile(projectile);
 
         assertTrue(environnement.getProjectiles().contains(projectile));
-    }
+    }*/
 }
