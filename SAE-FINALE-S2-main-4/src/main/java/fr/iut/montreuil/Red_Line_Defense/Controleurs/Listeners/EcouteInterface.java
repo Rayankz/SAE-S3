@@ -28,36 +28,17 @@ public class EcouteInterface {
 
     public void ajouterEcouteurSolde() {
 
-        this.environnement.getJoueur().getSoldeJoueurProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-                vueInterface.getSolde().setText(String.valueOf(newValue));
-            }
-        });
+        this.vueInterface.getSolde().textProperty().bind(environnement.getJoueur().getSoldeJoueurProperty().asString());
     }
 
     public void ajouterEcouteurEnnemisTues() {
 
-        this.environnement.getEnnemisTuesProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-                vueInterface.getEnnemisTues().setText(String.valueOf(newValue));
-            }
-        });
+        this.vueInterface.getEnnemisTues().textProperty().bind(environnement.getEnnemisTuesProperty().asString());
     }
 
     public void ajouterEcouteurNumVague() {
 
-        this.environnement.getVagueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-                vueInterface.getVagueLabel().setText(String.valueOf(newValue));
-
-            }
-        });
+        this.vueInterface.getVagueLabel().textProperty().bind(environnement.getVagueProperty().asString());
     }
 
     private void ajouterListenerVague() {
