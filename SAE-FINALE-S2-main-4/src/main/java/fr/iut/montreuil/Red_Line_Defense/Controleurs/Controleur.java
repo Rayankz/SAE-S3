@@ -2,7 +2,6 @@ package fr.iut.montreuil.Red_Line_Defense.Controleurs;
 
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
-import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.FonctionsDeTests;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
@@ -112,48 +111,40 @@ public class Controleur implements Initializable {
         return scene;
     }
 
+    public BorderPane getBorderPane() {
+
+        BorderPane borderPane = new BorderPane();
+        return borderPane;
+    }
+
     private void initializeEcouteVictoireEtDefaite() {
 
         ecouteVictoireEtDefaite = new EcouteVictoireEtDefaite(terrain, vueInterface, this);
     }
 
-    private void initializeJoueur(){
+    private void initializeJoueur() {
 
-        this.joueur = new Joueur("Ayoub");
+        this.joueur = new Joueur("Arsan");
     }
 
-    private void initializeSons(){
+    private void initializeSons() {
 
         Media mediaJeu = new Media(getClass().getResource(OST_JEU_PATH).toString());
         Audio.chargerMedia(mediaJeu);
     }
 
-    public void initializeInputs(){
+    public void initializeInputs() {
 
         inputs = new Inputs(gameLoop, centerPane.getScene());
         inputs.pauseDuJeu();
     }
 
-    private void initializeVueInterface(){
-        vueInterface = new VueInterface(terrain, lancerButton, test, solde, berry, ennemisTues, prix200b, prix800b, prix600b, prix400b,
-                berryBot200b, berryBot400b, berryBot600b, berryBot800b, vboxRight, wpp, stackpane, centerPane.getScene(), borderPane,
+    private void initializeVueInterface() {
+
+        this.vueInterface = new VueInterface(terrain, lancerButton, test, solde, berry, ennemisTues, prix200b, prix800b, prix600b, prix400b,
+                berryBot200b, berryBot400b, berryBot600b, berryBot800b, vboxRight, wpp, stackpane, getScene(), getBorderPane(),
                 vague);
-        initializeEcouteInterface();
-    }
-
-    private void initializeEcouteInterface() {
-
         this.ecouteInterface = new EcouteInterface(this.terrain, this.vueInterface);
-    }
-
-    private void initializeEcouteSoldats() {
-
-        this.ecouteSoldats = new EcouteSoldats(this.terrain, this.vueSoldats);
-    }
-
-    private void initializeEcouteTours() {
-
-        this.ecouteTours = new EcouteTours(this.terrain, this.centerPane);
     }
 
     private void initializeEnvironnement() {
@@ -169,32 +160,22 @@ public class Controleur implements Initializable {
     private void initializeVueBasePrincipale() {
 
         vueBasePrincipale = new VueBasePrincipale(centerPane, basePrincipale);
-        initializeEcouteBasePrincipale();
-    }
-
-    private void initializeEcouteBasePrincipale() {
-
         this.ecouteBasePrincipale = new EcouteBasePrincipale(this.vueBasePrincipale, this.gameLoop);
     }
 
     private void initializeVueTours() {
 
         this.vueTours = new VueTours(this.terrain, this.centerPane);
-        initializeEcouteTours();
+        this.ecouteTours = new EcouteTours(this.terrain, this.centerPane);
     }
 
     private void initializeVueSoldats() {
 
         this.vueSoldats = new VueSoldats(this.centerPane);
-        initializeEcouteSoldats();
+        this.ecouteSoldats = new EcouteSoldats(this.terrain, this.vueSoldats);
     }
 
     private void initializeVueProjectile() {
-
-        initializeEcouteProjectiles();
-    }
-
-    private void initializeEcouteProjectiles() {
 
         this.ecouteProjectiles = new EcouteProjectiles(this.terrain, this.centerPane);
     }
@@ -203,7 +184,6 @@ public class Controleur implements Initializable {
 
         this.gameLoop = new GameLoop(this.centerPane, this.vueSoldats, this.terrain);
     }
-
 
     public GameLoop getGameLoop() {
 

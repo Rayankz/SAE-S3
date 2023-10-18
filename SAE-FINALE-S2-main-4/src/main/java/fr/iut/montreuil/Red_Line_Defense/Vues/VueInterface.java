@@ -6,6 +6,8 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
@@ -28,7 +30,6 @@ public class VueInterface {
 
     private Scene scene;
     private StackPane vaguePane;
-    Label solde;
 
     StackPane stackpane;
 
@@ -36,7 +37,7 @@ public class VueInterface {
 
     HBox hboxMoneyCount, prix200b, prix800b, prix600b, prix400b;
     VBox vboxRight;
-    Label ennemisTues, vague;
+    Label ennemisTues, vague, solde;
     private ArrayList<ImageView> transitionVague;
 
     private Button lancerButton, test;
@@ -195,7 +196,7 @@ public class VueInterface {
         this.hboxMoneyCount = hboxMoneyCount;
     }
 
-    public void boucleImagesVagues(int n){
+    public void boucleImagesVagues(int n) {
         ImageView imageView = transitionVague.get(n);
 
         // Création d'un layout avec un fond semi-transparent
@@ -203,9 +204,10 @@ public class VueInterface {
         vaguePane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.8);"); // Fond noir semi-transparent
         vaguePane.setVisible(false); // Initially invisible
 
-        vaguePane.prefWidthProperty().bind(scene.widthProperty());
-        vaguePane.prefHeightProperty().bind(scene.heightProperty());
+        vaguePane.prefWidthProperty().bind(new SimpleIntegerProperty(940));
+        vaguePane.prefHeightProperty().bind(new SimpleIntegerProperty(560));
         if (!borderPane.getChildren().contains(imageView)) {
+
             borderPane.getChildren().add(imageView);
         }
 
@@ -214,28 +216,4 @@ public class VueInterface {
                 ae -> vaguePane.getChildren().remove(imageView)));
         timeline.play();
     }
-
-    public void ajouterDefaite(Stage s){
-
-        URL url = Main.class.getResource("Vues/VueDefaite.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        ControleurDefaite controleur = loader.getController();
-
-        Stage stage = s;
-
-        if (stage != null) {
-            Scene scene = new Scene(root, 940, 560);
-            stage.setResizable(false);
-            stage.setTitle("Red Line Defense");
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
-
 }

@@ -11,23 +11,15 @@ import javafx.beans.value.ObservableValue;
 
 public class EcouteInterface {
 
-    private Joueur joueur;
-
-    private Environnement terrain;
+    private Environnement environnement;
 
     private VueInterface vueInterface;
 
-    private Vagues vagues;
+    public EcouteInterface(Environnement environnement, VueInterface vueInterface) {
 
-    private IntegerProperty vague;
-
-    public EcouteInterface(Environnement terrain, VueInterface vueInterface) {
-
-        this.terrain = terrain;
-        this.joueur = terrain.getJoueur();
-        this.vague = terrain.getVagueProperty();
-        this.vagues = terrain.getVagues();
+        this.environnement = environnement;
         this.vueInterface = vueInterface;
+
         ajouterEcouteurSolde();
         ajouterEcouteurEnnemisTues();
         ajouterListenerVague();
@@ -36,9 +28,10 @@ public class EcouteInterface {
 
     public void ajouterEcouteurSolde() {
 
-        this.joueur.getSoldeJoueurProperty().addListener(new ChangeListener<Number>() {
+        this.environnement.getJoueur().getSoldeJoueurProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
                 vueInterface.getSolde().setText(String.valueOf(newValue));
             }
         });
@@ -46,9 +39,10 @@ public class EcouteInterface {
 
     public void ajouterEcouteurEnnemisTues() {
 
-        this.terrain.getEnnemisTuesProperty().addListener(new ChangeListener<Number>() {
+        this.environnement.getEnnemisTuesProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
                 vueInterface.getEnnemisTues().setText(String.valueOf(newValue));
             }
         });
@@ -56,27 +50,26 @@ public class EcouteInterface {
 
     public void ajouterEcouteurNumVague() {
 
-        this.terrain.getVagueProperty().addListener(new ChangeListener<Number>() {
+        this.environnement.getVagueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
                 vueInterface.getVagueLabel().setText(String.valueOf(newValue));
+
             }
         });
     }
 
     private void ajouterListenerVague() {
 
-        int nbvague = 0;
-        this.vague.addListener((observable, oldValue, newValue) -> {
-            joueur.crediterSolde(800); // Chaque Vague le Joueur Gagne 800 Berrys
-            vagues.majDefenseSoldats();
-            vagues.resetTours();
-            vueInterface.boucleImagesVagues(nbvague);
+        int nbVague = 0;
+        this.environnement.getVagueProperty().addListener((observable, oldValue, newValue) -> {
+
+            environnement.getJoueur().crediterSolde(800); // Chaque Vague le Joueur Gagne 800 Berrys
+            environnement.getVagues().majDefenseSoldats();
+            environnement.getVagues().resetTours();
+            vueInterface.boucleImagesVagues(nbVague);
         });
 
     }
-
-
-
-
 }
