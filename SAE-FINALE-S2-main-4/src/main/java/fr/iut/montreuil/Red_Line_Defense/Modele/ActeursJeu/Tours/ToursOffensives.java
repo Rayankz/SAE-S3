@@ -18,45 +18,56 @@ public abstract class ToursOffensives extends Tour {
     private ObservableList<Projectile> projectiles; // Liste de tous les projectiles actuellement tirés par la tour
 
     private int vitesseProjectile;
-    public ToursOffensives(int x0, int y0, int pointsDeVie, int degats, int defense, int prix,Environnement terrain,int cadence,int vitesse,double portée) {
-        super(x0, y0, pointsDeVie, degats, defense, prix, terrain, portée);
 
+    public ToursOffensives(int x0, int y0, int pointsDeVie, int degats, int defense, int prix,Environnement terrain,int cadence,int vitesse,double portée) {
+
+        super(x0, y0, pointsDeVie, degats, defense, prix, terrain, portée);
         this.cadence = new SimpleIntegerProperty(cadence);
         this.projectiles = FXCollections.observableArrayList();
         this.vitesseProjectile=vitesse;
     }
 
-
     // Accesseur pour les projectiles
     public ObservableList<Projectile> getProjectiles() {
+
         return this.projectiles;
     }
 
-
     public void agit(int n){
+
         tirer(n);
     }
 
     public int getCadence() {
-        return cadence.getValue();
+
+        return this.cadence.getValue();
     }
 
     public IntegerProperty cadenceProperty() {
-        return cadence;
+
+        return this.cadence;
     }
 
     public abstract void creationProjectile(Soldat s);
+
     public void tirer(int nTemps) {
+
         Soldat s = ennemiÀPorter();
         if (s != null) {
+
             if (s.estVivant()) {
-                if(nTemps%getCadence()==0)
-                creationProjectile(s);
-               }
+
+                if(nTemps%getCadence()==0) {
+
+                    creationProjectile(s);
+                }
+
+            }
         }
     }
 
     public int getVitesseProjectile() {
-        return vitesseProjectile;
+
+        return this.vitesseProjectile;
     }
 }

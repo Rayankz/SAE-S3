@@ -27,27 +27,30 @@ public abstract class Soldat extends Acteurs {
     private int valeur; // valeur du soldat, permet de déterminer combien le joueur gagne en le tuant
 
     public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, double destinationX, double destinationY,Environnement environnement) {
+
         super(x0, y0, pointsDeVie, degats, defense);
         this.destinationX = destinationX;
         this.destinationY = destinationY;
         this.zone = new HashSet<Point2D>();
         this.environnement = environnement;
-        estPiégé=false;
+        estPiégé = false;
         créerZone();
     }
 
     public Soldat(double x0, double y0, int pointsDeVie, int degats, int defense, int valeur, double destinationX, double destinationY,Environnement environnement) {
+
         super(x0, y0, pointsDeVie, degats, defense);
         this.valeur = valeur;
         this.destinationX = destinationX;
         this.destinationY = destinationY;
         this.environnement = environnement;
         this.zone = new HashSet<Point2D>();
-        estPiégé=false;
+        estPiégé = false;
         créerZone();
     }
 
     public void agit() {
+
         int startX = (int) (getX0Value() / 8);
         int startY = (int) (getY0Value() / 8);
 
@@ -90,13 +93,17 @@ public abstract class Soldat extends Acteurs {
 
 
     public int getValeurGagnee() {
+
         return this.valeur;
     }
 
     public void créerZone() {
+
         for (int xZone = 88; xZone <= 90; xZone++) {
+
             for (int yZone = 47; yZone <= 49; yZone++) {
-                zone.add(new Point2D(xZone, yZone));
+
+                this.zone.add(new Point2D(xZone, yZone));
             }
         }
     }

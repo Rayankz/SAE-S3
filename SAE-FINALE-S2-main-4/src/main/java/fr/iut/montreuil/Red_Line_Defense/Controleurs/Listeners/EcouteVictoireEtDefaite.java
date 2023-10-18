@@ -5,8 +5,6 @@ import fr.iut.montreuil.Red_Line_Defense.Controleurs.ControleurDefaite;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.ControleurVictoire;
 import fr.iut.montreuil.Red_Line_Defense.Main;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Vagues;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import fr.iut.montreuil.Red_Line_Defense.Vues.VueInterface;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,18 +20,16 @@ public class EcouteVictoireEtDefaite {
 
     private VueInterface vueInterface;
 
-    private Controleur c;
+    private Controleur controleur;
 
-    public EcouteVictoireEtDefaite(Environnement environnement, VueInterface vueInterface, Controleur c) {
+    public EcouteVictoireEtDefaite(Environnement environnement, VueInterface vueInterface, Controleur controleur) {
 
         this.environnement = environnement;
         this.vueInterface = vueInterface;
-        this.c = c;
+        this.controleur = controleur;
         ajouterEcouteurVictoire();
         ajouterEcouteurDefaite();
     }
-
-
 
     private void ajouterEcouteurVictoire() {
 
@@ -52,7 +48,7 @@ public class EcouteVictoireEtDefaite {
 
             if (newValue.intValue() < 1) {
 
-                if (c != null && c.getScene() != null && c.getScene().getWindow() != null) {
+                if (this.controleur != null && this.controleur.getScene() != null && this.controleur.getScene().getWindow() != null) {
 
                     ajouterDefaite();
                 }
@@ -73,7 +69,7 @@ public class EcouteVictoireEtDefaite {
             throw new RuntimeException(e);
         }
         ControleurVictoire controleur = loader.getController(); // Retrieve the controller instance
-        Stage stage = c.getStage();
+        Stage stage = this.controleur.getStage();
         Scene scene = new Scene(root, 940, 560);// Largeur 940px : 840px pour la carte, 100px pour le volet droit
         stage.setResizable(false);                     // Hauteur 560px : 480 pour la carte, 80px pour le volet bas
         stage.setTitle("Red Line Defense");
@@ -94,7 +90,7 @@ public class EcouteVictoireEtDefaite {
             throw new RuntimeException(e);
         }
         ControleurDefaite controleur = loader.getController(); // Retrieve the controller instance
-        Stage stage = c.getStage();
+        Stage stage = this.controleur.getStage();
         Scene scene = new Scene(root, 940, 560);
         stage.setResizable(false);
         stage.setTitle("Red Line Defense");
