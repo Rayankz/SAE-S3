@@ -1,4 +1,4 @@
-package fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils;
+package fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils;/*package fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
@@ -19,11 +19,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.layout.StackPane;
-import javafx.scene.Scene;
+import javafx.scene.Scene;*/
 
 public class FonctionsDeTests {
 
-    private Scene scene;
+    /*private Scene scene;
     private Environnement env;
 
 
@@ -45,5 +45,5 @@ public class FonctionsDeTests {
 
 
 
-
+*/
 }
