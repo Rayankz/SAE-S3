@@ -11,6 +11,7 @@ import javafx.scene.shape.Circle;
 
 public abstract class Tour extends Acteurs {
 
+    //Attributs :
     private IntegerProperty prix; // prix d'achat de l'acteur
 
     protected Environnement terrain;
@@ -21,12 +22,11 @@ public abstract class Tour extends Acteurs {
 
     private static int compteur;
 
+    //Constructeur :
     public Tour(int x0, int y0, int pointsDeVie,Environnement e) {
         super(x0, y0, pointsDeVie);
         this.terrain = e;
     }
-
-
 
     public Tour(int x0, int y0, int pointsDeVie, int degats, int defense, int prix, Environnement terrain, double portee) {
         super(x0, y0, pointsDeVie, degats, defense);
@@ -42,24 +42,9 @@ public abstract class Tour extends Acteurs {
         compteur++;
     }
 
-    public void setPortée(double n) {
-
-        this.portee = n;
-    }
-
-    // Getter Prix
-    public int getPrixValue() {
-        return this.prix.getValue();
-    }
-
-
-
+   //Méthpdes :
     public void infligerDegats(int val){
         this.setPointsDeVieValue(this.getPointsDeVieValue() - val);
-    }
-
-    public Environnement getTerrain() {
-        return terrain;
     }
 
     public Soldat ennemiÀPorter() {
@@ -71,21 +56,37 @@ public abstract class Tour extends Acteurs {
                 }
             }
             return null;
-        }
+    }
+
     public boolean vérificationEstÀPorter(double x,double y){
             double distanceX = Math.abs(x - getX0Value());
             double distanceY = Math.abs(y - getY0Value());
             double distanceTotale = distanceX + distanceY;
 
-            if (distanceTotale <= portee) {
-                return true;
-            }
-            return false;
+            return distanceTotale <= portee;
+
+    }
+
+    public abstract void agit(int n);
+
+    //Getter et Setter :
+    public Environnement getTerrain() {
+        return terrain;
+    }
+
+    public void setTerrain(Environnement terrain) {
+        this.terrain = terrain;
     }
 
     public String getId() {
         return id;
     }
 
-    public abstract void agit(int n);
+    public int getPrixValue() {
+        return prix.get();
+    }
+
+    public void setPortee(double portee) {
+        this.portee = portee;
+    }
 }

@@ -96,7 +96,6 @@ public class Controleur implements Initializable {
         initializeBasePrincipale();
         initializeVueBasePrincipale();
 
-
         this.terrain.setBasePrincipale(this.basePrincipale);
     }
 
@@ -144,26 +143,31 @@ public class Controleur implements Initializable {
     private void initializeEcouteInterface() {
 
         this.ecouteInterface = new EcouteInterface(this.terrain, this.vueInterface);
+
     }
 
     private void initializeEcouteSoldats() {
 
         this.ecouteSoldats = new EcouteSoldats(this.terrain, this.vueSoldats);
+
     }
 
     private void initializeEcouteTours() {
 
         this.ecouteTours = new EcouteTours(this.terrain, this.centerPane);
+
     }
 
     private void initializeEnvironnement() {
 
         this.terrain = new Environnement(this.joueur);
+
     }
 
     private void initializeBasePrincipale() {
 
         basePrincipale = new BasePrincipale(700, 335,terrain);
+
     }
 
     private void initializeVueBasePrincipale() {

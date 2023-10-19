@@ -62,9 +62,9 @@ public class Environnement {
 
     public void unTour() {
 
+        verificationMorts(); //validé
         this.vaguesDeJeu.unTour(); //validé
         actionDesSoldats(this.nbrTours); //validé
-        verificationMorts(); //validé
         actionTours(this.nbrTours); //validé
         suppressionTour();
         this.basePrincipale.agit(1);
@@ -98,8 +98,11 @@ public class Environnement {
     public void verificationDefaite() {
 
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
+
             this.vague.setValue(-1);
+
         }
+
     }
 
     public void actionTours(int n) {
@@ -109,9 +112,13 @@ public class Environnement {
             for (Tour t : this.listeTours) {
 
                 t.agit(n);
+
                 t.infligerDegats(2);
+
             }
+
         }
+
     }
 
    public void suppressionTour() {
@@ -120,6 +127,7 @@ public class Environnement {
 
             listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
         }
+
     }
 
     public void verificationMorts() {
@@ -142,19 +150,11 @@ public class Environnement {
     //------------------------------------------------------- INTERFACE ------------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
-    public void setVague(int i){ this.vague.set(i);}
-
     public IntegerProperty getVagueProperty() { return this.vague; }
 
     public int getVagueValue() { return this.vague.getValue(); }
 
-    public void setEnnemisTues(int ennemisTues) {
-        this.ennemisTues.set(ennemisTues);
-    }
-
     public IntegerProperty getEnnemisTuesProperty() { return this.ennemisTues;}
-
-    public int getEnnemisTuesValue() { return this.ennemisTues.getValue(); }
 
     public int getNbrTours() {
 
@@ -204,11 +204,6 @@ public class Environnement {
         this.listeTours.add(tour);
     }
 
-    public void supprimerTour(Tour tour) {
-
-        this.listeTours.remove(tour);
-    }
-
     public ListProperty<Tour> getToursProperty() {
 
         return this.listeTours;
@@ -223,25 +218,15 @@ public class Environnement {
     //------------------------------------------------------- LISTE SOLDATS ----------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
-    public void ajouterSoldat(Soldat soldat) {
-
-        this.listeSoldats.add(soldat);
-    }
-
-    public void supprimerSoldat(Soldat soldat) {
-
-        this.listeSoldats.remove(soldat);
-    }     // Supprimer un Soldat
-
     public ListProperty<Soldat> getSoldatsProperty() {
 
         return this.listeSoldats;
-    }       // Retourne la liste observable
+    }
 
     public ObservableList<Soldat> getSoldats() {
 
         return this.listeSoldats.get();
-    }       // Retourne la property qui contient la liste observable
+    }
 
 
     public Joueur getJoueur() {

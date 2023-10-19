@@ -10,10 +10,15 @@ public class Missile extends Projectile {
     }
 
     public void deplacement(double elapsedTime) {
+
         super.deplacement(elapsedTime);
+
         if(getS().estVivant()) {
+
             setDirection();
+
         }
+
     }
 
 }

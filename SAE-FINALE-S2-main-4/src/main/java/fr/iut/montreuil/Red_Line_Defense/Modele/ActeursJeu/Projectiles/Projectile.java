@@ -8,16 +8,16 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Projectile {
-    private DoubleProperty x;
-    private DoubleProperty y;
+    private final DoubleProperty x;
+    private final DoubleProperty y;
     private double xDirection;
     private double yDirection;
-    private double v;//Vitesse de l'obus
-    private Soldat s;
+    private final double v;//Vitesse de l'obus
+    private final Soldat s;
     private Environnement terrain;
     private boolean touché;
-    private int degats;
-    private String id;
+    private final int degats;
+    private final String id;
     public static int compteur =1;
 
     public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain) {
@@ -81,8 +81,7 @@ public class Projectile {
 
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
 
-                    Soldat s = ennemiÀPorter();
-                    if (s != null) {
+                    if (ennemiÀPorter(s)!=null) {
                         getTerrain().supprimerProjectile(p);
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
@@ -91,7 +90,9 @@ public class Projectile {
                         getTerrain().supprimerProjectile(p);
                         setTouché(true);
                     }
+
                     deplacement(elapsedTime);
+
                 }
                 else if(p.isTouché()){
                     stop();
@@ -109,14 +110,12 @@ public class Projectile {
 
     }
 
-    public Soldat ennemiÀPorter() {
-        for (Soldat s : terrain.getSoldats()) {
+    public Soldat ennemiÀPorter(Soldat s) {
             if (s.estVivant()) {
                 if (calculeDistance() <= 10) {
                     return s;
                 }
             }
-        }
         return null;
     }
 
