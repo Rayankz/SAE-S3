@@ -26,8 +26,6 @@ public abstract class Tour extends Acteurs {
         this.terrain = e;
     }
 
-
-
     public Tour(int x0, int y0, int pointsDeVie, int degats, int defense, int prix, Environnement terrain, double portee) {
         super(x0, y0, pointsDeVie, degats, defense);
 
@@ -54,7 +52,8 @@ public abstract class Tour extends Acteurs {
 
 
 
-    public void infligerDegats(int val){
+    public void infligerDegats(int val) {
+
         this.setPointsDeVieValue(this.getPointsDeVieValue() - val);
     }
 
@@ -63,16 +62,21 @@ public abstract class Tour extends Acteurs {
     }
 
     public Soldat ennemiÀPorter() {
-            for (Soldat s : terrain.getSoldats()) {
-                if (s.estVivant()) {
-                    if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
+
+        for (Soldat s : terrain.getSoldats()) {
+
+                if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
+
+                    if (s.estVivant()) {
+
                         return s;
                     }
                 }
             }
             return null;
         }
-    public boolean vérificationEstÀPorter(double x,double y){
+    public boolean vérificationEstÀPorter(double x, double y){
+
             double distanceX = Math.abs(x - getX0Value());
             double distanceY = Math.abs(y - getY0Value());
             double distanceTotale = distanceX + distanceY;

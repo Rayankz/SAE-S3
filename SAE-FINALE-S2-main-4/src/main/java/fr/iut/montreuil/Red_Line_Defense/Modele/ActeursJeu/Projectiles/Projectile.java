@@ -50,14 +50,17 @@ public class Projectile {
     }
 
     public boolean isTouché() {
+
         return touché;
     }
 
     public void setTouché(boolean touché) {
+
         this.touché = touché;
     }
 
     public void deplacement(double elapsedTime) {
+
         double deltaX = getxDirection() * getV()*elapsedTime;
         double deltaY = getyDirection() * getV()*elapsedTime;
 
@@ -73,16 +76,13 @@ public class Projectile {
 
             private long lastUpdate = 0;
 
-
             @Override
             public void handle(long now) {
                 if (lastUpdate > 0 && !(isTouché())) {
 
-
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
 
-                    Soldat s = ennemiÀPorter();
-                    if (s != null) {
+                    if (ennemiÀPorter(s) != null) {
                         getTerrain().supprimerProjectile(p);
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
@@ -96,12 +96,7 @@ public class Projectile {
                 else if(p.isTouché()){
                     stop();
                 }
-
-
-
-
                 lastUpdate = now;
-
             }
         };
 
@@ -109,14 +104,13 @@ public class Projectile {
 
     }
 
-    public Soldat ennemiÀPorter() {
-        for (Soldat s : terrain.getSoldats()) {
+    public Soldat ennemiÀPorter(Soldat s) {
+        //for (Soldat s : terrain.getSoldats()) {
             if (s.estVivant()) {
                 if (calculeDistance() <= 10) {
                     return s;
                 }
             }
-        }
         return null;
     }
 

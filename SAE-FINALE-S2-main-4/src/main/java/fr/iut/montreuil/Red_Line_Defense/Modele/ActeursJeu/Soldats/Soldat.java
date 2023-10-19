@@ -71,8 +71,6 @@ public abstract class Soldat extends Acteurs {
                 minDistance = this.environnement.distances[ny][nx];
             }
         }
-
-
         setX0(nextX * 8);
         setY0(nextY * 8);
     }
@@ -86,11 +84,10 @@ public abstract class Soldat extends Acteurs {
 
     }
 
+    public boolean estVivant() {
 
-    public boolean estVivant(){
-        return (this.getPointsDeVieValue() > 0);
+        return this.getPointsDeVieValue() > 0;
     }
-
 
     public int getValeurGagnee() {
 
@@ -109,29 +106,22 @@ public abstract class Soldat extends Acteurs {
     }
 
     public String getCouleur() {
+
         return this.couleur;
     }
 
-    public Set<Point2D> getZone() {
-        return this.zone;
-    }
-
-    public double getDestinationX() {
-        return this.destinationX;
-    }
-
-    public double getDestinationY() {
-        return this.destinationY;
-    }
-
     public boolean isEstPiégé() {
+
         return estPiégé;
     }
+
     public void estPiégés() {
+
         estPiégé=true;
     }
+
     public void libéré() {
+
         estPiégé=false;
     }
-
 }
