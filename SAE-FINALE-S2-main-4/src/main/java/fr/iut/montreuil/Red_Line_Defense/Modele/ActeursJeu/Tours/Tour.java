@@ -65,17 +65,18 @@ public abstract class Tour extends Acteurs {
 
         for (Soldat s : terrain.getSoldats()) {
 
-                if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
+            if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
 
-                    if (s.estVivant()) {
+                if (s.estVivant()) {
 
-                        return s;
-                    }
+                    return s;
                 }
             }
-            return null;
         }
-    public boolean vérificationEstÀPorter(double x, double y){
+        return null;
+    }
+
+    public boolean vérificationEstÀPorter(double x, double y) {
 
             double distanceX = Math.abs(x - getX0Value());
             double distanceY = Math.abs(y - getY0Value());

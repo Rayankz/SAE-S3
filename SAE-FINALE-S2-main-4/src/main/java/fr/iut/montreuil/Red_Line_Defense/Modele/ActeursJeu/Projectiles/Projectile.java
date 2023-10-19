@@ -10,15 +10,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Projectile {
     private DoubleProperty x;
     private DoubleProperty y;
-    private double xDirection;
-    private double yDirection;
-    private double v;//Vitesse de l'obus
+    private double xDirection, yDirection, v;
     private Soldat s;
     private Environnement terrain;
     private boolean touché;
     private int degats;
     private String id;
-    public static int compteur =1;
+    public static int compteur = 1;
 
     public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain) {
 
@@ -26,24 +24,25 @@ public class Projectile {
 
         this.y = new SimpleDoubleProperty(y);
 
-        this.s=s;
+        this.s = s;
 
         this.v = v;
 
         this.degats = degats;
 
-        this.terrain=terrain;
+        this.terrain = terrain;
 
         this.id=("p"+compteur);
 
         compteur++;
 
-        touché=false;
+        touché = false;
 
         setDirection();
     }
 
-    public void setDirection(){
+    public void setDirection() {
+
         double distance = calculeDistance();
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
@@ -70,7 +69,7 @@ public class Projectile {
         }
     }
 
-    public void animationProjectile(){
+    public void animationProjectile() {
         Projectile p = this;
         AnimationTimer timer = new AnimationTimer() {
 
@@ -105,85 +104,106 @@ public class Projectile {
     }
 
     public Soldat ennemiÀPorter(Soldat s) {
-        //for (Soldat s : terrain.getSoldats()) {
-            if (s.estVivant()) {
-                if (calculeDistance() <= 10) {
-                    return s;
-                }
+
+        if (s.estVivant()) {
+
+            if (calculeDistance() <= 10) {
+
+                return s;
             }
+        }
         return null;
     }
 
-    public double calculeDistance(){
+    public double calculeDistance() {
+
         double distanceX = Math.abs(s.getX0Value() - getX());
         double distanceY = Math.abs(s.getY0Value() - getY());
         return distanceX + distanceY;
     }
 
-
     public double getxCible() {
-        return s.getX0Value();
+
+        return this.s.getX0Value();
     }
 
     public double getyCible() {
-        return s.getY0Value();
+
+        return this.s.getY0Value();
     }
 
     public double getxDirection() {
-        return xDirection;
+
+        return this.xDirection;
     }
 
     public double getyDirection() {
-        return yDirection;
+
+        return this.yDirection;
     }
 
     public double getV() {
-        return v;
+
+        return this.v;
     }
 
     public DoubleProperty xProperty() {
-        return x;
+
+        return this.x;
     }
 
     public DoubleProperty yProperty() {
-        return y;
+
+        return this.y;
     }
 
     public double getX() {
-        return x.getValue();
+
+        return this.x.getValue();
     }
 
     public double getY() {
-        return y.getValue();
+
+        return this.y.getValue();
     }
 
     public void setX(double x) {
+
         this.x.set(x);
     }
 
     public void setY(double y) {
+
         this.y.set(y);
     }
 
-
     public String getId() {
-        return id;
+
+        return this.id;
     }
 
-    public void setTerrain(Environnement e){
-        this.terrain=e;
+    public void setTerrain(Environnement e) {
+
+        this.terrain = e;
     }
+
     public int getDegats() {
-        return degats;
+
+        return this.degats;
     }
+
     public double calculerAngle(double x, double y, double xCible, double yCible) {
+
         return Math.atan2(yCible - y, xCible - x);
     }
+
     public Environnement getTerrain() {
-        return terrain;
+
+        return this.terrain;
     }
 
     public Soldat getS() {
-        return s;
+
+        return this.s;
     }
 }

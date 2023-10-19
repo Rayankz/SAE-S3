@@ -13,7 +13,7 @@ public class BasePrincipale extends Tour {
 
     // C'est la base principale, celle qu'il faudra defendre des soldats ennemis et qui sera en bout de course
 
-    Set<Point2D> zone;
+    private Set<Point2D> zone;
 
     public BasePrincipale(int x0, int y0, Environnement environnement) {
 
@@ -32,7 +32,6 @@ public class BasePrincipale extends Tour {
             this.ennemiÀPorter().setPointsDeVieValue(-2);
         }
     }
-
 
     private void initializeZone() {
 
