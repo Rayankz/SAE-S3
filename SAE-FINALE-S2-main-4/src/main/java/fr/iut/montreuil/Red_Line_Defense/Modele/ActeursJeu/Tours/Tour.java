@@ -21,7 +21,7 @@ public abstract class Tour extends Acteurs {
 
     private static int compteur;
 
-    public Tour(int x0, int y0, int pointsDeVie,Environnement e) {
+    public Tour(int x0, int y0, int pointsDeVie, Environnement e) {
         super(x0, y0, pointsDeVie);
         this.terrain = e;
     }
