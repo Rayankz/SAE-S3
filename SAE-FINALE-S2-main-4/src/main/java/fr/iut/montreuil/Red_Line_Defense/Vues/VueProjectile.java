@@ -27,6 +27,9 @@ public class VueProjectile {
         this.centerPane=centerPane;
         CreationSprite(p);
     }
+
+    //TODO
+    //Le truc en bas est moche (redondance) il faut le refactorer
     public void CreationSprite(Projectile p){
         ImageView projectile;
         if(p instanceof Boulet) {

@@ -48,7 +48,7 @@ public class Projectile {
     }
 
     public void setDirection(){
-        double distance = tourLauncher.calculeDistance(s.getX0Value(),s.getY0Value());
+        double distance = tourLauncher.calculeDistance(s.getX0Value(), s.getY0Value());
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
     }
@@ -62,8 +62,8 @@ public class Projectile {
     }
 
     public void deplacement(double elapsedTime) {
-        double deltaX = getxDirection() * getV()*elapsedTime;
-        double deltaY = getyDirection() * getV()*elapsedTime;
+        double deltaX = getxDirection() * getV() *elapsedTime;
+        double deltaY = getyDirection() * getV() *elapsedTime;
 
         if (!(getX()==getxCible()) || (getY()==getyCible())) {
             setX(getX() + deltaX);
@@ -90,6 +90,7 @@ public class Projectile {
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
                     }
+
                     if (p.getX() > 840 || (p.getX() <= 0 || (p.getY() > 480 || p.getY() <= 0))) {
                         getTerrain().supprimerProjectile(p);
                         setTouché(true);

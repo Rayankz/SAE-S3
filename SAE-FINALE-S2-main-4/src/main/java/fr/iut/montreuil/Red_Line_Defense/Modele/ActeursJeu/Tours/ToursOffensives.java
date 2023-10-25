@@ -17,7 +17,6 @@ public abstract class ToursOffensives extends Tour {
     private final IntegerProperty cadence; // La cadence est la capacité de Tirs par minute
     private final ObservableList<Projectile> projectiles; // Liste de tous les projectiles actuellement tirés par la tour
     private final int vitesseProjectile;
-    private Projectile p;
 
     public ToursOffensives(int x0, int y0, int pointsDeVie, int degats, int defense,int prix, Environnement terrain,int cadence,int vitesse,double portée) {
         super(x0, y0, pointsDeVie, degats, defense,prix,terrain, portée);
@@ -47,11 +46,12 @@ public abstract class ToursOffensives extends Tour {
         Soldat s = ennemiÀPorter(getPortee());
         if (s != null) {
             if (s.estVivant()) {
-                if(nTemps%getCadence()==0)
-                this.p=creationProjectile(s);
-                getTerrain().ajouterProjectile(p);
-                p.animationProjectile();
-               }
+                if (nTemps % getCadence() == 0) {
+                    Projectile p = creationProjectile(s);
+                    getTerrain().ajouterProjectile(p);
+                    p.animationProjectile();
+                }
+            }
         }
     }
 
