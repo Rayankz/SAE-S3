@@ -47,10 +47,10 @@ public abstract class Tour extends Acteurs {
         this.setPointsDeVieValue(this.getPointsDeVieValue() - val);
     }
 
-    public Soldat ennemiÀPorter() {
+    public Soldat ennemiÀPorter(double p) {
             for (Soldat s : terrain.getSoldats()) {
                 if (s.estVivant()) {
-                    if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
+                    if (vérificationEstÀPorter(getX0Value(),getY0Value(),s.getX0Value(),s.getY0Value(),p)) {
                         return s;
                     }
                 }
@@ -58,12 +58,12 @@ public abstract class Tour extends Acteurs {
             return null;
     }
 
-    public boolean vérificationEstÀPorter(double x,double y){
-            double distanceX = Math.abs(x - getX0Value());
-            double distanceY = Math.abs(y - getY0Value());
+    public boolean vérificationEstÀPorter(double x,double y,double xCible, double yCible,double p){
+            double distanceX = Math.abs(xCible - x);
+            double distanceY = Math.abs(yCible - y);
             double distanceTotale = distanceX + distanceY;
 
-            return distanceTotale <= portee;
+            return distanceTotale <= p;
 
     }
 
@@ -84,6 +84,10 @@ public abstract class Tour extends Acteurs {
 
     public int getPrixValue() {
         return prix.get();
+    }
+
+    public double getPortee() {
+        return portee;
     }
 
     public void setPortee(double portee) {

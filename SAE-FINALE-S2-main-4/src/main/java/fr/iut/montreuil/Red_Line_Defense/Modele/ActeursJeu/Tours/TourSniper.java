@@ -12,7 +12,7 @@ public class TourSniper extends ToursOffensives {
         super(x0, y0, 500, 500, 5, 600, terrain, 5,1000,400); // 50 tirs par minutes
     }
     public Projectile creationProjectile(Soldat s){
-        return new Blast(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),getTerrain());
+        return new Blast(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),getTerrain(),this);
     }
 
 }

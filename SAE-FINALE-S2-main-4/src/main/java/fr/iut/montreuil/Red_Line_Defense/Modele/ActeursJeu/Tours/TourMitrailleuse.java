@@ -12,7 +12,7 @@ public class TourMitrailleuse extends ToursOffensives {
     }
 
     public Projectile creationProjectile(Soldat s){
-        return new Boulet(getX0Value(), getY0Value(), s, getVitesseProjectile(), getDegatValue(), getTerrain());
+        return new Boulet(getX0Value(), getY0Value(), s, getVitesseProjectile(), getDegatValue(), getTerrain(),this);
     }
 
 

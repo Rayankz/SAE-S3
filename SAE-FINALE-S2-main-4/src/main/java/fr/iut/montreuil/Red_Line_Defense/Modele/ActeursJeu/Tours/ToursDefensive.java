@@ -26,7 +26,7 @@ public class ToursDefensive extends Tour{
             Iterator<Soldat> iterator = soldatsPiégés.iterator();
             while (iterator.hasNext()) {
                 Soldat sP = iterator.next();
-                if (!vérificationEstÀPorter(sP.getX0Value(), sP.getY0Value())) {
+                if (!vérificationEstÀPorter(getX0Value(),getY0Value(),sP.getX0Value(), sP.getY0Value(),getPortee())) {
                     sP.libéré();
                     iterator.remove();
                 }

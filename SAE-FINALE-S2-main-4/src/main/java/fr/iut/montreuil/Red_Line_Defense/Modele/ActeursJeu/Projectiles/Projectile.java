@@ -1,6 +1,7 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.ToursOffensives;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.DoubleProperty;
@@ -18,9 +19,10 @@ public class Projectile {
     private boolean touché;
     private final int degats;
     private final String id;
+    private ToursOffensives tourLauncher;
     public static int compteur =1;
 
-    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain) {
+    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain,ToursOffensives tourLauncher) {
 
         this.x = new SimpleDoubleProperty(x);
 
@@ -40,11 +42,13 @@ public class Projectile {
 
         touché=false;
 
+        this.tourLauncher = tourLauncher;
+
         setDirection();
     }
 
     public void setDirection(){
-        double distance = calculeDistance();
+        double distance = tourLauncher.calculeDistance(s.getX0Value(),s.getY0Value());
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
     }
@@ -81,7 +85,7 @@ public class Projectile {
 
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
 
-                    if (ennemiÀPorter(s)!=null) {
+                    if (tourLauncher.vérificationEstÀPorter(getX(),getY(),s.getX0Value(),s.getY0Value(),10)) {
                         getTerrain().supprimerProjectile(p);
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
@@ -110,20 +114,6 @@ public class Projectile {
 
     }
 
-    public Soldat ennemiÀPorter(Soldat s) {
-            if (s.estVivant()) {
-                if (calculeDistance() <= 10) {
-                    return s;
-                }
-            }
-        return null;
-    }
-
-    public double calculeDistance(){
-        double distanceX = Math.abs(s.getX0Value() - getX());
-        double distanceY = Math.abs(s.getY0Value() - getY());
-        return distanceX + distanceY;
-    }
 
 
     public double getxCible() {

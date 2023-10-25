@@ -26,11 +26,11 @@ public class BasePrincipale extends Tour {
 
     public void agit(int n) {
 
-        if (ennemiÀPorter() != null) {
+        if (ennemiÀPorter(getPortee()) != null) {
 
-            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter().getDegatValue());
+            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter(getPortee()).getDegatValue());
             System.out.println("---pv base : " + this.getPointsDeVieValue());
-            this.ennemiÀPorter().setPointsDeVieValue(-2);
+            this.ennemiÀPorter(getPortee()).setPointsDeVieValue(-2);
         }
 
     }

@@ -44,7 +44,7 @@ public abstract class ToursOffensives extends Tour {
     public abstract Projectile creationProjectile(Soldat s);
 
     public void tirer(int nTemps) {
-        Soldat s = ennemiÀPorter();
+        Soldat s = ennemiÀPorter(getPortee());
         if (s != null) {
             if (s.estVivant()) {
                 if(nTemps%getCadence()==0)
