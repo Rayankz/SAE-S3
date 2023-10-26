@@ -68,7 +68,6 @@ public class Environnement {
         actionTours(this.nbrTours); //validé
         suppressionTour();
         this.basePrincipale.agit(1);
-        this.vaguesDeJeu.unTour();
         verificationDefaite();
 
         this.nbrTours++;
