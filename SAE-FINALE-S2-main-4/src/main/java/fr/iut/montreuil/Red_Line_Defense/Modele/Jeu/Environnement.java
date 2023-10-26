@@ -42,18 +42,18 @@ public class Environnement {
         this.ennemisTuesCetteVague = 0;
 
         ObservableList<Tour> observableListTour = FXCollections.observableArrayList();
-        listeTours = new SimpleListProperty<>(observableListTour);
+        this.listeTours = new SimpleListProperty<>(observableListTour);
 
         ObservableList<Soldat> observableListSoldat = FXCollections.observableArrayList();
-        listeSoldats = new SimpleListProperty<>(observableListSoldat);
+        this.listeSoldats = new SimpleListProperty<>(observableListSoldat);
 
         ObservableList<Projectile> projectileObservableList = FXCollections.observableArrayList();
-        listeProjectiles = new SimpleListProperty<>(projectileObservableList);
+        this.listeProjectiles = new SimpleListProperty<>(projectileObservableList);
 
         this.vaguesDeJeu  = new Vagues(this);
 
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
-        BFS.calculerChemin(89, 47);
+        this.BFS.calculerChemin(89, 47);
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
@@ -68,20 +68,20 @@ public class Environnement {
         actionTours(this.nbrTours); //validé
         suppressionTour();
         this.basePrincipale.agit(1);
-        checkNouvelleVagues();
+        this.vaguesDeJeu.unTour();
         verificationDefaite();
 
         this.nbrTours++;
     }
 
-    public void checkNouvelleVagues() {
+    public void setEnnemisTuesCetteVague(int i) {
 
-        if (this.ennemisTuesCetteVague == this.vaguesDeJeu.getTotalSoldats()) {
+        this.ennemisTuesCetteVague = i;
+    }
 
-            this.vague.setValue(this.vague.getValue() + 1);
-            // Reset
-            this.ennemisTuesCetteVague = 0;
-        }
+    public int getEnnemisTuesCetteVague() {
+
+        return this.ennemisTuesCetteVague;
     }
 
     public void actionDesSoldats(int n) {
@@ -191,11 +191,6 @@ public class Environnement {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- MAP DE JEU -------------------------------------------------------------
-    //--------------------------------------------------------------------------------------------------------------------------------
-
-
-    //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- LISTE TOURS ------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
@@ -227,7 +222,6 @@ public class Environnement {
 
         return this.listeSoldats.get();
     }
-
 
     public Joueur getJoueur() {
 
