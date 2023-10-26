@@ -65,7 +65,7 @@ public class Environnement {
         verificationMorts(); //validé
         this.vaguesDeJeu.unTour(); //validé
         actionDesSoldats(this.nbrTours); //validé
-        actionTours(this.nbrTours); //validé
+        actionDesTours(this.nbrTours); //validé
         suppressionTour();
         this.basePrincipale.agit(1);
         verificationDefaite();
@@ -104,7 +104,7 @@ public class Environnement {
 
     }
 
-    public void actionTours(int n) {
+    public void actionDesTours(int n) {
 
         if(!this.listeTours.isEmpty()) {
 
