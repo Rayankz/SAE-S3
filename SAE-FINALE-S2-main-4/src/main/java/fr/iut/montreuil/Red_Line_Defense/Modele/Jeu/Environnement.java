@@ -73,9 +73,9 @@ public class Environnement {
         this.nbrTours++;
     }
 
-    public void setEnnemisTuesCetteVague(int i) {
+    public void setEnnemisTuesCetteVague(int n) {
 
-        this.ennemisTuesCetteVague = i;
+        this.ennemisTuesCetteVague = n;
     }
 
     public int getEnnemisTuesCetteVague() {
