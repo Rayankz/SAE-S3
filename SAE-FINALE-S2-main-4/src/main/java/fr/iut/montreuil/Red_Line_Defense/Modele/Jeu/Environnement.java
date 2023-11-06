@@ -4,8 +4,6 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSoldats;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
@@ -29,10 +27,8 @@ public class Environnement {
     private BasePrincipale basePrincipale;
     private Vagues vaguesDeJeu;
     public BFS BFS;
-    private ForgeSoldats forgeSoldats;
-    private FabriqueSoldats fabriqueSoldats;
 
-    public Environnement(Joueur joueur, ForgeSoldats forgeSoldats, FabriqueSoldats fabriqueSoldats) {
+    public Environnement(Joueur joueur) {
 
         this.BFS = new BFS(this);
 
@@ -52,9 +48,7 @@ public class Environnement {
         ObservableList<Projectile> projectileObservableList = FXCollections.observableArrayList();
         this.listeProjectiles = new SimpleListProperty<>(projectileObservableList);
 
-        this.forgeSoldats = forgeSoldats; this.fabriqueSoldats = fabriqueSoldats;
-
-        this.vaguesDeJeu  = new Vagues(this, this.forgeSoldats);
+        this.vaguesDeJeu = new Vagues(this);
 
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
         this.BFS.calculerChemin(89, 47);
@@ -103,9 +97,7 @@ public class Environnement {
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
 
             this.vague.setValue(-1);
-
         }
-
     }
 
     public void actionDesTours(int n) {
@@ -117,11 +109,8 @@ public class Environnement {
                 t.agit(n);
 
                 t.infligerDegats(2);
-
             }
-
         }
-
     }
 
    public void suppressionTour() {
@@ -168,89 +157,71 @@ public class Environnement {
 
         return this.BFS;
     }
-
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- LISTE PROJECTILES ------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-
     public void ajouterProjectile(Projectile projectile) {
 
         this.listeProjectiles.add(projectile);
     }
-
     public void supprimerProjectile(Projectile projectile) {
 
         this.listeProjectiles.remove(projectile);
     }
-
     public ListProperty<Projectile> getProjectilesProperty() {
 
         return this.listeProjectiles;
     }
-
     public ObservableList<Projectile> getProjectiles() {
 
         return this.listeProjectiles.get();
     }
-
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- LISTE TOURS ------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-
     public void ajouterTour(Tour tour) {
 
         this.listeTours.add(tour);
     }
-
     public ListProperty<Tour> getToursProperty() {
 
         return this.listeTours;
     }
-
     public ObservableList<Tour> getTours() {
 
         return this.listeTours.get();
     }
-
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- LISTE SOLDATS ----------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-
     public ListProperty<Soldat> getSoldatsProperty() {
 
         return this.listeSoldats;
     }
-
     public void ajouterSoldat(Soldat soldat) {
 
         getSoldatsProperty().add(soldat);
     }
-
     public ObservableList<Soldat> getSoldats() {
 
         return this.listeSoldats.get();
     }
-
     public Joueur getJoueur() {
 
         return this.joueur;
     }
-
     public void setBasePrincipale(BasePrincipale basePrincipale) {
 
         this.basePrincipale = basePrincipale;
     }
-
     public BasePrincipale getBasePrincipale() {
 
         return this.basePrincipale;
     }
-
     public Vagues getVagues() {
 
         return this.vaguesDeJeu;
     }
-
     public IntegerProperty getVague() {
 
         return this.vague;

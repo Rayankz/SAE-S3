@@ -10,18 +10,16 @@ public class StrategyChangeante extends Strategy {
     private Environnement environnement;
     private int vagueCourante;
 
-    public StrategyChangeante(Environnement environnement, ForgeSoldats forgeSoldats) {
+    public StrategyChangeante(Environnement environnement) {
 
-        super(forgeSoldats);
         this.environnement = environnement;
         this.toutesLesVagues = new ArrayList<>();
-        this.toutesLesVagues.add(new StrategyVague1(forgeSoldats));
-        this.toutesLesVagues.add(new StrategyVague2(forgeSoldats));
-        this.toutesLesVagues.add(new StrategyVague3(forgeSoldats));
-        this.toutesLesVagues.add(new StrategyVague4(forgeSoldats));
-        this.toutesLesVagues.add(new StrategyVague5(forgeSoldats));
+        this.toutesLesVagues.add(new StrategyVague1());
+        this.toutesLesVagues.add(new StrategyVague2());
+        this.toutesLesVagues.add(new StrategyVague3());
+        this.toutesLesVagues.add(new StrategyVague4());
+        this.toutesLesVagues.add(new StrategyVague5());
         this.vagueCourante = 0;
-
     }
     public void choixDeLaVague() {
 

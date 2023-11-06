@@ -12,11 +12,10 @@ public class Vagues {
     private StrategyChangeante strategyChangeante;
     private ForgeSoldats forgeSoldats;
 
-    public Vagues(Environnement environnement, ForgeSoldats forgeSoldats) {
+    public Vagues(Environnement environnement) {
 
         this.environnement = environnement;
-        this.forgeSoldats = forgeSoldats;
-        this.strategyChangeante = new StrategyChangeante(this.environnement, this.forgeSoldats);
+        this.strategyChangeante = new StrategyChangeante(this.environnement);
     }
 
     public void unTour() {

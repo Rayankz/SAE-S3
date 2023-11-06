@@ -14,9 +14,8 @@ public abstract class StrategyVague extends Strategy {
     private final int nbrSpawnsType1, nbrSpawnsType2, nbrSpawnsType3;
     private int soldat1, soldat2, soldat3;
 
-    public StrategyVague(int nbrSpawnsType1, int nbrSpawnsType2, int nbrSpawnsType3, ForgeSoldats forgeSoldats) {
+    public StrategyVague(int nbrSpawnsType1, int nbrSpawnsType2, int nbrSpawnsType3) {
 
-        super(forgeSoldats);
         this.nbrSpawnsType1 = nbrSpawnsType1;
         this.nbrSpawnsType2 = nbrSpawnsType2;
         this.nbrSpawnsType3 = nbrSpawnsType3;

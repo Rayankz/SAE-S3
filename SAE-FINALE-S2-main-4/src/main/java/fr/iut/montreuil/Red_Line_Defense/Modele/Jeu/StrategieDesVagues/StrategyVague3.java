@@ -1,21 +1,25 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueRookies;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSuperNovas;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 
 import java.util.Random;
 
 public class StrategyVague3 extends StrategyVague {
 
-    public StrategyVague3(ForgeSoldats forgeSoldats) {
+    public StrategyVague3() {
 
-        super(10, 8, 0, forgeSoldats);
+        super(10, 8, 0);
     }
 
     @Override
     public void faireApparaitreEnnemi(int nbrTour, Environnement environnement) {
 
         Random random = new Random();
+        ForgeSoldats f1 = new ForgeSoldats(environnement, new FabriqueRookies());
+        ForgeSoldats f2 = new ForgeSoldats(environnement, new FabriqueSuperNovas());
 
         if (nbrTour % 12 == 0) {
 
@@ -26,13 +30,13 @@ public class StrategyVague3 extends StrategyVague {
                 if ((soldierTypeToSpawn == 1) && (getSoldat2() < this.getNbrSpawnsType1())) {
 
                     System.out.println("Un nouveau Rookie apparait !");
-                    this.getForgeSoldats().spawnSoldat(12);
+                    f1.spawnSoldat(12); //nouveauSpawnSoldat(1, 12, environnement);
                     incrSoldat1();
                 }
                 else if ((soldierTypeToSpawn == 2) && (getSoldat2() < this.getNbrSpawnsType2())) {
 
                     System.out.println("Un nouveau Super Nova apparait !");
-                    this.getForgeSoldats().spawnSoldat(12);
+                    f2.spawnSoldat(12); //nouveauSpawnSoldat(2, 12, environnement);
                     incrSoldat2();
                 }
             }

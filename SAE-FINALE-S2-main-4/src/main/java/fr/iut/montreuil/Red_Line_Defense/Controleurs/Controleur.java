@@ -4,8 +4,6 @@ import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSoldats;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Inputs;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
@@ -29,59 +27,39 @@ public class Controleur implements Initializable {
     private static final int TAILLE_IMAGE = 8;
     public static final String OST_JEU_PATH = "/fr/iut/montreuil/Red_Line_Defense/Sons/ostJeu.mp3";
     public static final String DEFAITE = "/fr/iut/montreuil/Red_Line_Defense/Sons/gameOver.mp3";
-
     @FXML
     private Pane centerPane;
-
     @FXML
     private BorderPane borderPane;
-
     @FXML
     private Label ennemisTues, pointVieBase;
-
     @FXML
     Label solde, vague;
-
     @FXML
     ImageView wpp, berry, berryBot200b, berryBot400b, berryBot600b, berryBot800b;
-
     @FXML
     StackPane stackpane;
-
     @FXML
     HBox hboxMoneyCount, prix200b, prix800b, prix600b, prix400b;
     @FXML
     VBox vboxRight;
-
     @FXML
     private Button lancerButton, test;
-
     private Joueur joueur;
     private VueInterface vueInterface;
-
     private EcouteSoldats ecouteSoldats;
     private EcouteTours ecouteTours;
-
     private EcouteBasePrincipale ecouteBasePrincipale;
-
     private EcouteInterface ecouteInterface;
-
     private Inputs inputs;
-
     private EcouteProjectiles ecouteProjectiles;
-
     private Environnement terrain;
     private GameLoop gameLoop;
     private VueTours vueTours;
     private VueSoldats vueSoldats;
-
     private BasePrincipale basePrincipale;
-
     private EcouteVictoireEtDefaite ecouteVictoireEtDefaite;
-
     private VueBasePrincipale vueBasePrincipale;
-    private ForgeSoldats forgeSoldats;
-    private FabriqueSoldats fabriqueSoldats;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -153,8 +131,7 @@ public class Controleur implements Initializable {
 
     private void initializeEnvironnement() {
 
-        this.forgeSoldats = forgeSoldats; this.fabriqueSoldats = fabriqueSoldats;
-        this.terrain = new Environnement(this.joueur, this.forgeSoldats, this.fabriqueSoldats);
+        this.terrain = new Environnement(this.joueur);
     }
 
     private void initializeBasePrincipale() {

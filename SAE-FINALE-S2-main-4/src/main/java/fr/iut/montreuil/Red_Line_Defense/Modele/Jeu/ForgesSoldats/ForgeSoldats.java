@@ -59,7 +59,7 @@ public class ForgeSoldats {
     public void fabriquerSoldat(double startX, double startY) {
 
         Soldat soldat = this.fabriqueSoldats.créerSoldat(startX, startY, this.environnement);
-        this.getEnvironnement().ajouterSoldat(soldat);
+        this.environnement.ajouterSoldat(soldat);
     }
     public void spawnSoldat(int spawn) {
 
@@ -68,9 +68,5 @@ public class ForgeSoldats {
         int startY = randomSelection[1] * 8;
 
         fabriquerSoldat(startX, startY);
-    }
-    public Environnement getEnvironnement() {
-
-        return this.environnement;
     }
 }
