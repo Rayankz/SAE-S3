@@ -4,6 +4,8 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSoldats;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
@@ -27,8 +29,10 @@ public class Environnement {
     private BasePrincipale basePrincipale;
     private Vagues vaguesDeJeu;
     public BFS BFS;
+    private ForgeSoldats forgeSoldats;
+    private FabriqueSoldats fabriqueSoldats;
 
-    public Environnement(Joueur joueur) {
+    public Environnement(Joueur joueur, ForgeSoldats forgeSoldats, FabriqueSoldats fabriqueSoldats) {
 
         this.BFS = new BFS(this);
 
@@ -48,7 +52,9 @@ public class Environnement {
         ObservableList<Projectile> projectileObservableList = FXCollections.observableArrayList();
         this.listeProjectiles = new SimpleListProperty<>(projectileObservableList);
 
-        this.vaguesDeJeu  = new Vagues(this);
+        this.forgeSoldats = forgeSoldats; this.fabriqueSoldats = fabriqueSoldats;
+
+        this.vaguesDeJeu  = new Vagues(this, this.forgeSoldats);
 
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
         this.BFS.calculerChemin(89, 47);

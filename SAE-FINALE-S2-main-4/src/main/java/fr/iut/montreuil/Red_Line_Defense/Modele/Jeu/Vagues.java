@@ -2,6 +2,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.Strategy;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.StrategyChangeante;
 
@@ -9,18 +10,19 @@ public class Vagues {
 
     private Environnement environnement;
     private StrategyChangeante strategyChangeante;
+    private ForgeSoldats forgeSoldats;
 
-    public Vagues(Environnement environnement) {
+    public Vagues(Environnement environnement, ForgeSoldats forgeSoldats) {
 
         this.environnement = environnement;
-        this.strategyChangeante = new StrategyChangeante(this.environnement);
+        this.forgeSoldats = forgeSoldats;
+        this.strategyChangeante = new StrategyChangeante(this.environnement, this.forgeSoldats);
     }
 
     public void unTour() {
 
         this.strategyChangeante.choixDeLaVague();
     }
-
     public void majDefenseSoldats() {
 
         for (Soldat s : this.environnement.getSoldats()) {
@@ -31,7 +33,6 @@ public class Vagues {
             }
         }
     }
-
     public void resetTours() {
 
         for (Tour t : this.environnement.getTours()){
@@ -39,7 +40,6 @@ public class Vagues {
             t.setPointsDeVieValue(0);
         }
     }
-
     public Environnement getEnvironnement() {
 
         return this.environnement;

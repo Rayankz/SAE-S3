@@ -4,6 +4,8 @@ import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSoldats;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Inputs;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
@@ -78,6 +80,8 @@ public class Controleur implements Initializable {
     private EcouteVictoireEtDefaite ecouteVictoireEtDefaite;
 
     private VueBasePrincipale vueBasePrincipale;
+    private ForgeSoldats forgeSoldats;
+    private FabriqueSoldats fabriqueSoldats;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -149,7 +153,8 @@ public class Controleur implements Initializable {
 
     private void initializeEnvironnement() {
 
-        this.terrain = new Environnement(this.joueur);
+        this.forgeSoldats = forgeSoldats; this.fabriqueSoldats = fabriqueSoldats;
+        this.terrain = new Environnement(this.joueur, this.forgeSoldats, this.fabriqueSoldats);
     }
 
     private void initializeBasePrincipale() {
