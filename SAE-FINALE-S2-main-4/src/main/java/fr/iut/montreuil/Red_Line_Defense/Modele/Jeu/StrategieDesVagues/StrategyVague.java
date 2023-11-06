@@ -10,42 +10,34 @@ import java.util.Random;
 
 public abstract class StrategyVague extends Strategy {
 
-    private final int nbrSpawnsType1;
-    private final int nbrSpawnsType2;
-    private final int nbrSpawnsType3;
-    private int soldat1=0;
-    private int soldat2=0;
-    private int soldat3=0;
+    private final int nbrSpawnsType1, nbrSpawnsType2, nbrSpawnsType3;
+    private int soldat1, soldat2, soldat3;
 
     public StrategyVague(int nbrSpawnsType1, int nbrSpawnsType2, int nbrSpawnsType3) {
 
         this.nbrSpawnsType1 = nbrSpawnsType1;
         this.nbrSpawnsType2 = nbrSpawnsType2;
         this.nbrSpawnsType3 = nbrSpawnsType3;
+        this.soldat1 = 0; this.soldat2 = 0; this.soldat3 = 0;
     }
 
     public abstract void faireApparaitreEnnemi(int nbrTour, Environnement environnement);
-
     public int getNbrSpawnsType1() {
 
         return this.nbrSpawnsType1;
     }
-
     public int getNbrSpawnsType2() {
 
         return this.nbrSpawnsType2;
     }
-
     public int getNbrSpawnsType3() {
 
         return this.nbrSpawnsType3;
     }
-
     public int getTotalSoldats() {
 
         return getNbrSpawnsType1() + getNbrSpawnsType2() + getNbrSpawnsType3();
     }
-
     public Soldat nouveauSpawnSoldat(int typeSoldat, int spawn, Environnement environnement) {
 
         int[] randomSelection = randomSelection(spawn);
@@ -55,7 +47,6 @@ public abstract class StrategyVague extends Strategy {
         Soldat soldat = afficherSoldat(startX, startY,typeSoldat, environnement);
         return soldat;
     }
-
     public Soldat afficherSoldat(double startX, double startY, int typeSoldat, Environnement environnement) {
 
         Soldat s = selectionSoldat(typeSoldat, startX, startY, environnement);
@@ -63,7 +54,6 @@ public abstract class StrategyVague extends Strategy {
 
         return s;
     }
-
     public Soldat selectionSoldat(int typeSoldat, double startX, double startY, Environnement environnement) {
 
         Soldat s;
@@ -84,7 +74,6 @@ public abstract class StrategyVague extends Strategy {
 
         return s;
     }
-
     public int[] randomSelection(int i) {
 
         int[] resultat = new int[4];
@@ -127,25 +116,28 @@ public abstract class StrategyVague extends Strategy {
 
         return resultat;
     }
-
     public int getSoldat1() {
-        return soldat1;
-    }
 
+        return this.soldat1;
+    }
     public int getSoldat2() {
-        return soldat2;
-    }
 
+        return this.soldat2;
+    }
     public int getSoldat3() {
-        return soldat3;
+
+        return this.soldat3;
     }
-    public void incrSoldat1(){
-        soldat1++;
+    public void incrSoldat1() {
+
+        this.soldat1++;
     }
-    public void incrSoldat2(){
-        soldat2++;
+    public void incrSoldat2() {
+
+        this.soldat2++;
     }
-    public void incrSoldat3(){
-        soldat3++;
+    public void incrSoldat3() {
+
+        this.soldat3++;
     }
 }

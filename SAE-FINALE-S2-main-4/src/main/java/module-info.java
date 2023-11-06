@@ -1,13 +1,8 @@
 module com.example.tower_defense {
-    requires javafx.base;
-    requires javafx.fxml;
-    requires javafx.graphics;
     requires javafx.controls;
-    requires javafx.media;
-    /*requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.base;
-    requires javafx.media;*/
+    requires javafx.media;
+
 
     opens fr.iut.montreuil.Red_Line_Defense to javafx.fxml;
     exports fr.iut.montreuil.Red_Line_Defense;

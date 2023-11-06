@@ -8,7 +8,6 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.StrategyC
 public class Vagues {
 
     private Environnement environnement;
-
     private StrategyChangeante strategyChangeante;
 
     public Vagues(Environnement environnement) {
@@ -27,6 +26,7 @@ public class Vagues {
         for (Soldat s : this.environnement.getSoldats()) {
 
             if (s.getPointsDeVieValue() > 5) {
+
                 s.setPointsDeVieValue(s.getPointsDeVieValue() - 5);
             }
         }
@@ -35,12 +35,13 @@ public class Vagues {
     public void resetTours() {
 
         for (Tour t : this.environnement.getTours()){
+
             t.setPointsDeVieValue(0);
         }
     }
 
     public Environnement getEnvironnement() {
 
-        return environnement;
+        return this.environnement;
     }
 }
