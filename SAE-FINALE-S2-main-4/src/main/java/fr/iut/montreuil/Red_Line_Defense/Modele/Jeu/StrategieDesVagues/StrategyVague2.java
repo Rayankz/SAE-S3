@@ -26,13 +26,13 @@ public class StrategyVague2 extends StrategyVague {
 
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 9, environnement);
-                    incrSoldat2();
+                    incrSoldat1();
                 }
                 else if ((soldierTypeToSpawn == 2) && (getSoldat2() < this.getNbrSpawnsType2())) {
 
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 9, environnement);
-                    incrSoldat3();
+                    incrSoldat2();
                 }
             }
         }

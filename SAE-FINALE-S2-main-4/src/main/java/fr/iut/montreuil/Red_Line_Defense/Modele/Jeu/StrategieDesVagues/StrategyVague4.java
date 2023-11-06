@@ -32,7 +32,7 @@ public class StrategyVague4 extends StrategyVague {
 
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 10, environnement);
-                incrSoldat2();
+                    incrSoldat2();
                 }
                 else if ((soldierTypeToSpawn == 3) && (getSoldat3() < this.getNbrSpawnsType3())) {
 

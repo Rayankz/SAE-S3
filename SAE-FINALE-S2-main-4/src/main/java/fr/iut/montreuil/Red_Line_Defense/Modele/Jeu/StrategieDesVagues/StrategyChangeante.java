@@ -8,6 +8,7 @@ public class StrategyChangeante extends Strategy {
 
     private ArrayList<StrategyVague> toutesLesVagues;
     private Environnement environnement;
+    private int vagueCourante;
 
     public StrategyChangeante(Environnement environnement) {
 
@@ -18,18 +19,17 @@ public class StrategyChangeante extends Strategy {
         this.toutesLesVagues.add(new StrategyVague3());
         this.toutesLesVagues.add(new StrategyVague4());
         this.toutesLesVagues.add(new StrategyVague5());
+        this.vagueCourante = 0;
 
     }
-
     public void choixDeLaVague() {
 
-        int i = 0;
-        if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(i).getTotalSoldats()) {
+        if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante).getTotalSoldats()) {
 
-            i++;
+            this.vagueCourante++;
             this.environnement.setEnnemisTuesCetteVague(0);
         }
-        this.toutesLesVagues.get(i).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
+        this.toutesLesVagues.get(this.vagueCourante).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
     }
 
     public ArrayList<StrategyVague> getToutesLesVagues() {

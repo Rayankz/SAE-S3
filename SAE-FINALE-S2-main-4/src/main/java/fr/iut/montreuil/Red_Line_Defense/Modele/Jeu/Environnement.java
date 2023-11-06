@@ -25,14 +25,12 @@ public class Environnement {
     private Joueur joueur ;
     public int[][] distances;
     private BasePrincipale basePrincipale;
-
     private Vagues vaguesDeJeu;
-
     public BFS BFS;
 
     public Environnement(Joueur joueur) {
 
-        this.BFS=new BFS(this);
+        this.BFS = new BFS(this);
 
         this.joueur = joueur;
 
@@ -215,6 +213,11 @@ public class Environnement {
     public ListProperty<Soldat> getSoldatsProperty() {
 
         return this.listeSoldats;
+    }
+
+    public void ajouterSoldat(Soldat soldat) {
+
+        getSoldatsProperty().add(soldat);
     }
 
     public ObservableList<Soldat> getSoldats() {
