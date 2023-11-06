@@ -11,6 +11,7 @@ import javafx.scene.shape.Circle;
 
 public abstract class Tour extends Acteurs {
 
+    //Attributs :
     private IntegerProperty prix; // prix d'achat de l'acteur
 
     protected Environnement terrain;
@@ -21,6 +22,7 @@ public abstract class Tour extends Acteurs {
 
     private static int compteur;
 
+    //Constructeur :
     public Tour(int x0, int y0, int pointsDeVie,Environnement e) {
         super(x0, y0, pointsDeVie);
         this.terrain = e;
@@ -40,57 +42,55 @@ public abstract class Tour extends Acteurs {
         compteur++;
     }
 
-    public void setPortée(double n) {
-
-        this.portee = n;
-    }
-
-    // Getter Prix
-    public int getPrixValue() {
-        return this.prix.getValue();
-    }
-
-
-
-    public void infligerDegats(int val) {
-
+   //Méthpdes :
+    public void infligerDegats(int val){
         this.setPointsDeVieValue(this.getPointsDeVieValue() - val);
     }
 
+    public Soldat ennemiÀPorter(double p) {
+            for (Soldat s : terrain.getSoldats()) {
+                if (s.estVivant()) {
+                    if (vérificationEstÀPorter(getX0Value(),getY0Value(),s.getX0Value(),s.getY0Value(),p)) {
+                        return s;
+                    }
+                }
+            }
+            return null;
+    }
+
+    public boolean vérificationEstÀPorter(double x,double y,double xCible, double yCible,double p){
+            double distanceX = Math.abs(xCible - x);
+            double distanceY = Math.abs(yCible - y);
+            double distanceTotale = distanceX + distanceY;
+
+            return distanceTotale <= p;
+
+    }
+
+    public abstract void agit(int n);
+
+    //Getter et Setter :
     public Environnement getTerrain() {
         return terrain;
     }
 
-    public Soldat ennemiÀPorter() {
-
-        for (Soldat s : terrain.getSoldats()) {
-
-            if (vérificationEstÀPorter(s.getX0Value(),s.getY0Value())) {
-
-                if (s.estVivant()) {
-
-                    return s;
-                }
-            }
-        }
-        return null;
-    }
-
-    public boolean vérificationEstÀPorter(double x, double y) {
-
-            double distanceX = Math.abs(x - getX0Value());
-            double distanceY = Math.abs(y - getY0Value());
-            double distanceTotale = distanceX + distanceY;
-
-            if (distanceTotale <= portee) {
-                return true;
-            }
-            return false;
+    public void setTerrain(Environnement terrain) {
+        this.terrain = terrain;
     }
 
     public String getId() {
         return id;
     }
 
-    public abstract void agit(int n);
+    public int getPrixValue() {
+        return prix.get();
+    }
+
+    public double getPortee() {
+        return portee;
+    }
+
+    public void setPortee(double portee) {
+        this.portee = portee;
+    }
 }

@@ -42,18 +42,18 @@ public class Environnement {
         this.ennemisTuesCetteVague = 0;
 
         ObservableList<Tour> observableListTour = FXCollections.observableArrayList();
-        listeTours = new SimpleListProperty<>(observableListTour);
+        this.listeTours = new SimpleListProperty<>(observableListTour);
 
         ObservableList<Soldat> observableListSoldat = FXCollections.observableArrayList();
-        listeSoldats = new SimpleListProperty<>(observableListSoldat);
+        this.listeSoldats = new SimpleListProperty<>(observableListSoldat);
 
         ObservableList<Projectile> projectileObservableList = FXCollections.observableArrayList();
-        listeProjectiles = new SimpleListProperty<>(projectileObservableList);
+        this.listeProjectiles = new SimpleListProperty<>(projectileObservableList);
 
         this.vaguesDeJeu  = new Vagues(this);
 
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
-        BFS.calculerChemin(89, 47);
+        this.BFS.calculerChemin(89, 47);
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
@@ -62,26 +62,25 @@ public class Environnement {
 
     public void unTour() {
 
+        verificationMorts(); //validé
         this.vaguesDeJeu.unTour(); //validé
         actionDesSoldats(this.nbrTours); //validé
-        verificationMorts(); //validé
-        actionTours(this.nbrTours); //validé
+        actionDesTours(this.nbrTours); //validé
         suppressionTour();
         this.basePrincipale.agit(1);
-        checkNouvelleVagues();
         verificationDefaite();
 
         this.nbrTours++;
     }
 
-    public void checkNouvelleVagues() {
+    public void setEnnemisTuesCetteVague(int n) {
 
-        if (this.ennemisTuesCetteVague == this.vaguesDeJeu.getTotalSoldats()) {
+        this.ennemisTuesCetteVague = n;
+    }
 
-            this.vague.setValue(this.vague.getValue() + 1);
-            // Reset
-            this.ennemisTuesCetteVague = 0;
-        }
+    public int getEnnemisTuesCetteVague() {
+
+        return this.ennemisTuesCetteVague;
     }
 
     public void actionDesSoldats(int n) {
@@ -100,19 +99,25 @@ public class Environnement {
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
 
             this.vague.setValue(-1);
+
         }
+
     }
 
-    public void actionTours(int n) {
+    public void actionDesTours(int n) {
 
         if(!this.listeTours.isEmpty()) {
 
             for (Tour t : this.listeTours) {
 
                 t.agit(n);
+
                 t.infligerDegats(2);
+
             }
+
         }
+
     }
 
    public void suppressionTour() {
@@ -121,6 +126,7 @@ public class Environnement {
 
             listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
         }
+
     }
 
     public void verificationMorts() {
@@ -143,19 +149,11 @@ public class Environnement {
     //------------------------------------------------------- INTERFACE ------------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
-    public void setVague(int i){ this.vague.set(i);}
-
     public IntegerProperty getVagueProperty() { return this.vague; }
 
     public int getVagueValue() { return this.vague.getValue(); }
 
-    public void setEnnemisTues(int ennemisTues) {
-        this.ennemisTues.set(ennemisTues);
-    }
-
     public IntegerProperty getEnnemisTuesProperty() { return this.ennemisTues;}
-
-    public int getEnnemisTuesValue() { return this.ennemisTues.getValue(); }
 
     public int getNbrTours() {
 
@@ -200,11 +198,6 @@ public class Environnement {
         this.listeTours.add(tour);
     }
 
-    public void supprimerTour(Tour tour) {
-
-        this.listeTours.remove(tour);
-    }
-
     public ListProperty<Tour> getToursProperty() {
 
         return this.listeTours;
@@ -219,26 +212,15 @@ public class Environnement {
     //------------------------------------------------------- LISTE SOLDATS ----------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
-    public void ajouterSoldat(Soldat soldat) {
-
-        this.listeSoldats.add(soldat);
-    }
-
-    public void supprimerSoldat(Soldat soldat) {
-
-        this.listeSoldats.remove(soldat);
-    }     // Supprimer un Soldat
-
     public ListProperty<Soldat> getSoldatsProperty() {
 
         return this.listeSoldats;
-    }       // Retourne la liste observable
+    }
 
     public ObservableList<Soldat> getSoldats() {
 
         return this.listeSoldats.get();
-    }       // Retourne la property qui contient la liste observable
-
+    }
 
     public Joueur getJoueur() {
 

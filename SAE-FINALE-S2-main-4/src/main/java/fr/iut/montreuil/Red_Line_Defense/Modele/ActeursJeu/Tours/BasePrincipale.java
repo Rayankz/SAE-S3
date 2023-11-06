@@ -19,18 +19,20 @@ public class BasePrincipale extends Tour {
 
         super(x0, y0, 200, environnement); // 2 tiles de portée
         this.zone = new HashSet<>();
-        this.setPortée(55);
+        this.setPortee(55);
         initializeZone();
+
     }
 
     public void agit(int n) {
 
-        if (ennemiÀPorter() != null) {
+        if (ennemiÀPorter(getPortee()) != null) {
 
-            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter().getDegatValue());
+            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter(getPortee()).getDegatValue());
             System.out.println("---pv base : " + this.getPointsDeVieValue());
-            this.ennemiÀPorter().setPointsDeVieValue(-2);
+            this.ennemiÀPorter(getPortee()).setPointsDeVieValue(-2);
         }
+
     }
 
     private void initializeZone() {
@@ -42,10 +44,5 @@ public class BasePrincipale extends Tour {
                 this.zone.add(new Point2D(x, y));
             }
         }
-    }
-
-    public Set<Point2D> getZone() {
-
-        return zone;
     }
 }

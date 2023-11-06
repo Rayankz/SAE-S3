@@ -142,5 +142,11 @@ public abstract class Acteurs {
         this.setPointsDeVieValue(nouvelleVie);
     }
 
+    public double calculeDistance(double x, double y){
+        double distanceX = Math.abs(x - getX0Value());
+        double distanceY = Math.abs(y - getY0Value());
+        return distanceX + distanceY;
+    }
+
 
 }
