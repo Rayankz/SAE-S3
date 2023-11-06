@@ -12,13 +12,13 @@ public class StrategyVague1 extends StrategyVague {
     @Override
     public void faireApparaitreEnnemi(int nbrTour, Environnement environnement) {
 
-        int soldats1 = 0;
 
-        if ((nbrTour % 20 == 0) && (soldats1 < this.getNbrSpawnsType1())) {
+
+        if ((nbrTour % 20 == 0) && (getSoldat1() < this.getNbrSpawnsType1())) {
 
             System.out.println("Un nouveau Soldat Apparait !");
             nouveauSpawnSoldat(1,9, environnement);
-            soldats1++;
+            incrSoldat1();
         }
     }
 }

@@ -9,8 +9,6 @@ public class Vagues {
 
     private Environnement environnement;
 
-    private int currentWave;
-
     private StrategyChangeante strategyChangeante;
 
     public Vagues(Environnement environnement) {

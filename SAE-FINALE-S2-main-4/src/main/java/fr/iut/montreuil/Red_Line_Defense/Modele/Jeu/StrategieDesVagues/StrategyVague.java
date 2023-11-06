@@ -10,9 +10,12 @@ import java.util.Random;
 
 public abstract class StrategyVague extends Strategy {
 
-    private int nbrSpawnsType1;
-    private int nbrSpawnsType2;
-    private int nbrSpawnsType3;
+    private final int nbrSpawnsType1;
+    private final int nbrSpawnsType2;
+    private final int nbrSpawnsType3;
+    private int soldat1=0;
+    private int soldat2=0;
+    private int soldat3=0;
 
     public StrategyVague(int nbrSpawnsType1, int nbrSpawnsType2, int nbrSpawnsType3) {
 
@@ -123,5 +126,26 @@ public abstract class StrategyVague extends Strategy {
         resultat[3] = randomDestPosition[1];
 
         return resultat;
+    }
+
+    public int getSoldat1() {
+        return soldat1;
+    }
+
+    public int getSoldat2() {
+        return soldat2;
+    }
+
+    public int getSoldat3() {
+        return soldat3;
+    }
+    public void incrSoldat1(){
+        soldat1++;
+    }
+    public void incrSoldat2(){
+        soldat2++;
+    }
+    public void incrSoldat3(){
+        soldat3++;
     }
 }

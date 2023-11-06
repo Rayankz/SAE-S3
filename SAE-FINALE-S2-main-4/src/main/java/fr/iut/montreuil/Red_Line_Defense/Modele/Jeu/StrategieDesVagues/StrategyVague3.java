@@ -14,27 +14,25 @@ public class StrategyVague3 extends StrategyVague {
     @Override
     public void faireApparaitreEnnemi(int nbrTour, Environnement environnement) {
 
-        int soldats1 = 0; int soldats2 = 0;
-
         Random random = new Random();
 
         if (nbrTour % 12 == 0) {
 
-            if ((soldats1 < this.getNbrSpawnsType1()) || (soldats2 < this.getNbrSpawnsType2())) {
+            if ((getSoldat1() < this.getNbrSpawnsType1()) || (getSoldat2() < this.getNbrSpawnsType2())) {
 
                 int soldierTypeToSpawn = random.nextInt(2) + 1; // Cela génère soit un soldat de type 1 ou 2.
 
-                if ((soldierTypeToSpawn == 1) && (soldats1 < this.getNbrSpawnsType1())) {
+                if ((soldierTypeToSpawn == 1) && (getSoldat2() < this.getNbrSpawnsType1())) {
 
                     System.out.println("Un nouveau Rookie apparait !");
                     nouveauSpawnSoldat(1, 12, environnement);
-                    soldats1++;
+                    incrSoldat1();
                 }
-                else if ((soldierTypeToSpawn == 2) && (soldats2 < this.getNbrSpawnsType2())) {
+                else if ((soldierTypeToSpawn == 2) && (getSoldat2() < this.getNbrSpawnsType2())) {
 
                     System.out.println("Un nouveau Super Nova apparait !");
                     nouveauSpawnSoldat(2, 12, environnement);
-                    soldats2++;
+                    incrSoldat2();
                 }
             }
         }
