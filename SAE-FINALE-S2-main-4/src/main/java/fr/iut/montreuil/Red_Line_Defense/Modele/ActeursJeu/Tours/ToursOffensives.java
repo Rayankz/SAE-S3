@@ -1,15 +1,11 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
 
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Blast;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Boulet;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Missile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 public abstract class ToursOffensives extends Tour {
@@ -18,8 +14,8 @@ public abstract class ToursOffensives extends Tour {
     private final ObservableList<Projectile> projectiles; // Liste de tous les projectiles actuellement tirés par la tour
     private final int vitesseProjectile;
 
-    public ToursOffensives(int x0, int y0, int pointsDeVie, int degats, int defense,int prix, Environnement terrain,int cadence,int vitesse,double portée) {
-        super(x0, y0, pointsDeVie, degats, defense,prix,terrain, portée);
+    public ToursOffensives(int x0, int y0, int pointsDeVie, int dégâts, int defense, int prix, Environnement terrain, int cadence, int vitesse, double portée, String path) {
+        super(x0, y0, pointsDeVie, dégâts, defense, prix, terrain, portée, path);
 
         this.cadence = new SimpleIntegerProperty(cadence);
         this.projectiles = FXCollections.observableArrayList();
@@ -43,7 +39,7 @@ public abstract class ToursOffensives extends Tour {
     public abstract Projectile creationProjectile(Soldat s);
 
     public void tirer(int nTemps) {
-        Soldat s = ennemiÀPorter(getPortee());
+        Soldat s = ennemiÀPorter(getPortée());
         if (s != null) {
             if (s.estVivant()) {
                 if (nTemps % getCadence() == 0) {

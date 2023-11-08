@@ -33,21 +33,22 @@ public class EcouteTours {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Tour> t) {
                 while (t.next()) {
+
                     if (t.wasAdded()) {
+
                         List<? extends Tour> addedTowers = t.getAddedSubList();
                         for (Tour tour : addedTowers) {
-                            joueur.debiterSolde(tour.getPrixValue());
-                        }
-                        if (joueur.getSoldeJoueurValue() < 0) {
+
 
                         }
                     }
                     if (t.wasRemoved()) {
                         {
                             for (int i = t.getRemoved().size() - 1; i >= 0; i--) {
+
                                 Tour tour = t.getRemoved().get(i);
                                 Node n = centerPane.lookup("#" + tour.getId());
-                                Node m = centerPane.lookup("#" + tour.getId()+"p");
+                                Node m = centerPane.lookup("#" + tour.getId() + "p");
                                 centerPane.getChildren().remove(n);
                                 centerPane.getChildren().remove(m);
                             }
