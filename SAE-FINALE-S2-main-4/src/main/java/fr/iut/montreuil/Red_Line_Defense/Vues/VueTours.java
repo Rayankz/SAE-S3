@@ -27,10 +27,10 @@ public class VueTours {
     public static final String MAP_TOUR_SNIPER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/sniperPosable.png"; // Sniper
     public static final String MAP_TOUR_MORTIER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/mortierPosable.png"; // Teleguidée
     public static final String MAP_TOUR_ENFER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/enferPosable.png"; // Ralentis
-    public static final String MENU_TOUR_SORCIER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/sorcierPosable.png"; // Mitrallieuse
+   /* public static final String MENU_TOUR_SORCIER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/sorcierPosable.png"; // Mitrallieuse
     public static final String MENU_TOUR_SNIPER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/sniperPosable.png"; // Sniper
     public static final String MENU_TOUR_MORTIER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/mortierPosable.png"; // Teleguidée
-    public static final String MENU_TOUR_ENFER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/enferPosable.png"; // Ralentis
+    public static final String MENU_TOUR_ENFER_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/TourMenu/enferPosable.png"; // Ralentis*/
     public static final String CLIC_CHEMIN_IMAGE_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/errChemin.png";
     public static final String CLIC_NO_MONEY_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/noMoney.png";
 

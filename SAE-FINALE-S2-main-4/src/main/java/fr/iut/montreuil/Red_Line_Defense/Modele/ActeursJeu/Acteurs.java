@@ -134,19 +134,5 @@ public abstract class Acteurs {
 
     // _________________________________________________________________________________________________________________
 
-    public void soigner(int val) {
-        // Ajouter les points de soin aux points de vie actuels de l'acteur
-        int nouvelleVie = this.getPointsDeVieValue() + val;
-
-        // Mettre à jour les points de vie de l'acteur
-        this.setPointsDeVieValue(nouvelleVie);
-    }
-
-    public double calculeDistance(double x, double y){
-        double distanceX = Math.abs(x - getX0Value());
-        double distanceY = Math.abs(y - getY0Value());
-        return distanceX + distanceY;
-    }
-
 
 }

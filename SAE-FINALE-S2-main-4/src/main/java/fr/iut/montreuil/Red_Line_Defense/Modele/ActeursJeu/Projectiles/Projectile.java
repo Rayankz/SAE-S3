@@ -13,6 +13,9 @@ public class Projectile {
     private final DoubleProperty y;
     private double xDirection;
     private double yDirection;
+
+    private DoubleProperty xCible;
+    private DoubleProperty yCible;
     private final double v;//Vitesse de l'obus
     private final Soldat s;
     private Environnement terrain;
@@ -29,6 +32,10 @@ public class Projectile {
         this.y = new SimpleDoubleProperty(y);
 
         this.s=s;
+
+        xCible = new SimpleDoubleProperty(s.getX0Value());
+
+        yCible = new SimpleDoubleProperty(s.getY0Value());
 
         this.v = v;
 
@@ -48,7 +55,7 @@ public class Projectile {
     }
 
     public void setDirection(){
-        double distance = tourLauncher.calculeDistance(s.getX0Value(), s.getY0Value());
+        double distance = Math.sqrt(Math.pow(getxCible() - getX(), 2) + Math.pow(getyCible() - getY(), 2));
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
     }
@@ -116,13 +123,16 @@ public class Projectile {
     }
 
 
-
     public double getxCible() {
-        return s.getX0Value();
+        return xCible.get();
     }
 
     public double getyCible() {
-        return s.getY0Value();
+        return yCible.get();
+    }
+
+    public DoubleProperty yCibleProperty() {
+        return yCible;
     }
 
     public double getxDirection() {

@@ -22,6 +22,13 @@ public class Missile extends Projectile {
         }
 
     }
+    public double getxCible(){
+        return getS().getX0Value();
+    }
+
+    public double getyCible(){
+        return getS().getY0Value();
+    }
 
 }
 
