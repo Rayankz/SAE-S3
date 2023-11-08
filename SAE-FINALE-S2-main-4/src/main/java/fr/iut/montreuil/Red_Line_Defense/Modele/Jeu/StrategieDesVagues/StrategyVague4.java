@@ -1,11 +1,6 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueRookies;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueShichibukais;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.FabriqueSuperNovas;
-
-import java.util.Random;
 
 public class StrategyVague4 extends StrategyVague {
 

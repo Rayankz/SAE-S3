@@ -1,4 +1,4 @@
-package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats;
+package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.FabriquesDeSoldats;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.SuperNova;
