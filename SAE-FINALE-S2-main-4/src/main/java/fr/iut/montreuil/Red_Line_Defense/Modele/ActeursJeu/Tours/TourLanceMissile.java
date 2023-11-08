@@ -10,7 +10,7 @@ public class TourLanceMissile extends ToursOffensives{
     public TourLanceMissile(int x0, int y0, Environnement terrain) {
         super(x0, y0, 1000, 600, 5, 800, terrain, 7,100,150);
     }
-    public Projectile creationProjectile(Soldat s){
+    public Projectile creationProjectile(Soldat s) {
         return new Missile(getX0Value(), getY0Value(), getVitesseProjectile(), getDegatValue(),s, getTerrain(),this);
     }
 }

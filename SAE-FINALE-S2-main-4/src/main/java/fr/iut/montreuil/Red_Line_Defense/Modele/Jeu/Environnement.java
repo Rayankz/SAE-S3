@@ -55,7 +55,7 @@ public class Environnement {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- TOUR DE JEU ---------------------------------------------------------------
+    //------------------------------------------------------- TOUR DE JEU ------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
     public void unTour() {
@@ -139,7 +139,7 @@ public class Environnement {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------- INTERFACE ------------------------------------------------------------------
+    //------------------------------------------------------- INTERFACE --------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
 
     public IntegerProperty getVagueProperty() { return this.vague; }
@@ -164,14 +164,17 @@ public class Environnement {
 
         this.listeProjectiles.add(projectile);
     }
+
     public void supprimerProjectile(Projectile projectile) {
 
         this.listeProjectiles.remove(projectile);
     }
+
     public ListProperty<Projectile> getProjectilesProperty() {
 
         return this.listeProjectiles;
     }
+
     public ObservableList<Projectile> getProjectiles() {
 
         return this.listeProjectiles.get();
@@ -183,10 +186,12 @@ public class Environnement {
 
         this.listeTours.add(tour);
     }
+
     public ListProperty<Tour> getToursProperty() {
 
         return this.listeTours;
     }
+
     public ObservableList<Tour> getTours() {
 
         return this.listeTours.get();
@@ -198,30 +203,37 @@ public class Environnement {
 
         return this.listeSoldats;
     }
+
     public void ajouterSoldat(Soldat soldat) {
 
         getSoldatsProperty().add(soldat);
     }
+
     public ObservableList<Soldat> getSoldats() {
 
         return this.listeSoldats.get();
     }
+
     public Joueur getJoueur() {
 
         return this.joueur;
     }
+
     public void setBasePrincipale(BasePrincipale basePrincipale) {
 
         this.basePrincipale = basePrincipale;
     }
+
     public BasePrincipale getBasePrincipale() {
 
         return this.basePrincipale;
     }
+
     public Vagues getVagues() {
 
         return this.vaguesDeJeu;
     }
+
     public IntegerProperty getVague() {
 
         return this.vague;

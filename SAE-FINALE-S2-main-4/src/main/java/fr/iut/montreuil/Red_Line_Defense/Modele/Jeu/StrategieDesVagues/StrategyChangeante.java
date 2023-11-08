@@ -1,7 +1,6 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,7 @@ public class StrategyChangeante extends Strategy {
         this.toutesLesVagues.add(new StrategyVague5());
         this.vagueCourante = 0;
     }
+
     public void choixDeLaVague() {
 
         if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante).getTotalSoldats()) {
@@ -29,9 +29,5 @@ public class StrategyChangeante extends Strategy {
             this.environnement.setEnnemisTuesCetteVague(0);
         }
         this.toutesLesVagues.get(this.vagueCourante).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
-    }
-    public ArrayList<StrategyVague> getToutesLesVagues() {
-
-        return this.toutesLesVagues;
     }
 }

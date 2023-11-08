@@ -17,15 +17,13 @@ public class VueSoldats {
 
     private Map<Soldat, ImageView> hashMapSoldatsSkin = new HashMap<>();
 
-
     public VueSoldats(Pane centerPane) {
+
         this.centerPane = centerPane;
     }
 
-
-
     public void ajouterSkinSoldat(Soldat s) {
-        ImageView skin  = creerImageSoldat(s.getCouleur());
+        ImageView skin = creerImageSoldat(s.getCouleur());
         System.out.println("Skin créé pour le soldat : " + skin);
 
         hashMapSoldatsSkin.put(s, skin);
@@ -71,7 +69,6 @@ public class VueSoldats {
         setImageViewProperties(skin, soldat.getCouleur(), direction);
     }
 
-
     public ImageView creerImageSoldat(String color) {
         String imagePath = String.format("/fr/iut/montreuil/Red_Line_Defense/Images/Personnage/%s/haut.gif", color);
         Image image = loadImage(imagePath);
@@ -83,7 +80,6 @@ public class VueSoldats {
         img.setPreserveRatio(true);
         return img;
     }
-
 
     private Image loadImage(String path) {
         return new Image(getClass().getResourceAsStream(path));
@@ -100,7 +96,9 @@ public class VueSoldats {
     public ImageView getSkinForSoldat(Soldat soldat) {
         return this.hashMapSoldatsSkin.get(soldat);
     }
+
     public Soldat getSoldatForSkin(ImageView i) {
+
         for (Map.Entry<Soldat, ImageView> entry : this.hashMapSoldatsSkin.entrySet()) {
             if (Objects.equals(i, entry.getValue())) {
                 return entry.getKey();

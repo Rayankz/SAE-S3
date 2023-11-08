@@ -55,18 +55,18 @@ public class VueTours {
         DoubleProperty progression = new SimpleDoubleProperty(1.0);;
         ProgressBar hpb = creerBarreDeVie(progression, x, y);
 
-        System.out.println("x " + (int)(x/8) + " y " +(int) (y/8));
+        System.out.println("x " + (int)(x / 8) + " y " +(int) (y / 8));
         ImageView i = new ImageView();
-        //StackPane stackPane = new StackPane();
-        //stackPane.setPadding(new Insets(10));
 
         if (this.idTourClicked.equals("0")) {
             // Aucune tour sélectionnée, afficher ce message d'erreur
             showErrorMessage(x, y);
-        } else if (this.terrain.getJoueur().getSoldeJoueurValue() <= 0)  {
+        }
+        else if (this.terrain.getJoueur().getSoldeJoueurValue() <= 0)  {
             // Message d'erreur en cas de clic sans avoir le solde necéssaire
             showErrorMoneyMessage(x, y);
-        } else {
+        }
+        else {
             if (tourPosable(x, y)) {
                 switch (this.idTourClicked) {
                     case "tour200b":
@@ -124,8 +124,6 @@ public class VueTours {
         return hpBarre;
     }
 
-
-
     private ImageView createTourImageView(double x, double y, String path) {
 
         ImageView maTour = new ImageView(loadImage(path));
@@ -133,7 +131,6 @@ public class VueTours {
         maTour.setY(y - 22);
         return maTour;
     }
-
 
     private boolean tourPosable(double x, double y) {
 

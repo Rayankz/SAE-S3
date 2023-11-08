@@ -2,15 +2,12 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgesSoldats.ForgeSoldats;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.Strategy;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.StrategyChangeante;
 
 public class Vagues {
 
     private Environnement environnement;
     private StrategyChangeante strategyChangeante;
-    private ForgeSoldats forgeSoldats;
 
     public Vagues(Environnement environnement) {
 

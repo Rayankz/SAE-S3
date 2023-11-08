@@ -6,7 +6,7 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ToursDefensive extends Tour{
+public class ToursDefensive extends Tour {
     private final ArrayList<Soldat> soldatsPiégés;
 
     public ToursDefensive(int x0, int y0, Environnement terrain) {
