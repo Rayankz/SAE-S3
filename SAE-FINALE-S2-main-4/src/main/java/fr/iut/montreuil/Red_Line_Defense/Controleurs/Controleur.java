@@ -179,11 +179,17 @@ public class Controleur implements Initializable {
 
     public void selectionTour(MouseEvent event) {
 
-        this.vueTours.selectionTour(event);
+        ImageView image = (ImageView) event.getSource();
+        this.getVueTours().setIdTourClicked(image.getId());
     }
 
     private Image loadImage(String path) {
 
         return new Image(getClass().getResourceAsStream(path));
+    }
+
+    public VueTours getVueTours() {
+
+        return this.vueTours;
     }
 }

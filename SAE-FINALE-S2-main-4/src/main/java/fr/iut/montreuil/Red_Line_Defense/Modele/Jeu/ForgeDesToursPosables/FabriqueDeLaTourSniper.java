@@ -4,16 +4,15 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.TourSniper;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
-public class FabriqueDeLaTourSniper implements FabriqueDesToursPosables {
+public class FabriqueDeLaTourSniper extends FabriqueDesToursPosables {
 
-    public FabriqueDeLaTourSniper() {
+    public FabriqueDeLaTourSniper(Environnement environnement) {
 
-
+        super(environnement);
     }
-
     @Override
-    public Tour créerTour(int x, int y, Environnement environnement) {
+    public Tour créerTourPosable(int x, int y) {
 
-        return new TourSniper(x, y, environnement);
+        return new TourSniper(x, y, this.getEnvironnement());
     }
 }

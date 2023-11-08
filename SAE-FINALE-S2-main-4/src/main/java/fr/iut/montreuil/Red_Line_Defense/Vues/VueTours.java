@@ -72,7 +72,7 @@ public class VueTours {
                     case "tour200b":
                         i = createTourImageView(x, y, MAP_TOUR_ENFER_PATH);
                         ToursDefensive td = new ToursDefensive((int) x,(int) y, this.terrain);
-                        this.terrain.ajouterTour(td);
+                        this.terrain.ajouterTourPosable(td);
                         i.setId(td.getId());
                         hpb.setId(td.getId()+"p");
                         progression.bind(Bindings.divide(td.getPointsDeVieProperty(), (double) td.getPointsDeVieValue()));
@@ -81,7 +81,7 @@ public class VueTours {
                     case "tour400b":
                         i = createTourImageView(x, y, MAP_TOUR_SORCIER_PATH);
                         TourMitrailleuse tm = new TourMitrailleuse((int) x, (int) y,terrain);
-                        this.terrain.ajouterTour(tm);
+                        this.terrain.ajouterTourPosable(tm);
                         i.setId(tm.getId());
                         hpb.setId(tm.getId()+"p");
                         progression.bind(Bindings.divide(tm.getPointsDeVieProperty(), (double) tm.getPointsDeVieValue()));
@@ -90,7 +90,7 @@ public class VueTours {
                     case "tour600b":
                         i = createTourImageView(x, y, MAP_TOUR_SNIPER_PATH);
                         TourSniper ts = new TourSniper((int) x, (int) y, this.terrain);
-                        this.terrain.ajouterTour(ts);
+                        this.terrain.ajouterTourPosable(ts);
                         i.setId(ts.getId());
                         hpb.setId((ts.getId()+"p"));
                         progression.bind(Bindings.divide(ts.getPointsDeVieProperty(), (double) ts.getPointsDeVieValue()));
@@ -98,7 +98,7 @@ public class VueTours {
                     case "tour800b":
                         i = createTourImageView(x, y, MAP_TOUR_MORTIER_PATH);
                         TourLanceMissile tlm = new TourLanceMissile((int) x, (int) y,terrain);
-                        this.terrain.ajouterTour(tlm);
+                        this.terrain.ajouterTourPosable(tlm);
                         i.setId(tlm.getId());
                         hpb.setId((tlm.getId()+"p"));
                         progression.bind(Bindings.divide(tlm.getPointsDeVieProperty(), (double) tlm.getPointsDeVieValue()));
@@ -111,28 +111,25 @@ public class VueTours {
             }
         }
     }
-
-    public ProgressBar creerBarreDeVie(DoubleProperty d, double x, double y){
+    public ProgressBar creerBarreDeVie(DoubleProperty d, double x, double y) {
 
         ProgressBar hpBarre = new ProgressBar();
         hpBarre.progressProperty().bind(d);
         //hpBarre.setPadding(new Insets(2));
         hpBarre.setLayoutX(x-25); // moitié de l'image
-        hpBarre.setLayoutY(y-10-22); //10 pixels au dessus + la moitié de l'image
+        hpBarre.setLayoutY(y-10-22); //10 pixels au-dessus + la moitié de l'image
         hpBarre.setPrefHeight(10);
         hpBarre.setPrefWidth(50);
         return hpBarre;
     }
-
-    private ImageView createTourImageView(double x, double y, String path) {
+    public ImageView createTourImageView(double x, double y, String path) {
 
         ImageView maTour = new ImageView(loadImage(path));
         maTour.setX(x - 15);
         maTour.setY(y - 22);
         return maTour;
     }
-
-    private boolean tourPosable(double x, double y) {
+    public boolean tourPosable(double x, double y) {
 
         int mapX = (int) x / 8;
         int mapY = (int) y / 8;
@@ -171,69 +168,61 @@ public class VueTours {
         }
         return false; // La case est invalide ou déjà occupée par une tour ou une case environnante est occupée par une tour
     }
-
-    private void showErrorMessage(double x, double y) {
+    public void showErrorMessage(double x, double y) {
 
         ImageView errorImageView = createErrorImageView(x, y);
         this.centerPane.getChildren().add(errorImageView);
         new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
-
-    private ImageView createErrorImageView(double x, double y) {
+    public ImageView createErrorImageView(double x, double y) {
 
         ImageView err = new ImageView(loadImage(BAD_CLICK_IMAGE_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
         return err;
     }
-
-    private void showErrorMoneyMessage(double x, double y) {
+    public void showErrorMoneyMessage(double x, double y) {
 
         ImageView errorImageView = createMoneyErrorImageView(x, y);
         this.centerPane.getChildren().add(errorImageView);
         new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
-
-    private ImageView createMoneyErrorImageView(double x, double y) {
+    public ImageView createMoneyErrorImageView(double x, double y) {
 
         ImageView err = new ImageView(loadImage(CLIC_NO_MONEY_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
         return err;
     }
-
-    private void showErrorCheminMessage(double x, double y) {
+    public void showErrorCheminMessage(double x, double y) {
 
         ImageView errorImageView = createCheminErrorMessage(x, y);
         this.centerPane.getChildren().add(errorImageView);
         new Timeline(new KeyFrame(Duration.seconds(0.3), e -> this.centerPane.getChildren().remove(errorImageView))).play();
         this.idTourClicked = "0";
     }
-
-    private ImageView createCheminErrorMessage(double x, double y) {
+    public ImageView createCheminErrorMessage(double x, double y) {
 
         ImageView err = new ImageView(loadImage(CLIC_CHEMIN_IMAGE_PATH));
         err.setX(x - 75);
         err.setY(y - 37.5);
         return err;
     }
+    public void setIdTourClicked(String a) {
 
-    @FXML
-    public void selectionTour(MouseEvent event) {
-
-        ImageView image = (ImageView) event.getSource();
-        this.idTourClicked = image.getId();
+        this.idTourClicked = a;
     }
-
-    private Image loadImage(String path) {
+    public Image loadImage(String path) {
 
         try {
             InputStream inputStream = getClass().getResourceAsStream(path);
             if (inputStream != null) {
+
                 return new Image(inputStream);
             } else {
+
                 System.err.println("Impossible de charger l'image " + path);
                 return null;
             }

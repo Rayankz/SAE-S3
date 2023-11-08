@@ -9,8 +9,9 @@ import java.util.Iterator;
 public class ToursDefensive extends Tour {
     private final ArrayList<Soldat> soldatsPiégés;
 
-    public ToursDefensive(int x0, int y0, Environnement terrain) {
-        super(x0, y0, 1500, 3, 600,200, terrain, 100);
+    public ToursDefensive(int x0, int y0, Environnement environnement) {
+
+        super(x0, y0, 1500, 3, 600, 200, environnement, 100);
         soldatsPiégés = new ArrayList<>();
     }
 
