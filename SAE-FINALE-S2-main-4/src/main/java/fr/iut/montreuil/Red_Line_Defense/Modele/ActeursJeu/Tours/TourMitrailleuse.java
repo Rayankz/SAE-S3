@@ -7,12 +7,12 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class TourMitrailleuse extends ToursOffensives {
 
-    public TourMitrailleuse(int x0, int y0,Environnement terrain) {
-        super(x0, y0, 800, 100, 5, 400,terrain, 1,800,75);
+    public TourMitrailleuse(int x0, int y0, Environnement environnement) {
+        super(x0, y0, 800, 100, 5, 400, environnement, 1,800, 75);
     }
 
     public Projectile creationProjectile(Soldat s) {
-        return new Boulet(getX0Value(), getY0Value(), s, getVitesseProjectile(), getDegatValue(), getTerrain(),this);
+        return new Boulet(getX0Value(), getY0Value(), s, getVitesseProjectile(), getDegatValue(), getTerrain(), this);
     }
 
 

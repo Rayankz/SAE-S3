@@ -1,7 +1,7 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.FabriquesDeSoldats.StrategyFabriqueChangeante;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.FabriquesDesSoldats.StrategyFabriqueChangeante;
 
 public abstract class StrategyVague extends Strategy {
 

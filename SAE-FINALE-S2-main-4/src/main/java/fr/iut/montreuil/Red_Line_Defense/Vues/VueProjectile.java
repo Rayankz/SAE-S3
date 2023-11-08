@@ -24,20 +24,21 @@ public class VueProjectile {
 
 
     public VueProjectile(Pane centerPane,Projectile p){
-        this.centerPane=centerPane;
+
+        this.centerPane = centerPane;
         CreationSprite(p);
     }
 
     //TODO
     //Le truc en bas est moche (redondance) il faut le refactorer
-    public void CreationSprite(Projectile p){
+    public void CreationSprite(Projectile p) {
         ImageView projectile;
-        if(p instanceof Boulet) {
+        if (p instanceof Boulet) {
             ImageView bouleDeFeu = new ImageView(loadImage(BOULE_DE_FEU_PATH));
             orientationImage(p,bouleDeFeu);
             projectile=bouleDeFeu;
         }
-        else if(p instanceof Blast){
+        else if (p instanceof Blast) {
             ImageView blastLaser = new ImageView(loadImage(BLAST_PATH));
             orientationImage(p,blastLaser);
             projectile=blastLaser;
@@ -48,15 +49,16 @@ public class VueProjectile {
         projectile=bombe;
         }
 
-        if(p instanceof Missile) {
+        if (p instanceof Missile) {
             double angle = p.calculerAngle(p.getX(), p.getY(), p.getxCible(), p.getyCible());
             projectile.setRotate(Math.toDegrees(angle));}
     }
 
     public Pane getCenterPane() {
+
         return centerPane;
     }
-    public void orientationImage(Projectile p, ImageView i){
+    public void orientationImage(Projectile p, ImageView i) {
         double angle = p.calculerAngle(p.getX(), p.getY(), p.getxCible(), p.getyCible());
         i.setRotate(Math.toDegrees(angle));
         i.xProperty().bind(p.xProperty());
