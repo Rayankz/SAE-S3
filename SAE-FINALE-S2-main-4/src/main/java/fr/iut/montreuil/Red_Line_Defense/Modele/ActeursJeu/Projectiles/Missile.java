@@ -7,21 +7,22 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class Missile extends Projectile {
     public Missile(double x, double y, double v, int degats, Soldat s, Environnement terrain, ToursOffensives tour) {
-        super(x, y, s, v, degats,terrain, tour);
+        super(x, y, s, v, degats,terrain, tour,5);
     }
 
     public void deplacement(double elapsedTime) {
 
         super.deplacement(elapsedTime);
-
         if(getS().estVivant()) {
-
             setDirection();
-
-
         }
 
     }
-
+    public double getxCible() {
+        return getS().getX0Value();
+    }
+    public double getyCible() {
+        return getS().getY0Value();
+    }
 }
 

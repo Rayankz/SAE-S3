@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Projectile {
     private final DoubleProperty x;
     private final DoubleProperty y;
+    private DoubleProperty xCible;
+    private DoubleProperty yCible;
     private double xDirection;
     private double yDirection;
     private final double v;//Vitesse de l'obus
@@ -20,15 +22,20 @@ public class Projectile {
     private final int degats;
     private final String id;
     private ToursOffensives tourLauncher;
+    private double portee;
     public static int compteur =1;
 
-    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain,ToursOffensives tourLauncher) {
+    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain,ToursOffensives tourLauncher, double portee) {
 
         this.x = new SimpleDoubleProperty(x);
 
         this.y = new SimpleDoubleProperty(y);
 
         this.s=s;
+
+        this.xCible = new SimpleDoubleProperty(s.getX0Value());
+
+        this.yCible = new SimpleDoubleProperty(s.getY0Value());
 
         this.v = v;
 
@@ -44,13 +51,15 @@ public class Projectile {
 
         this.tourLauncher = tourLauncher;
 
+        this.portee = portee;
+
         setDirection();
     }
 
     public void setDirection(){
-        double distance = tourLauncher.calculeDistance(s.getX0Value(), s.getY0Value());
-        this.xDirection = (getxCible() - getX()) / distance;
-        this.yDirection = (getyCible() - getY()) / distance;
+        double distance = Math.sqrt(Math.pow(getxCible() - getX(), 2) + Math.pow(getyCible() - getY(), 2));
+        setxDirection((getxCible() - getX()) / distance);
+        setyDirection((getyCible() - getY()) / distance);
     }
 
     public boolean isTouché() {
@@ -62,10 +71,10 @@ public class Projectile {
     }
 
     public void deplacement(double elapsedTime) {
-        double deltaX = getxDirection() * getV() *elapsedTime;
-        double deltaY = getyDirection() * getV() *elapsedTime;
+        double deltaX = getxDirection() * getV() * elapsedTime;
+        double deltaY = getyDirection() * getV() * elapsedTime;
 
-        if (!(getX()==getxCible()) || (getY()==getyCible())) {
+        if (!(getX()==getxCible()) || !(getY()==getyCible())) {
             setX(getX() + deltaX);
             setY(getY() + deltaY);
         }
@@ -85,19 +94,18 @@ public class Projectile {
 
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
 
-                    if (tourLauncher.vérificationEstÀPorter(getX(),getY(),s.getX0Value(),s.getY0Value(),10)) {
-                        getTerrain().supprimerProjectile(p);
-                        s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
-                        setTouché(true);
-                    }
+                        if (tourLauncher.vérificationEstÀPorter(getX(), getY(), s.getX0Value(), s.getY0Value(), portee) && s.estVivant()) {
+                            getTerrain().supprimerProjectile(p);
+                            s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - (s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
+                            setTouché(true);
+                        }
 
-                    if (p.getX() > 840 || (p.getX() <= 0 || (p.getY() > 480 || p.getY() <= 0))) {
-                        getTerrain().supprimerProjectile(p);
-                        setTouché(true);
-                    }
+                        if (p.getX() > 840 || (p.getX() <= 0 || (p.getY() > 480 || p.getY() <= 0))) {
+                            getTerrain().supprimerProjectile(p);
+                            setTouché(true);
+                        }
 
-                    deplacement(elapsedTime);
-
+                        deplacement(elapsedTime);
                 }
                 else if(p.isTouché()){
                     stop();
@@ -118,11 +126,11 @@ public class Projectile {
 
 
     public double getxCible() {
-        return s.getX0Value();
+        return yCible.get();
     }
 
     public double getyCible() {
-        return s.getY0Value();
+        return xCible.get();
     }
 
     public double getxDirection() {
@@ -181,5 +189,13 @@ public class Projectile {
 
     public Soldat getS() {
         return s;
+    }
+
+    public void setxDirection(double xDirection) {
+        this.xDirection = xDirection;
+    }
+
+    public void setyDirection(double yDirection) {
+        this.yDirection = yDirection;
     }
 }
