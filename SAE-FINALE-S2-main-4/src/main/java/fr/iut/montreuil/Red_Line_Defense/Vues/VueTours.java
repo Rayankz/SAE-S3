@@ -132,8 +132,8 @@ public class VueTours implements TourPlacementErrorListener {
         if (this.idTourClicked.equals("0")) {
             // Aucune tour sélectionnée, afficher ce message d'erreur
             showErrorMessage(x, y);
-        }
-        else if (this.environnement.getJoueur().getSoldeJoueurValue() <= 0)  {
+        }//🇩🇿
+        else if (this.environnement.getJoueur().getSoldeJoueurValue() <= this.forgeDesToursPosables.rechercheDeTourPosable(this.idTourClicked, (int) x, (int) y).getPrixValue())  {
             // Message d'erreur en cas de clic sans avoir le solde nécessaire
             showErrorMoneyMessage(x, y);
         }

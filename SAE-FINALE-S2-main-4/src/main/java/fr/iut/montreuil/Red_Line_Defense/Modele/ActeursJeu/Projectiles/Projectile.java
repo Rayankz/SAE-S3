@@ -9,14 +9,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Projectile {
-    private final DoubleProperty x;
-    private final DoubleProperty y;
-    private double xDirection;
-    private double yDirection;
-
-    private DoubleProperty xCible;
-    private DoubleProperty yCible;
-    private final double v;//Vitesse de l'obus
+    private final DoubleProperty x,y,xCible,yCible;
+    private double xDirection,yDirection,v;
     private final Soldat s;
     private Environnement terrain;
     private boolean touché;
@@ -92,7 +86,7 @@ public class Projectile {
 
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
 
-                    if (tourLauncher.vérificationEstÀPorter(getX(),getY(),s.getX0Value(),s.getY0Value(),10)) {
+                    if (tourLauncher.vérificationEstÀPorter(getX(),getY(),s.getX0Value(),s.getY0Value(),15)) {
                         getTerrain().supprimerProjectile(p);
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
@@ -122,6 +116,11 @@ public class Projectile {
 
     }
 
+    public double calculerAngle(double x, double y, double xCible, double yCible) {
+        return Math.atan2(yCible - y, xCible - x);
+    }
+
+     // ---     getter & setter :      ---
 
     public double getxCible() {
         return xCible.get();
@@ -182,9 +181,7 @@ public class Projectile {
     public int getDegats() {
         return degats;
     }
-    public double calculerAngle(double x, double y, double xCible, double yCible) {
-        return Math.atan2(yCible - y, xCible - x);
-    }
+
     public Environnement getTerrain() {
         return terrain;
     }

@@ -36,8 +36,6 @@ public abstract class ToursOffensives extends Tour {
         return cadence.getValue();
     }
 
-    public abstract Projectile creationProjectile(Soldat s);
-
     public void tirer(int nTemps) {
         Soldat s = ennemiÀPorter(getPortée());
         if (s != null) {
@@ -50,7 +48,10 @@ public abstract class ToursOffensives extends Tour {
             }
         }
     }
+    public Projectile creationProjectile(Soldat s){
 
+        return new Projectile(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),getTerrain(),this);
+    }
     public int getVitesseProjectile() {
         return vitesseProjectile;
     }
