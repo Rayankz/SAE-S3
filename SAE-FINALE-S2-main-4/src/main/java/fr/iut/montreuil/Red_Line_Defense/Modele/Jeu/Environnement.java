@@ -131,7 +131,7 @@ public class Environnement {
             if (soldat.getPointsDeVieValue() <= 0) {
 
                 iterator.remove(); // Supprimer l'élément de la liste en utilisant l'itérateur
-                this.joueur.crediterSolde(soldat.getValeurGagnee());
+                this.joueur.créditerSolde(soldat.getValeurGagnee());
                 this.ennemisTues.setValue(this.ennemisTues.getValue() + 1);
                 this.ennemisTuesCetteVague++;
             }

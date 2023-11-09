@@ -1,13 +1,7 @@
 package fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners;
 
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Vagues;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import fr.iut.montreuil.Red_Line_Defense.Vues.VueInterface;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 public class EcouteInterface {
 
@@ -46,7 +40,7 @@ public class EcouteInterface {
         int nbVague = 0;
         this.environnement.getVagueProperty().addListener((observable, oldValue, newValue) -> {
 
-            environnement.getJoueur().crediterSolde(800); // Chaque Vague le Joueur Gagne 800 Berrys
+            environnement.getJoueur().créditerSolde(800); // Chaque Vague le Joueur Gagne 800 Berrys
             environnement.getVagues().majDefenseSoldats();
             environnement.getVagues().resetTours();
             vueInterface.boucleImagesVagues(nbVague);

@@ -14,7 +14,7 @@ public class StrategyVague1 extends StrategyVague {
 
         if ((nbrTour % 20 == 0) && (getSoldat1() < this.getNbrSpawnsType1())) {
 
-            this.getStrategyFabriqueChangeante().choixDeLaFabrique(this.getSoldat1(), this.getSoldat2(), this.getSoldat3(), this.getNbrSpawnsType1(), this.getNbrSpawnsType2(), this.getNbrSpawnsType3(), environnement, 9, 0, 0,this);
+            this.getStrategyFabriqueChangeante().choixDeLaFabrique(this.getSoldat1(), this.getSoldat2(), this.getSoldat3(), this.getNbrSpawnsType1(), this.getNbrSpawnsType2(), this.getNbrSpawnsType3(), environnement, 9, 0, 0, this);
         }
     }
 }

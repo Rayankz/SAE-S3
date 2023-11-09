@@ -1,7 +1,5 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
 
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.geometry.Point2D;
 
@@ -19,18 +17,18 @@ public class BasePrincipale extends Tour {
 
         super(x0, y0, 200, environnement); // 2 tiles de portée
         this.zone = new HashSet<>();
-        this.setPortee(55);
+        this.setPortée(55);
         initializeZone();
 
     }
 
     public void agit(int n) {
 
-        if (ennemiÀPorter(getPortee()) != null) {
+        if (ennemiÀPorter(getPortée()) != null) {
 
-            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter(getPortee()).getDegatValue());
+            this.setPointsDeVieValue(this.getPointsDeVieValue() - this.ennemiÀPorter(getPortée()).getDegatValue());
             System.out.println("---pv base : " + this.getPointsDeVieValue());
-            this.ennemiÀPorter(getPortee()).setPointsDeVieValue(-2);
+            this.ennemiÀPorter(getPortée()).setPointsDeVieValue(-2);
         }
 
     }
