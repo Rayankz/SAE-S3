@@ -22,6 +22,7 @@ import javafx.util.Duration;
 import java.io.InputStream;
 
 public class VueTours implements TourPlacementErrorListener {
+
     public static final String BAD_CLICK_IMAGE_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/badClic.png";
     public static final String CLIC_CHEMIN_IMAGE_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/errChemin.png";
     public static final String CLIC_NO_MONEY_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/ErrorMessages/noMoney.png";
