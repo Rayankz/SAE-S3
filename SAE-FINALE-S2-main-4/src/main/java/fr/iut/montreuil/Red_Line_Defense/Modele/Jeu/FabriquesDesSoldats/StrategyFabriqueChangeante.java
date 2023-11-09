@@ -2,6 +2,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.FabriquesDesSoldats;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues.StrategyVague;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,25 +19,25 @@ public class StrategyFabriqueChangeante {
         this.toutesLesFabriques.add(new FabriqueShichibukais());
     }
 
-    public void choixDeLaFabrique(int soldat1, int soldat2, int soldat3, int soldat1ASpawn, int soldat2ASpawn, int soldat3ASpawn, Environnement environnement, int spawn1, int spawn2, int spawn3) {
+    public void choixDeLaFabrique(int soldat1, int soldat2, int soldat3, int soldat1ASpawn, int soldat2ASpawn, int soldat3ASpawn, Environnement environnement, int spawn1, int spawn2, int spawn3, StrategyVague s) {
 
         if (soldat1 < soldat1ASpawn) {
 
             System.out.println("Un nouveau Rookie apparait !");
             spawnSoldat(spawn1, this.toutesLesFabriques.get(0), environnement); //nouveauSpawnSoldat(1, 16, environnement);
-            soldat1++;
+            s.incrSoldat1();
         }
-        else if (soldat1 < soldat2ASpawn) {
+        else if (soldat2 < soldat2ASpawn) {
 
             System.out.println("Un nouveau Super Nova apparait !");
             spawnSoldat(spawn2, this.toutesLesFabriques.get(1), environnement); //nouveauSpawnSoldat(2, 16, environnement);
-            soldat2++;
+            s.incrSoldat2();
         }
-        else if (soldat1 < soldat3ASpawn) {
+        else if (soldat3 < soldat3ASpawn) {
 
             System.out.println("Un nouveau Shichibukai apparait !");
             spawnSoldat(spawn3, this.toutesLesFabriques.get(2), environnement); //nouveauSpawnSoldat(3, 9, environnement);
-            soldat3++;
+            s.incrSoldat3();
         }
     }
 
