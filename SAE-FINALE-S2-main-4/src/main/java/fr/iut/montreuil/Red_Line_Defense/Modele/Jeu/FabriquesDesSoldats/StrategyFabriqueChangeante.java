@@ -26,13 +26,13 @@ public class StrategyFabriqueChangeante {
             spawnSoldat(spawn1, this.toutesLesFabriques.get(0), environnement); //nouveauSpawnSoldat(1, 16, environnement);
             soldat1++;
         }
-        else if (soldat1 < soldat2ASpawn) {
+        else if (soldat2 < soldat2ASpawn) {
 
             System.out.println("Un nouveau Super Nova apparait !");
             spawnSoldat(spawn2, this.toutesLesFabriques.get(1), environnement); //nouveauSpawnSoldat(2, 16, environnement);
             soldat2++;
         }
-        else if (soldat1 < soldat3ASpawn) {
+        else if (soldat2 < soldat3ASpawn) {
 
             System.out.println("Un nouveau Shichibukai apparait !");
             spawnSoldat(spawn3, this.toutesLesFabriques.get(2), environnement); //nouveauSpawnSoldat(3, 9, environnement);
