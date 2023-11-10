@@ -3,16 +3,20 @@ package fr.iut.montreuil.Red_Line_Defense.Controleurs;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Inputs;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import fr.iut.montreuil.Red_Line_Defense.Vues.*;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -53,7 +57,7 @@ public class Controleur implements Initializable {
     private EcouteInterface ecouteInterface;
     private Inputs inputs;
     private EcouteProjectiles ecouteProjectiles;
-    private Environnement terrain;
+    private Environnement environnement;
     private GameLoop gameLoop;
     private VueTours vueTours;
     private VueSoldats vueSoldats;
@@ -77,8 +81,7 @@ public class Controleur implements Initializable {
         initializeBasePrincipale();
         initializeVueBasePrincipale();
 
-
-        this.terrain.setBasePrincipale(this.basePrincipale);
+        this.environnement.setBasePrincipale(this.basePrincipale);
     }
 
     public Stage getStage() {
@@ -101,12 +104,12 @@ public class Controleur implements Initializable {
 
     private void initializeEcouteVictoireEtDefaite() {
 
-        ecouteVictoireEtDefaite = new EcouteVictoireEtDefaite(terrain, vueInterface, this);
+        ecouteVictoireEtDefaite = new EcouteVictoireEtDefaite(environnement, vueInterface, this);
     }
 
     private void initializeJoueur() {
 
-        this.joueur = new Joueur("Arsan");
+        this.joueur = new Joueur("Pepe");
     }
 
     private void initializeSons() {
@@ -123,20 +126,20 @@ public class Controleur implements Initializable {
 
     private void initializeVueInterface() {
 
-        this.vueInterface = new VueInterface(terrain, lancerButton, test, solde, berry, ennemisTues, prix200b, prix800b, prix600b, prix400b,
+        this.vueInterface = new VueInterface(environnement, lancerButton, test, solde, berry, ennemisTues, prix200b, prix800b, prix600b, prix400b,
                 berryBot200b, berryBot400b, berryBot600b, berryBot800b, vboxRight, wpp, stackpane, getScene(), getBorderPane(),
                 vague);
-        this.ecouteInterface = new EcouteInterface(this.terrain, this.vueInterface);
+        this.ecouteInterface = new EcouteInterface(this.environnement, this.vueInterface);
     }
 
     private void initializeEnvironnement() {
 
-        this.terrain = new Environnement(this.joueur);
+        this.environnement = new Environnement(this.joueur);
     }
 
     private void initializeBasePrincipale() {
 
-        basePrincipale = new BasePrincipale(700, 335,terrain);
+        basePrincipale = new BasePrincipale(700, 335, environnement);
     }
 
     private void initializeVueBasePrincipale() {
@@ -147,34 +150,59 @@ public class Controleur implements Initializable {
 
     private void initializeVueTours() {
 
-        this.vueTours = new VueTours(this.terrain, this.centerPane);
-        this.ecouteTours = new EcouteTours(this.terrain, this.centerPane);
+        this.vueTours = new VueTours(this.environnement, this.centerPane);
+        this.ecouteTours = new EcouteTours(this.environnement, this.vueTours);
     }
 
     private void initializeVueSoldats() {
 
         this.vueSoldats = new VueSoldats(this.centerPane);
-        this.ecouteSoldats = new EcouteSoldats(this.terrain, this.vueSoldats);
+        this.ecouteSoldats = new EcouteSoldats(this.environnement, this.vueSoldats);
     }
 
     private void initializeVueProjectile() {
 
-        this.ecouteProjectiles = new EcouteProjectiles(this.terrain, this.centerPane);
+        this.ecouteProjectiles = new EcouteProjectiles(this.environnement, this.centerPane);
     }
 
     private void initializeGameLoop() {
 
-        this.gameLoop = new GameLoop(this.centerPane, this.vueSoldats, this.terrain);
-    }
-
-    public GameLoop getGameLoop() {
-
-        return this.gameLoop;
+        this.gameLoop = new GameLoop(this.centerPane, this.vueSoldats, this.environnement);
     }
 
     public void positionTour(MouseEvent event) {
 
-        this.vueTours.positionTour(event);
+        double x = event.getX();
+        double y = event.getY();
+        DoubleProperty progression = new SimpleDoubleProperty(1.0);
+        ProgressBar hpb = this.vueTours.créerBarreDeVie(progression, x, y);
+
+        System.out.println("x " + (int) (x / 8) + " y " + (int) (y / 8));
+        ImageView i = new ImageView();
+
+        if (this.vueTours.getIdTourClicked().equals("0")) {
+            // Aucune tour sélectionnée, afficher ce message d'erreur
+            this.vueTours.showErrorMessage(x, y);
+        }
+        else if (this.environnement.getJoueur().getSoldeJoueurValue() <= this.vueTours.getForgeDesToursPosables().rechercheDeTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y).getPrixValue()) {
+            // Message d'erreur en cas de clic sans avoir le solde nécessaire
+            this.vueTours.showErrorMoneyMessage(x, y);
+        }
+        else {
+            if (this.vueTours.getForgeDesToursPosables().conditionsTourPosable(x, y)) {
+
+                this.vueTours.getForgeDesToursPosables().fabriquerTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y);
+                Tour tour = this.vueTours.getForgeDesToursPosables().rechercheDeTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y);
+                //i = createTourImageView(x, y, tour.getPath());
+                //i.setId(tour.getId());
+                //hpb.setId(tour.getId() + "p");
+                //progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
+                //this.centerPane.getChildren().addAll(i, hpb);
+
+                this.vueTours.setIdTourClicked("0"); // Réinitialiser la sélection de la tour
+                System.out.println("tour crée");
+            }
+        }
     }
 
     public void selectionTour(MouseEvent event) {
