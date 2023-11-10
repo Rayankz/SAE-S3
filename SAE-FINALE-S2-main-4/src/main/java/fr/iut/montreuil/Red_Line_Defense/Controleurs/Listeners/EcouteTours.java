@@ -15,20 +15,20 @@ import java.util.List;
 
 public class EcouteTours {
 
-    private Environnement terrain;
+    private Environnement environnement;
 
     private VueTours vueTours;
 
     public EcouteTours(Environnement terrain, VueTours vueTours) {
 
-        this.terrain = terrain;
+        this.environnement = terrain;
         this.vueTours = vueTours;
         ajouterEcouteurSurTours();
     }
 
     public void ajouterEcouteurSurTours() {
 
-        this.terrain.getToursProperty().addListener(new ListChangeListener<Tour>() {
+        this.environnement.getToursProperty().addListener(new ListChangeListener<Tour>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends Tour> t) {
 
