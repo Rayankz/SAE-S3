@@ -35,18 +35,6 @@ public class VueTours implements TourPlacementErrorListener {
         this.forgeDesToursPosables = new ForgeDesToursPosables(this.environnement, new FabriqueSimple(), this);
     }
 
-    public ProgressBar créerBarreDeVie(DoubleProperty d, double x, double y) {
-
-        ProgressBar hpBarre = new ProgressBar();
-        hpBarre.progressProperty().bind(d);
-        //hpBarre.setPadding(new Insets(2));
-        hpBarre.setLayoutX(x-25); // moitié de l'image
-        hpBarre.setLayoutY(y-10-22); //10 pixels au-dessus + la moitié de l'image
-        hpBarre.setPrefHeight(10);
-        hpBarre.setPrefWidth(50);
-        return hpBarre;
-    }
-
     public void showErrorMessage(double x, double y) {
 
         ImageView errorImageView = createErrorImageView(x, y);
@@ -137,5 +125,25 @@ public class VueTours implements TourPlacementErrorListener {
     public String getIdTourClicked() {
 
         return this.idTourClicked;
+    }
+
+    public ImageView createTourImageView(double x, double y, String path) {
+
+        ImageView maTour = new ImageView(loadImage(path));
+        maTour.setX(x - 15);
+        maTour.setY(y - 22);
+        return maTour;
+    }
+
+    public ProgressBar créerBarreDeVie(DoubleProperty d, double x, double y) {
+
+        ProgressBar hpBarre = new ProgressBar();
+        hpBarre.progressProperty().bind(d);
+        //hpBarre.setPadding(new Insets(2));
+        hpBarre.setLayoutX(x-25); // moitié de l'image
+        hpBarre.setLayoutY(y-10-22); //10 pixels au-dessus + la moitié de l'image
+        hpBarre.setPrefHeight(10);
+        hpBarre.setPrefWidth(50);
+        return hpBarre;
     }
 }

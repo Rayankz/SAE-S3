@@ -19,11 +19,23 @@ public class EcouteTours {
 
     private VueTours vueTours;
 
+    private double dernierClicX = 100;
+
+    private double dernierClicY = 120;
+
     public EcouteTours(Environnement terrain, VueTours vueTours) {
 
         this.environnement = terrain;
         this.vueTours = vueTours;
         ajouterEcouteurSurTours();
+
+        vueTours.getCenterPane().setOnMouseClicked(event -> {
+
+            setDernierClicX(event.getX());
+            setDernierClicY(event.getY());
+
+            System.out.println("clic de souris: x = " + dernierClicX + " y = " + dernierClicY);
+        });
     }
 
     public void ajouterEcouteurSurTours() {
@@ -39,30 +51,15 @@ public class EcouteTours {
                         List<? extends Tour> addedTowers = t.getAddedSubList();
                         for (Tour tour : addedTowers) {
 
-                            vueTours.getCenterPane().setOnMouseClicked(mouseEvent -> {
+                            ImageView imageView = vueTours.createTourImageView(dernierClicX, dernierClicY, tour.getPath());
+                            imageView.setId(tour.getId());
 
-                                ImageView imageView = createTourImageView(mouseEvent.getX(), mouseEvent.getY(), tour.getPath());
-                                imageView.setId(tour.getId());
+                            DoubleProperty progression = new SimpleDoubleProperty(1.0);
+                            progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
 
-                                DoubleProperty progression = new SimpleDoubleProperty(1.0);
-                                progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
-
-                                ProgressBar hpb = vueTours.créerBarreDeVie(progression, mouseEvent.getX(), mouseEvent.getY());
-                                hpb.setId(tour.getId() + "p");
-                                vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
-
-                                vueTours.getCenterPane().setOnMouseClicked(null);
-                            });
-
-                            //ImageView imageView = createTourImageView(mouseEvent.getX(), mouseEvent.getY(), tour.getPath());
-                            //imageView.setId(tour.getId());
-
-                            //DoubleProperty progression = new SimpleDoubleProperty(1.0);
-                            //progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
-
-                            //ProgressBar hpb = vueTours.creerBarreDeVie(progression, mouseEvent.getX(), mouseEvent.getY());
-                            //hpb.setId(tour.getId() + "p");
-                            //vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
+                            ProgressBar hpb = vueTours.créerBarreDeVie(progression, dernierClicX, dernierClicY);
+                            hpb.setId(tour.getId() + "p");
+                            vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
                         }
                     }
                     if (t.wasRemoved()) {
@@ -82,11 +79,13 @@ public class EcouteTours {
         });
     }
 
-    public ImageView createTourImageView(double x, double y, String path) {
+    public void setDernierClicX(double changement) {
 
-        ImageView maTour = new ImageView(this.vueTours.loadImage(path));
-        maTour.setX(x - 15);
-        maTour.setY(y - 22);
-        return maTour;
+        this.dernierClicX = changement;
+    }
+
+    public void setDernierClicY(double changement) {
+
+        this.dernierClicY = changement;
     }
 }
