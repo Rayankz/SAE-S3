@@ -127,7 +127,7 @@ public class VueTours implements TourPlacementErrorListener {
         ProgressBar hpb = creerBarreDeVie(progression, x, y);
 
         System.out.println("x " + (int) (x / 8) + " y " + (int) (y / 8));
-        ImageView i = new ImageView();
+        ImageView i;
 
         if (this.idTourClicked.equals("0")) {
             // Aucune tour sélectionnée, afficher ce message d'erreur
