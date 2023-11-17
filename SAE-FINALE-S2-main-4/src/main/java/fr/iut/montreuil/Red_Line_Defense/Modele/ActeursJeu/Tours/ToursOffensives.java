@@ -13,13 +13,15 @@ public abstract class ToursOffensives extends Tour {
     private final IntegerProperty cadence; // La cadence est la capacité de Tirs par minute
     private final ObservableList<Projectile> projectiles; // Liste de tous les projectiles actuellement tirés par la tour
     private final int vitesseProjectile;
+    private ForgeProjectiles forgeProjectiles;
 
-    public ToursOffensives(int x0, int y0, int pointsDeVie, int dégâts, int defense, int prix, Environnement terrain, int cadence, int vitesse, double portée, String path) {
+    public ToursOffensives(int x0, int y0, int pointsDeVie, int dégâts, int defense, int prix, Environnement terrain, int cadence, int vitesse, double portée, String path, ForgeProjectiles forgeProjectiles) {
         super(x0, y0, pointsDeVie, dégâts, defense, prix, terrain, portée, path);
 
         this.cadence = new SimpleIntegerProperty(cadence);
         this.projectiles = FXCollections.observableArrayList();
         this.vitesseProjectile=vitesse;
+        this.forgeProjectiles = forgeProjectiles;
 
     }
 
@@ -41,17 +43,12 @@ public abstract class ToursOffensives extends Tour {
         if (s != null) {
             if (s.estVivant()) {
                 if (nTemps % getCadence() == 0) {
-                    Projectile p = creationProjectile(s);
-                    getTerrain().ajouterProjectile(p);
-                    p.animationProjectile();
+                    forgeProjectiles.creationProjectile(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),this);
                 }
             }
         }
     }
-    public Projectile creationProjectile(Soldat s){
 
-        return new Projectile(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),getTerrain(),this);
-    }
     public int getVitesseProjectile() {
         return vitesseProjectile;
     }

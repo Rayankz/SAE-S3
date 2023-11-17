@@ -5,8 +5,12 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectil
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
-public class TourLanceMissile extends ToursOffensives {
-    public TourLanceMissile(int x0, int y0, Environnement environnement) {
-        super(x0, y0, 1000, 600, 5, 800, environnement, 7,100,150, "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/mortierPosable.png", new ForgeMissiles(environnement));
+public class ForgeMissiles extends ForgeProjectiles {
+    public ForgeMissiles(Environnement e) {
+        super(e);
+    }
+
+    public Projectile générerProjectile(double x, double y, Soldat s, int vitesse, int degats, ToursOffensives tourOffensive) {
+        return new Missile(x,y,vitesse,degats,s,super.e,tourOffensive);
     }
 }
