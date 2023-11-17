@@ -33,7 +33,7 @@ public class StrategyFabriqueChangeante {
             spawnSoldat(spawn2, this.toutesLesFabriques.get(1), environnement); //nouveauSpawnSoldat(2, 16, environnement);
             strategyVague.incrSoldat2();
         }
-        else if (soldat2 < soldat3ASpawn) {
+        else if (soldat3 < soldat3ASpawn) {
 
             System.out.println("Un nouveau Shichibukai apparait !");
             spawnSoldat(spawn3, this.toutesLesFabriques.get(2), environnement); //nouveauSpawnSoldat(3, 9, environnement);

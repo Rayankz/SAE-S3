@@ -19,23 +19,11 @@ public class EcouteTours {
 
     private VueTours vueTours;
 
-    private double dernierClicX = 100;
-
-    private double dernierClicY = 120;
-
     public EcouteTours(Environnement terrain, VueTours vueTours) {
 
         this.environnement = terrain;
         this.vueTours = vueTours;
         ajouterEcouteurSurTours();
-
-        vueTours.getCenterPane().setOnMouseClicked(event -> {
-
-            setDernierClicX(event.getX());
-            setDernierClicY(event.getY());
-
-            System.out.println("clic de souris: x = " + dernierClicX + " y = " + dernierClicY);
-        });
     }
 
     public void ajouterEcouteurSurTours() {
@@ -51,13 +39,17 @@ public class EcouteTours {
                         List<? extends Tour> addedTowers = t.getAddedSubList();
                         for (Tour tour : addedTowers) {
 
-                            ImageView imageView = vueTours.createTourImageView(dernierClicX, dernierClicY, tour.getPath());
+                            int x = (int) (tour.getX0Value()); int y = (int) (tour.getY0Value());
+
+                            System.out.println("bonjour x: " + (int) (tour.getX0Value() / 8) + " y: " + (int) (tour.getY0Value() / 8));
+
+                            ImageView imageView = vueTours.createTourImageView(x, y, tour.getPath());
                             imageView.setId(tour.getId());
 
                             DoubleProperty progression = new SimpleDoubleProperty(1.0);
                             progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
 
-                            ProgressBar hpb = vueTours.créerBarreDeVie(progression, dernierClicX, dernierClicY);
+                            ProgressBar hpb = vueTours.créerBarreDeVie(progression, x, y);
                             hpb.setId(tour.getId() + "p");
                             vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
                         }
@@ -77,15 +69,5 @@ public class EcouteTours {
                 }
             }
         });
-    }
-
-    public void setDernierClicX(double changement) {
-
-        this.dernierClicX = changement;
-    }
-
-    public void setDernierClicY(double changement) {
-
-        this.dernierClicY = changement;
     }
 }

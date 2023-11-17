@@ -21,19 +21,19 @@ public class ForgeDesToursPosables {
         if (tour != null) {
 
             this.environnement.ajouterTourPosable(tour);
-            System.out.println(tour.getPrixValue());
             this.environnement.getJoueur().débiterSolde(tour.getPrixValue());
-            System.out.println(this.environnement.getJoueur().getSoldeJoueurValue());
         }
         else {
 
             System.err.println("La tour n'a pas pu être créée pour le type : " + type);
         }
     }
+
     public Tour rechercheDeTourPosable(String type, int x, int y) {
 
         return this.fabriqueSimple.créerTourPosable(type, x, y, this.environnement);
     }
+
     public boolean conditionsTourPosable(double x, double y) {
 
         int mapX = (int) x / 8; int mapY = (int) y / 8;

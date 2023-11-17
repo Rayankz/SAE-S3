@@ -24,7 +24,6 @@ public abstract class StrategyVague extends Strategy {
         return this.nbrSpawnsType1;
     }
 
-
     public int getNbrSpawnsType2() {
 
         return this.nbrSpawnsType2;
