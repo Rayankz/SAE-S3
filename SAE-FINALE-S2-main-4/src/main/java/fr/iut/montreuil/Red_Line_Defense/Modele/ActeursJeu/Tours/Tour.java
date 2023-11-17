@@ -67,10 +67,6 @@ public abstract class Tour extends Acteurs {
 
         return this.terrain;
     }
-    public void setTerrain(Environnement terrain) {
-
-        this.terrain = terrain;
-    }
     public String getId() {
 
         return this.id;

@@ -4,6 +4,7 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.*;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class FabriqueSimple {
+
     public Tour créerTourPosable(String type, int x, int y, Environnement environnement) {
 
         switch(type) {

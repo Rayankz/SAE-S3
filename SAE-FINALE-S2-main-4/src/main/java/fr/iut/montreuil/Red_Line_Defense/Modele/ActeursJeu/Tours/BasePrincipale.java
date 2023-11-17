@@ -8,9 +8,6 @@ import java.util.Set;
 
 public class BasePrincipale extends Tour {
 
-
-    // C'est la base principale, celle qu'il faudra defendre des soldats ennemis et qui sera en bout de course
-
     private Set<Point2D> zone;
 
     public BasePrincipale(int x0, int y0, Environnement environnement) {

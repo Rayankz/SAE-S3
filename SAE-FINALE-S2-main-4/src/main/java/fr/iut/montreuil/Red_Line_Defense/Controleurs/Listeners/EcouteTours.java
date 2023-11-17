@@ -5,6 +5,7 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Vues.VueTours;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
@@ -40,18 +41,8 @@ public class EcouteTours {
                         for (Tour tour : addedTowers) {
 
                             int x = (int) (tour.getX0Value()); int y = (int) (tour.getY0Value());
-
                             System.out.println("bonjour x: " + (int) (tour.getX0Value() / 8) + " y: " + (int) (tour.getY0Value() / 8));
-
-                            ImageView imageView = vueTours.createTourImageView(x, y, tour.getPath());
-                            imageView.setId(tour.getId());
-
-                            DoubleProperty progression = new SimpleDoubleProperty(1.0);
-                            progression.bind(Bindings.divide(tour.getPointsDeVieProperty(), (double) tour.getPointsDeVieValue()));
-
-                            ProgressBar hpb = vueTours.créerBarreDeVie(progression, x, y);
-                            hpb.setId(tour.getId() + "p");
-                            vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
+                            ajouterVueTourelle(x, y, tour.getPath(), tour.getId(), tour.getPointsDeVieProperty(), tour.getPointsDeVieValue());
                         }
                     }
                     if (t.wasRemoved()) {
@@ -69,5 +60,18 @@ public class EcouteTours {
                 }
             }
         });
+    }
+
+    public void ajouterVueTourelle(int x, int y, String path, String id, IntegerProperty pv, int pv2) {
+
+        ImageView imageView = vueTours.createTourImageView(x, y, path);
+        imageView.setId(id);
+
+        DoubleProperty progression = new SimpleDoubleProperty(1.0);
+        progression.bind(Bindings.divide(pv, (double) pv2));
+
+        ProgressBar hpb = vueTours.créerBarreDeVie(progression, x, y);
+        hpb.setId(id + "p");
+        vueTours.getCenterPane().getChildren().addAll(imageView, hpb);
     }
 }
