@@ -73,4 +73,5 @@ public abstract class StrategyVague extends Strategy {
 
         return this.strategyFabriqueChangeante;
     }
+
 }

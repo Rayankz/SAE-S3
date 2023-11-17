@@ -3,20 +3,16 @@ package fr.iut.montreuil.Red_Line_Defense.Controleurs;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Inputs;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
 import fr.iut.montreuil.Red_Line_Defense.Vues.*;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -159,7 +155,7 @@ public class Controleur implements Initializable {
 
     private void initializeEnvironnement() {
 
-        this.environnement = new Environnement(this.joueur);
+        this.environnement = Environnement.getInstance(this.joueur);
     }
 
     private void initializeBasePrincipale() {

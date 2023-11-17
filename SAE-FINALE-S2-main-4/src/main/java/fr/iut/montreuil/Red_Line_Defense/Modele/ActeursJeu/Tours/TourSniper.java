@@ -1,20 +1,12 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
 
 
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Blast;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Boulet;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles.ForgeProjectilesSimple;
 
 public class TourSniper extends ToursOffensives {
-    public TourSniper(int x0, int y0, Environnement terrain) {
-
-        super(x0, y0, 500, 500, 5, 600, terrain, 5,1000,200, "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/sniperPosable.png"); // 50 tirs par minutes
-    }
-    public Projectile creationProjectile(Soldat s){
-
-        return new Blast(getX0Value(),getY0Value(),s,getVitesseProjectile(),getDegatValue(),getTerrain(),this);
+    public TourSniper(int x0, int y0, Environnement environnement) {
+        super(x0, y0, 500, 500, 5, 600, environnement, 5,1000,200, "/fr/iut/montreuil/Red_Line_Defense/Images/ToursPosables/sniperPosable.png",new ForgeProjectilesSimple(environnement));
     }
 
 }

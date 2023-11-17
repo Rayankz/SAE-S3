@@ -10,7 +10,7 @@ public abstract class Tour extends Acteurs {
 
     private IntegerProperty prix; // prix d'achat de l'acteur
 
-    protected Environnement terrain;
+    protected Environnement environnement;
     private double portee;
     private String id;
     private static int compteur;
@@ -20,7 +20,7 @@ public abstract class Tour extends Acteurs {
     public Tour(int x0, int y0, int pointsDeVie, Environnement e) {
 
         super(x0, y0, pointsDeVie);
-        this.terrain = e;
+        this.environnement = e;
     }
 
     public Tour(int x0, int y0, int pointsDeVie, int degats, int defense, int prix, Environnement terrain, double portée, String path) {
@@ -28,7 +28,7 @@ public abstract class Tour extends Acteurs {
         super(x0, y0, pointsDeVie, degats, defense);
 
         this.prix = new SimpleIntegerProperty(prix);
-        this.terrain = terrain;
+        this.environnement = terrain;
         this.path = path;
         this.portee = portée;
         id=("t"+compteur);
@@ -41,7 +41,7 @@ public abstract class Tour extends Acteurs {
     }
     public Soldat ennemiÀPorter(double p) {
 
-        for (Soldat s : terrain.getSoldats()) {
+        for (Soldat s : environnement.getSoldats()) {
 
             if (s.estVivant()) {
 
@@ -65,7 +65,11 @@ public abstract class Tour extends Acteurs {
     public abstract void agit(int n);
     public Environnement getTerrain() {
 
-        return this.terrain;
+        return this.environnement;
+    }
+    public void setTerrain(Environnement terrain) {
+
+        this.environnement = terrain;
     }
     public String getId() {
 
