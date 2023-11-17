@@ -38,6 +38,7 @@ public class EcouteTours {
 
                         List<? extends Tour> addedTowers = t.getAddedSubList();
                         for (Tour tour : addedTowers) {
+
                             int x = (int) (tour.getX0Value()); int y = (int) (tour.getY0Value());
 
                             System.out.println("bonjour x: " + (int) (tour.getX0Value() / 8) + " y: " + (int) (tour.getY0Value() / 8));
