@@ -58,7 +58,6 @@ public class EcouteTours {
                         {
                             for (int i = t.getRemoved().size() - 1; i >= 0; i--) {
 
-
                                 Tour tour = t.getRemoved().get(i);
                                 Node n = vueTours.getCenterPane().lookup("#" + tour.getId());
                                 Node m = vueTours.getCenterPane().lookup("#" + tour.getId() + "p");
