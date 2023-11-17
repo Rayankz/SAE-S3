@@ -15,8 +15,8 @@ public abstract class ToursOffensives extends Tour {
     private final int vitesseProjectile;
     private ForgeProjectiles forgeProjectiles;
 
-    public ToursOffensives(int x0, int y0, int pointsDeVie, int dégâts, int defense, int prix, Environnement terrain, int cadence, int vitesse, double portée, String path, ForgeProjectiles forgeProjectiles) {
-        super(x0, y0, pointsDeVie, dégâts, defense, prix, terrain, portée, path);
+    public ToursOffensives(int x0, int y0, int pointsDeVie, int dégâts, int defense, int prix, Environnement environnement, int cadence, int vitesse, double portée, String path, ForgeProjectiles forgeProjectiles) {
+        super(x0, y0, pointsDeVie, dégâts, defense, prix, environnement, portée, path);
 
         this.cadence = new SimpleIntegerProperty(cadence);
         this.projectiles = FXCollections.observableArrayList();

@@ -15,7 +15,7 @@ public class ToursDefensive extends Tour {
     }
     @Override
     public void agit(int n) {
-        for (Soldat s: terrain.getSoldats()) {
+        for (Soldat s: environnement.getSoldats()) {
             if (s != null) {
                 s.estPiégés();
                 soldatsPiégés.add(s);

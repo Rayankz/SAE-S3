@@ -131,7 +131,7 @@ public class Controleur implements Initializable {
 
     private void initializeEnvironnement() {
 
-        this.terrain = new Environnement(this.joueur);
+        this.terrain = Environnement.getInstance(this.joueur);
     }
 
     private void initializeBasePrincipale() {

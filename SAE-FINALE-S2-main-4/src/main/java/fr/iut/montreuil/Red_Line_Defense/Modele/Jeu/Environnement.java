@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Environnement {
+    private static Environnement uniqueInstance=null;
 
     private IntegerProperty vague, ennemisTues;
     private int ennemisTuesCetteVague;
@@ -52,6 +53,16 @@ public class Environnement {
 
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
         this.BFS.calculerChemin(89, 47);
+    }
+
+
+    public static Environnement getInstance(Joueur joueur) {
+        if(uniqueInstance==null) {
+
+            uniqueInstance= new Environnement(joueur);
+
+    }
+        return uniqueInstance;
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
