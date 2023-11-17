@@ -2,6 +2,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
 
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles.ForgeProjectilesSimple;
 
 public class TourSniper extends ToursOffensives {
     public TourSniper(int x0, int y0, Environnement environnement) {

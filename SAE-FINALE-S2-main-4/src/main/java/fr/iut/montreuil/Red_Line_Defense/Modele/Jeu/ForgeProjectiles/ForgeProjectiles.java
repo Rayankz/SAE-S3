@@ -1,7 +1,8 @@
-package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
+package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.ToursOffensives;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public abstract class ForgeProjectiles {
