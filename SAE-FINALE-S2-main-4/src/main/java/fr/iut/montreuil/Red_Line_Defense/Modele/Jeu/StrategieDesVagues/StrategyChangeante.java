@@ -1,13 +1,16 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
 public class StrategyChangeante extends Strategy {
     private ArrayList<StrategyVague> toutesLesVagues;
     private Environnement environnement;
-    private int vagueCourante;
+    private IntegerProperty vagueCourante;
 
     public StrategyChangeante(Environnement environnement) {
 
@@ -18,16 +21,29 @@ public class StrategyChangeante extends Strategy {
         this.toutesLesVagues.add(new StrategyVague3());
         this.toutesLesVagues.add(new StrategyVague4());
         this.toutesLesVagues.add(new StrategyVague5());
-        this.vagueCourante = 0;
+        this.vagueCourante = new SimpleIntegerProperty(0);
+    }
+    public IntegerProperty getVagueCourante() {
+
+        return this.vagueCourante;
+    }
+    public IntegerBinding getVagueCourante2() {
+
+        return this.vagueCourante.add(1);
+    }
+
+    public void setVagueCourante(int vagueCourante) {
+
+        this.vagueCourante.set(vagueCourante);
     }
 
     public void choixDeLaVague() {
 
-        if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante).getTotalSoldats()) {
+        if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante.get()).getTotalSoldats()) {
 
-            this.vagueCourante++;
+            this.setVagueCourante(this.vagueCourante.get() + 1);
             this.environnement.setEnnemisTuesCetteVague(0);
         }
-        this.toutesLesVagues.get(this.vagueCourante).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
+        this.toutesLesVagues.get(this.vagueCourante.get()).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
     }
 }

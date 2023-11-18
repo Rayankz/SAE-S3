@@ -15,6 +15,11 @@ public class Vagues {
         this.strategyChangeante = new StrategyChangeante(this.environnement);
     }
 
+    public StrategyChangeante getStrategyChangeante() {
+
+        return this.strategyChangeante;
+    }
+
     public void unTour() {
 
         this.strategyChangeante.choixDeLaVague();

@@ -6,7 +6,6 @@ import fr.iut.montreuil.Red_Line_Defense.Vues.VueInterface;
 public class EcouteInterface {
 
     private Environnement environnement;
-
     private VueInterface vueInterface;
 
     public EcouteInterface(Environnement environnement, VueInterface vueInterface) {
@@ -32,7 +31,7 @@ public class EcouteInterface {
 
     public void ajouterEcouteurNumVague() {
 
-        this.vueInterface.getVagueLabel().textProperty().bind(environnement.getVagueProperty().asString());
+        this.vueInterface.getVagueLabel().textProperty().bind(this.environnement.getVagues().getStrategyChangeante().getVagueCourante2().asString());
     }
 
     private void ajouterListenerVague() {
