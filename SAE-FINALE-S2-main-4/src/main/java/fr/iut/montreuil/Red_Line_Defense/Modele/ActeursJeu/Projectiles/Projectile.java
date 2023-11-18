@@ -17,7 +17,7 @@ public class Projectile {
     private final int degats;
     private final String id;
     private ToursOffensives tourLauncher;
-    public static int compteur =1;
+    public static int compteur = 1;
 
     public Projectile(double x, double y, Soldat s, double v, int degats, Environnement environnement, ToursOffensives tourLauncher) {
 
@@ -47,8 +47,8 @@ public class Projectile {
 
         setDirection();
     }
-
     public void setDirection() {
+
         double distance = Math.sqrt(Math.pow(getxCible() - getX(), 2) + Math.pow(getyCible() - getY(), 2));
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
@@ -57,12 +57,10 @@ public class Projectile {
 
         return this.touché;
     }
-
     public void setTouché(boolean touché) {
 
         this.touché = touché;
     }
-
     public void deplacement(double elapsedTime) {
 
         double deltaX = getxDirection() * getV() *elapsedTime;
@@ -73,7 +71,6 @@ public class Projectile {
             setY(getY() + deltaY);
         }
     }
-
     public void animationProjectile(){
 
         Projectile p = this;
@@ -111,66 +108,51 @@ public class Projectile {
     public double getxCible() {
         return this.xCible.get();
     }
-
     public double getyCible() {
         return this.yCible.get();
     }
-
     public DoubleProperty yCibleProperty() {
         return this.yCible;
     }
-
     public double getxDirection() {
         return this.xDirection;
     }
-
     public double getyDirection() {
         return this.yDirection;
     }
-
     public double getV() {
         return this.v;
     }
-
     public DoubleProperty xProperty() {
         return this.x;
     }
-
     public DoubleProperty yProperty() {
         return this.y;
     }
-
     public double getX() {
         return this.x.getValue();
     }
-
     public double getY() {
         return this.y.getValue();
     }
-
     public void setX(double x) {
         this.x.set(x);
     }
-
     public void setY(double y) {
         this.y.set(y);
     }
-
     public String getId() {
         return this.id;
     }
-
     public void setEnvironnement(Environnement e){
         this.environnement = e;
     }
     public int getDegats() {
         return this.degats;
     }
-
     public Environnement getEnvironnement() {
         return this.environnement;
     }
-
     public Soldat getS() {
         return this.s;
     }

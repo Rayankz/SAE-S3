@@ -28,13 +28,6 @@ public abstract class Acteurs {
 
     }
 
-    public Acteurs(double x0, double y0) {
-
-        // Coordonnées
-        this.X0 = new SimpleDoubleProperty(x0);
-        this.Y0 = new SimpleDoubleProperty(y0);
-    }
-
     public Acteurs(int x0, int y0, int pointsDeVie) {
         this.X0 = new SimpleDoubleProperty(x0);
         this.Y0 = new SimpleDoubleProperty(y0);
