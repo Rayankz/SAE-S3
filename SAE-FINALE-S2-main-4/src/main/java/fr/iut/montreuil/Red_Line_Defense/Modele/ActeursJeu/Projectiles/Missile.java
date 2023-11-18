@@ -26,6 +26,5 @@ public class Missile extends Projectile {
     public double getyCible(){
         return getS().getY0Value();
     }
-
 }
 
