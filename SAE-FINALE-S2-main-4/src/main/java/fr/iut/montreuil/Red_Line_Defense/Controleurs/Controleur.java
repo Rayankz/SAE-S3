@@ -190,48 +190,34 @@ public class Controleur implements Initializable {
 
         this.gameLoop = new GameLoop(this.centerPane, this.vueSoldats, this.environnement);
     }
-
     public void positionTour(MouseEvent event) {
 
-        System.out.println("entré dans positionTour");
         double x = event.getX();
         double y = event.getY();
 
-        System.out.println("tour x " + (int) (x / 8) + " y " + (int) (y / 8));
-
         if (this.vueTours.getIdTourClicked().equals("0")) {
-            // Aucune tour sélectionnée, afficher ce message d'erreur
-            System.out.println("message 1");
+
             this.vueTours.showErrorMessage(x, y);
         }
         else if (this.environnement.getJoueur().getSoldeJoueurValue() < this.vueTours.getForgeDesToursPosables().rechercheDeTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y).getPrixValue()) {
-            // Message d'erreur en cas de clic sans avoir le solde nécessaire
-            System.out.println("message 2");
+
             this.vueTours.showErrorMoneyMessage(x, y);
         }
         else {
             if (this.vueTours.getForgeDesToursPosables().conditionsTourPosable(x, y)) {
 
                 this.vueTours.getForgeDesToursPosables().fabriquerTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y);
-                this.vueTours.setIdTourClicked("0"); // Réinitialiser la sélection de la tour
-                System.out.println("tour crée");
+                this.vueTours.setIdTourClicked("0");
             }
         }
     }
-
     public void selectionTour(MouseEvent event) {
 
         ImageView image = (ImageView) event.getSource();
-        this.getVueTours().setIdTourClicked(image.getId());
+        this.vueTours.setIdTourClicked(image.getId());
     }
-
     private Image loadImage(String path) {
 
         return new Image(getClass().getResourceAsStream(path));
-    }
-
-    public VueTours getVueTours() {
-
-        return this.vueTours;
     }
 }

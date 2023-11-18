@@ -44,12 +44,13 @@ public class VueProjectile {
             */
     }
     public void orientationImage(Projectile p, ImageView i) {
+
         double angle = p.calculerAngle(p.getX(), p.getY(), p.getxCible(), p.getyCible());
         i.setRotate(Math.toDegrees(angle));
         i.xProperty().bind(p.xProperty());
         i.yProperty().bind(p.yProperty());
         i.setId(p.getId());
-        centerPane.getChildren().addAll(i);
+        this.centerPane.getChildren().addAll(i);
     }
 
     private Image loadImage(String path) {

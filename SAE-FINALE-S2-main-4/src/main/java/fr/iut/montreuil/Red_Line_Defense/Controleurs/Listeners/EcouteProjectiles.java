@@ -13,8 +13,6 @@ import java.util.List;
 
 public class EcouteProjectiles {
 
-    private ListProperty<Projectile> listProjectiles;
-
     private Environnement terrain;
     @FXML
     private Pane centerPane;
@@ -23,28 +21,27 @@ public class EcouteProjectiles {
 
         this.terrain = terrain;
         this.centerPane = centerPane;
-        this.listProjectiles = this.terrain.getProjectilesProperty();
         ajouterEcouteurSurProjectile();
     }
-
     public void ajouterEcouteurSurProjectile() {
 
-        this.listProjectiles.addListener((ListChangeListener<Projectile>) change -> {
+        this.terrain.getProjectilesProperty().addListener((ListChangeListener<Projectile>) change -> {
             while (change.next()) {
                 if (change.wasAdded()) {
                     List<? extends Projectile> addedProjectiles = change.getAddedSubList();
                     for (Projectile projectile : addedProjectiles) {
+
                         new VueProjectile(this.centerPane, projectile);
                     }
                 }
                 if (change.wasRemoved()) {
-                    {
-                        for (int i = change.getRemoved().size() - 1; i >= 0; i--) {
-                            Projectile projectile= change.getRemoved().get(i);
-                            Node n = this.centerPane.lookup("#" + projectile.getId());
-                            this.centerPane.getChildren().remove(n);
-                }
-            }
+
+                    for (int i = change.getRemoved().size() - 1; i >= 0; i--) {
+
+                        Projectile projectile = change.getRemoved().get(i);
+                        Node n = this.centerPane.lookup("#" + projectile.getId());
+                        this.centerPane.getChildren().remove(n);
+                    }
                 }
             }
         });

@@ -15,8 +15,7 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Environnement {
-    private static Environnement uniqueInstance=null;
-
+    private static Environnement uniqueInstance = null;
     private IntegerProperty vague, ennemisTues;
     private int ennemisTuesCetteVague;
     private ListProperty<Projectile> listeProjectiles;
@@ -29,7 +28,7 @@ public class Environnement {
     private Vagues vaguesDeJeu;
     public BFS BFS;
 
-    public Environnement(Joueur joueur) {
+    private Environnement(Joueur joueur) {
 
         this.BFS = new BFS(this);
 
@@ -54,21 +53,18 @@ public class Environnement {
         this.distances = new int[getBFS().getYmax()][getBFS().getXmax()];  // Initialisation du tableau de distances
         this.BFS.calculerChemin(89, 47);
     }
-
-
     public static Environnement getInstance(Joueur joueur) {
-        if(uniqueInstance==null) {
+
+        if (uniqueInstance == null) {
 
             uniqueInstance= new Environnement(joueur);
-
-    }
+        }
         return uniqueInstance;
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- TOUR DE JEU ------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-
     public void unTour() {
 
         verificationMorts(); //validé
@@ -81,17 +77,14 @@ public class Environnement {
 
         this.nbrTours++;
     }
-
     public void setEnnemisTuesCetteVague(int n) {
 
         this.ennemisTuesCetteVague = n;
     }
-
     public int getEnnemisTuesCetteVague() {
 
         return this.ennemisTuesCetteVague;
     }
-
     public void actionDesSoldats(int n) {
 
         if (!this.listeSoldats.isEmpty()) {
@@ -102,7 +95,6 @@ public class Environnement {
             }
         }
     }
-
     public void verificationDefaite() {
 
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
@@ -110,7 +102,6 @@ public class Environnement {
             this.vague.setValue(-1);
         }
     }
-
     public void actionDesTours(int n) {
 
         if(!this.listeTours.isEmpty()) {
@@ -123,16 +114,14 @@ public class Environnement {
             }
         }
     }
+    public void suppressionTour() {
 
-   public void suppressionTour() {
+        if (!this.listeTours.isEmpty()) {
 
-        if (!listeTours.isEmpty()) {
-
-            listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
+            this.listeTours.removeIf(tour -> tour.getPointsDeVieValue() <= 0);
         }
 
     }
-
     public void verificationMorts() {
 
         Iterator<Soldat> iterator = this.listeSoldats.iterator();
@@ -152,18 +141,13 @@ public class Environnement {
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- INTERFACE --------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-
     public IntegerProperty getVagueProperty() { return this.vague; }
-
     public int getVagueValue() { return this.vague.getValue(); }
-
     public IntegerProperty getEnnemisTuesProperty() { return this.ennemisTues;}
-
     public int getNbrTours() {
 
         return this.nbrTours;
     }
-
     public BFS getBFS() {
 
         return this.BFS;
@@ -175,17 +159,14 @@ public class Environnement {
 
         this.listeProjectiles.add(projectile);
     }
-
     public void supprimerProjectile(Projectile projectile) {
 
         this.listeProjectiles.remove(projectile);
     }
-
     public ListProperty<Projectile> getProjectilesProperty() {
 
         return this.listeProjectiles;
     }
-
     public ObservableList<Projectile> getProjectiles() {
 
         return this.listeProjectiles.get();
@@ -197,12 +178,10 @@ public class Environnement {
 
         this.listeTours.add(tour);
     }
-
     public ListProperty<Tour> getToursProperty() {
 
         return this.listeTours;
     }
-
     public ObservableList<Tour> getTours() {
 
         return this.listeTours.get();
@@ -214,37 +193,30 @@ public class Environnement {
 
         return this.listeSoldats;
     }
-
     public void ajouterSoldat(Soldat soldat) {
 
         getSoldatsProperty().add(soldat);
     }
-
     public ObservableList<Soldat> getSoldats() {
 
         return this.listeSoldats.get();
     }
-
     public Joueur getJoueur() {
 
         return this.joueur;
     }
-
     public void setBasePrincipale(BasePrincipale basePrincipale) {
 
         this.basePrincipale = basePrincipale;
     }
-
     public BasePrincipale getBasePrincipale() {
 
         return this.basePrincipale;
     }
-
     public Vagues getVagues() {
 
         return this.vaguesDeJeu;
     }
-
     public IntegerProperty getVague() {
 
         return this.vague;
