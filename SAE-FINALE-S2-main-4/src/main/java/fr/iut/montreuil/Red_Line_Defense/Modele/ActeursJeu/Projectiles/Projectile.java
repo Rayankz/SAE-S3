@@ -9,17 +9,17 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Projectile {
-    private final DoubleProperty x,y,xCible,yCible;
-    private double xDirection,yDirection,v;
+    private final DoubleProperty x, y, xCible, yCible;
+    private double xDirection, yDirection, v;
     private final Soldat s;
-    private Environnement terrain;
+    private Environnement environnement;
     private boolean touché;
     private final int degats;
     private final String id;
     private ToursOffensives tourLauncher;
     public static int compteur =1;
 
-    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement terrain,ToursOffensives tourLauncher) {
+    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement environnement, ToursOffensives tourLauncher) {
 
         this.x = new SimpleDoubleProperty(x);
 
@@ -35,34 +35,36 @@ public class Projectile {
 
         this.degats = degats;
 
-        this.terrain=terrain;
+        this.environnement = environnement;
 
         this.id=("p"+compteur);
 
         compteur++;
 
-        touché=false;
+        touché = false;
 
         this.tourLauncher = tourLauncher;
 
         setDirection();
     }
 
-    public void setDirection(){
+    public void setDirection() {
         double distance = Math.sqrt(Math.pow(getxCible() - getX(), 2) + Math.pow(getyCible() - getY(), 2));
         this.xDirection = (getxCible() - getX()) / distance;
         this.yDirection = (getyCible() - getY()) / distance;
     }
-
     public boolean isTouché() {
-        return touché;
+
+        return this.touché;
     }
 
     public void setTouché(boolean touché) {
+
         this.touché = touché;
     }
 
     public void deplacement(double elapsedTime) {
+
         double deltaX = getxDirection() * getV() *elapsedTime;
         double deltaY = getyDirection() * getV() *elapsedTime;
 
@@ -73,93 +75,77 @@ public class Projectile {
     }
 
     public void animationProjectile(){
+
         Projectile p = this;
         AnimationTimer timer = new AnimationTimer() {
 
             private long lastUpdate = 0;
-
-
             @Override
             public void handle(long now) {
                 if (lastUpdate > 0 && !(isTouché())) {
 
-
                     double elapsedTime = (now - lastUpdate) / 1000000000.0;
-
                     if (tourLauncher.vérificationEstÀPorter(getX(),getY(),s.getX0Value(),s.getY0Value(),15)) {
-                        getTerrain().supprimerProjectile(p);
+                        getEnvironnement().supprimerProjectile(p);
                         s.setPointsDeVieValue((s.getPointsDeVieValue() - getDegats()) * (1 - ( s.getDefenseValue() / 100))); // Degats * le pourcentage de réduction de degats
                         setTouché(true);
                     }
-
                     if (p.getX() > 840 || (p.getX() <= 0 || (p.getY() > 480 || p.getY() <= 0))) {
-                        getTerrain().supprimerProjectile(p);
+                        getEnvironnement().supprimerProjectile(p);
                         setTouché(true);
                     }
-
                     deplacement(elapsedTime);
-
                 }
                 else if(p.isTouché()){
                     stop();
                 }
-
-
-
-
                 lastUpdate = now;
-
             }
         };
-
         timer.start();
-
     }
-
     public double calculerAngle(double x, double y, double xCible, double yCible) {
+
         return Math.atan2(yCible - y, xCible - x);
     }
-
-     // ---     getter & setter :      ---
-
     public double getxCible() {
-        return xCible.get();
+        return this.xCible.get();
     }
 
     public double getyCible() {
-        return yCible.get();
+        return this.yCible.get();
     }
 
     public DoubleProperty yCibleProperty() {
-        return yCible;
+        return this.yCible;
     }
 
     public double getxDirection() {
-        return xDirection;
+        return this.xDirection;
     }
 
     public double getyDirection() {
-        return yDirection;
+        return this.yDirection;
     }
 
     public double getV() {
-        return v;
+        return this.v;
     }
 
     public DoubleProperty xProperty() {
-        return x;
+        return this.x;
     }
 
     public DoubleProperty yProperty() {
-        return y;
+        return this.y;
     }
 
     public double getX() {
-        return x.getValue();
+        return this.x.getValue();
     }
 
     public double getY() {
-        return y.getValue();
+        return this.y.getValue();
     }
 
     public void setX(double x) {
@@ -170,23 +156,22 @@ public class Projectile {
         this.y.set(y);
     }
 
-
     public String getId() {
-        return id;
+        return this.id;
     }
 
-    public void setTerrain(Environnement e){
-        this.terrain=e;
+    public void setEnvironnement(Environnement e){
+        this.environnement = e;
     }
     public int getDegats() {
-        return degats;
+        return this.degats;
     }
 
-    public Environnement getTerrain() {
-        return terrain;
+    public Environnement getEnvironnement() {
+        return this.environnement;
     }
 
     public Soldat getS() {
-        return s;
+        return this.s;
     }
 }

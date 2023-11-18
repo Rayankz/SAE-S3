@@ -8,10 +8,11 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class ForgeMissiles extends ForgeProjectiles {
     public ForgeMissiles(Environnement e) {
+
         super(e);
     }
-
     public Projectile générerProjectile(double x, double y, Soldat s, int vitesse, int degats, ToursOffensives tourOffensive) {
-        return new Missile(x,y,vitesse,degats,s,super.e,tourOffensive);
+
+        return new Missile(x, y, vitesse, degats, s, super.e, tourOffensive);
     }
 }

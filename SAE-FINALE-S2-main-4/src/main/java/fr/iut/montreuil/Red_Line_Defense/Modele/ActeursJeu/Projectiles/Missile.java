@@ -6,10 +6,11 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.ToursOffensives
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class Missile extends Projectile {
+
     public Missile(double x, double y, double v, int degats, Soldat s, Environnement terrain, ToursOffensives tour) {
+
         super(x, y, s, v, degats,terrain, tour);
     }
-
     public void deplacement(double elapsedTime) {
 
         super.deplacement(elapsedTime);
@@ -17,14 +18,11 @@ public class Missile extends Projectile {
         if(getS().estVivant()) {
 
             setDirection();
-
         }
-
     }
     public double getxCible(){
         return getS().getX0Value();
     }
-
     public double getyCible(){
         return getS().getY0Value();
     }
