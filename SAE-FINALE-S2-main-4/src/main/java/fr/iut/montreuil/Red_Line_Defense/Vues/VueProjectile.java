@@ -12,7 +12,7 @@ import java.util.Objects;
 public class VueProjectile {
     @FXML
     private Pane centerPane;
-    public VueProjectile(Pane centerPane,Projectile p) {
+    public VueProjectile(Pane centerPane, Projectile p) {
 
         this.centerPane = centerPane;
         CreationSprite(p);
