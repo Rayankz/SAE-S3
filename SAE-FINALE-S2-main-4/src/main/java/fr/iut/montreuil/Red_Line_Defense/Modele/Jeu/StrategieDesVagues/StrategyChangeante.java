@@ -39,11 +39,12 @@ public class StrategyChangeante implements Strategy {
 
     @Override
     public void faireApparaitreEnnemi(int nbrTour, Environnement environnement) {
-        if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante.get()).getTotalSoldats() && vagueCourante.get() < 4) {
+        if ( vagueCourante.get() < 4 && this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante.get()).getTotalSoldats()) {
 
             this.setVagueCourante(this.vagueCourante.get() + 1);
             this.environnement.setEnnemisTuesCetteVague(0);
         }
+        if (vagueCourante.get() <5)
             this.toutesLesVagues.get(this.vagueCourante.get()).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
 
     }
