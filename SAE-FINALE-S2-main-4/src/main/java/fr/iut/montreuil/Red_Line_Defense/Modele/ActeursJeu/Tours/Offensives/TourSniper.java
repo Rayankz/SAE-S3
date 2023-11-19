@@ -1,8 +1,7 @@
-package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
+package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives;
 
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
-import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles.ForgeProjectilesSimple;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles.ForgeProjectilesSniper;
 
 public class TourSniper extends ToursOffensives {

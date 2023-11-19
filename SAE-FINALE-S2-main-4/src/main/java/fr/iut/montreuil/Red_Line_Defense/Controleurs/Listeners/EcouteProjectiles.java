@@ -3,7 +3,6 @@ package fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Vues.VueProjectile;
-import javafx.beans.property.ListProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

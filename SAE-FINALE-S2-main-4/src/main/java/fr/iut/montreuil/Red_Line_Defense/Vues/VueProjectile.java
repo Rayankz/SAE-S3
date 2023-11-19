@@ -1,6 +1,5 @@
 package fr.iut.montreuil.Red_Line_Defense.Vues;
 
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Missile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

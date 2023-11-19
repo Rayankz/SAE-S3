@@ -1,7 +1,8 @@
-package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours;
+package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles.Projectile;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Tour;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeProjectiles.ForgeProjectiles;
 import javafx.beans.property.IntegerProperty;

@@ -2,7 +2,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Projectiles;
 
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Soldats.Soldat;
-import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.ToursOffensives;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives.ToursOffensives;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class Missile extends Projectile {

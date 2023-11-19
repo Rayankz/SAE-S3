@@ -1,6 +1,9 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeDesToursPosables;
 
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.*;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives.TourLanceMissile;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives.TourMitrailleuse;
+import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.Offensives.TourSniper;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class FabriqueSimple {
