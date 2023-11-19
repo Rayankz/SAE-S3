@@ -35,7 +35,7 @@ public class ControleurMP implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         mediaOpening = new Media(getClass().getResource(OPENING_PATH).toString());
-        Audio.chargerMedia(mediaOpening);
+       // Audio.chargerMedia(mediaOpening);
     }
     @FXML
     private void onJouerButtonClick(MouseEvent event) throws IOException {

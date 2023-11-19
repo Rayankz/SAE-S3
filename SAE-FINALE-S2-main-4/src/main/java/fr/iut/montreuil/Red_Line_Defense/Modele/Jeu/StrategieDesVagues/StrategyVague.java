@@ -3,7 +3,7 @@ package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.FabriquesDesSoldats.StrategyFabriqueChangeante;
 
-public abstract class StrategyVague extends Strategy {
+public abstract class StrategyVague implements Strategy {
 
     private final int nbrSpawnsType1, nbrSpawnsType2, nbrSpawnsType3;
     private int soldat1, soldat2, soldat3;
@@ -17,7 +17,6 @@ public abstract class StrategyVague extends Strategy {
         this.soldat1 = 0; this.soldat2 = 0; this.soldat3 = 0;
         this.strategyFabriqueChangeante = new StrategyFabriqueChangeante();
     }
-    public abstract void faireApparaitreEnnemi(int nbrTour, Environnement environnement);
 
     public int getNbrSpawnsType1() {
 

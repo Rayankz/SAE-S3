@@ -136,7 +136,7 @@ public class Controleur implements Initializable {
     private void initializeSons() {
 
         Media mediaJeu = new Media(getClass().getResource(OST_JEU_PATH).toString());
-        Audio.chargerMedia(mediaJeu);
+     //   Audio.chargerMedia(mediaJeu);
     }
 
     public void initializeInputs() {

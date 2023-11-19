@@ -1,15 +1,9 @@
 package fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.StrategieDesVagues;
 
-public abstract class Strategy {
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
-    /*private ForgeSoldats forgeSoldats;
+public interface Strategy {
 
-    public Strategy(ForgeSoldats forgeSoldats) {
+    void faireApparaitreEnnemi(int nbrTour, Environnement environnement);
 
-        this.forgeSoldats = forgeSoldats;
-    }
-    public ForgeSoldats getForgeSoldats() {
-
-        return this.forgeSoldats;
-    }*/
 }

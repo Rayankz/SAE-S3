@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
-public class StrategyChangeante extends Strategy {
+public class StrategyChangeante implements Strategy {
     private ArrayList<StrategyVague> toutesLesVagues;
     private Environnement environnement;
     private IntegerProperty vagueCourante;
@@ -37,8 +37,8 @@ public class StrategyChangeante extends Strategy {
         this.vagueCourante.set(vagueCourante);
     }
 
-    public void choixDeLaVague() {
-
+    @Override
+    public void faireApparaitreEnnemi(int nbrTour, Environnement environnement) {
         if (this.environnement.getEnnemisTuesCetteVague() == this.toutesLesVagues.get(this.vagueCourante.get()).getTotalSoldats()) {
 
             this.setVagueCourante(this.vagueCourante.get() + 1);
@@ -46,4 +46,6 @@ public class StrategyChangeante extends Strategy {
         }
         this.toutesLesVagues.get(this.vagueCourante.get()).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
     }
+
+
 }

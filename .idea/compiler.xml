@@ -9,8 +9,5 @@
         <module name="Red_Line_Defense" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Red_Line_Defense" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

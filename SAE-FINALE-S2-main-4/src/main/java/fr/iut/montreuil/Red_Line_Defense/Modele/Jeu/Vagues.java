@@ -22,7 +22,7 @@ public class Vagues {
 
     public void unTour() {
 
-        this.strategyChangeante.choixDeLaVague();
+        this.strategyChangeante.faireApparaitreEnnemi(environnement.getNbrTours(), environnement);
     }
     public void majDefenseSoldats() {
 
