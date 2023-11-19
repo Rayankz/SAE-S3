@@ -98,7 +98,6 @@ public class Environnement {
     public void verificationDefaite() {
 
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
-
             this.detectionDefaite.setValue(-1);
         }
     }
