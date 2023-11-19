@@ -21,7 +21,7 @@ public class StrategyChangeante implements Strategy {
         this.toutesLesVagues.add(new StrategyVague3());
         this.toutesLesVagues.add(new StrategyVague4());
         this.toutesLesVagues.add(new StrategyVague5());
-        this.vagueCourante = new SimpleIntegerProperty(0);
+        this.vagueCourante = new SimpleIntegerProperty(4);
     }
     public IntegerProperty getVagueCourante() {
 

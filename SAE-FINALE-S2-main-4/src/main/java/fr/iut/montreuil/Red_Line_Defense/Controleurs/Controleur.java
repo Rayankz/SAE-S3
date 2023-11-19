@@ -4,6 +4,8 @@ import fr.iut.montreuil.Red_Line_Defense.Controleurs.Listeners.*;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Audio;
 import fr.iut.montreuil.Red_Line_Defense.Modele.ActeursJeu.Tours.BasePrincipale;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeDesToursPosables.FabriqueSimple;
+import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.ForgeDesToursPosables.ForgeDesToursPosables;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.GameLoop;
 import fr.iut.montreuil.Red_Line_Defense.Controleurs.Outils.Inputs;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Joueur;
@@ -62,6 +64,8 @@ public class Controleur implements Initializable {
     private VueBasePrincipale vueBasePrincipale;
     private double dernierClicX = 100;
     private double dernierClicY = 120;
+
+    private ForgeDesToursPosables forgeDesToursPosables;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -171,8 +175,9 @@ public class Controleur implements Initializable {
 
     private void initializeVueTours() {
 
-        this.vueTours = new VueTours(this.environnement, this.centerPane);
+        this.vueTours = new VueTours(this.centerPane);
         this.ecouteTours = new EcouteTours(this.environnement, this.vueTours);
+        this.forgeDesToursPosables = new ForgeDesToursPosables(this.environnement, new FabriqueSimple(), this.vueTours);
     }
 
     private void initializeVueSoldats() {
@@ -195,26 +200,31 @@ public class Controleur implements Initializable {
         double x = event.getX();
         double y = event.getY();
 
-        if (this.vueTours.getIdTourClicked().equals("0")) {
+        if (this.forgeDesToursPosables.getFabriqueSimple().getType().equals("0")) {
 
             this.vueTours.showErrorMessage(x, y);
+            this.forgeDesToursPosables.getFabriqueSimple().setType("0");
         }
-        else if (this.environnement.getJoueur().getSoldeJoueurValue() < this.vueTours.getForgeDesToursPosables().rechercheDeTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y).getPrixValue()) {
+        else if (this.environnement.getJoueur().getSoldeJoueurValue() < this.forgeDesToursPosables.rechercheDeTourPosable((int) x, (int) y).getPrixValue()) {
 
             this.vueTours.showErrorMoneyMessage(x, y);
+            this.forgeDesToursPosables.getFabriqueSimple().setType("0");
+
         }
         else {
-            if (this.vueTours.getForgeDesToursPosables().conditionsTourPosable(x, y)) {
+            if (this.forgeDesToursPosables.conditionsTourPosable(x, y)) {
 
-                this.vueTours.getForgeDesToursPosables().fabriquerTourPosable(this.vueTours.getIdTourClicked(), (int) x, (int) y);
-                this.vueTours.setIdTourClicked("0");
+                this.forgeDesToursPosables.fabriquerTourPosable((int) x, (int) y);
+                //this.vueTours.setIdTourClicked("0");
+                this.forgeDesToursPosables.getFabriqueSimple().setType("0");
             }
         }
     }
     public void selectionTour(MouseEvent event) {
 
         ImageView image = (ImageView) event.getSource();
-        this.vueTours.setIdTourClicked(image.getId());
+        //this.vueTours.setIdTourClicked(image.getId());
+        this.forgeDesToursPosables.getFabriqueSimple().setType(image.getId());
     }
     private Image loadImage(String path) {
 

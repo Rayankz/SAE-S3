@@ -5,9 +5,15 @@ import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 
 public class FabriqueSimple {
 
-    public Tour créerTourPosable(String type, int x, int y, Environnement environnement) {
+    private String type;
 
-        switch(type) {
+    public FabriqueSimple() {
+
+        this.type = "0";
+    }
+    public Tour créerTourPosable(int x, int y, Environnement environnement) {
+
+        switch(this.type) {
             case "tour800b":
 
                 return new TourLanceMissile(x, y, environnement);
@@ -24,5 +30,13 @@ public class FabriqueSimple {
 
                 throw new IllegalArgumentException("Type de tour non reconnu : " + type);
         }
+    }
+    public String getType() {
+
+        return this.type;
+    }
+    public void setType(String type) {
+
+        this.type = type;
     }
 }

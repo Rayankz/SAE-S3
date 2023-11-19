@@ -15,9 +15,9 @@ public class ForgeDesToursPosables {
         this.environnement = environnement;
         this.errorListener = errorListener;
     }
-    public void fabriquerTourPosable(String type, int x, int y) {
+    public void fabriquerTourPosable(int x, int y) {
 
-        Tour tour = this.fabriqueSimple.créerTourPosable(type, x, y, this.environnement);
+        Tour tour = this.fabriqueSimple.créerTourPosable(x, y, this.environnement);
         if (tour != null) {
 
             this.environnement.ajouterTourPosable(tour);
@@ -25,13 +25,13 @@ public class ForgeDesToursPosables {
         }
         else {
 
-            System.err.println("La tour n'a pas pu être créée pour le type : " + type);
+            System.err.println("La tour n'a pas pu être créée pour le type : " + this.fabriqueSimple.getType());
         }
     }
 
-    public Tour rechercheDeTourPosable(String type, int x, int y) {
+    public Tour rechercheDeTourPosable(int x, int y) {
 
-        return this.fabriqueSimple.créerTourPosable(type, x, y, this.environnement);
+        return this.fabriqueSimple.créerTourPosable(x, y, this.environnement);
     }
 
     public boolean conditionsTourPosable(double x, double y) {
@@ -45,6 +45,8 @@ public class ForgeDesToursPosables {
         if (this.environnement.getBFS().valeurDeLaCase(mapY, mapX) == 1) {
 
             this.errorListener.onCheminError(x, y);
+            this.getFabriqueSimple().setType("0");
+
         }
         else {
             if (mapX >= 0 && mapX < this.environnement.getBFS().getXmax() && mapY >= 0 && mapY < this.environnement.getBFS().getYmax()) {
@@ -70,5 +72,10 @@ public class ForgeDesToursPosables {
             }
         }
         return false; // La case est invalide ou déjà occupée par une tour ou une case environnante est occupée par une tour
+    }
+
+    public FabriqueSimple getFabriqueSimple() {
+
+        return this.fabriqueSimple;
     }
 }
