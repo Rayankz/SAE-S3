@@ -10,38 +10,19 @@ import javafx.scene.layout.Pane;
 import java.util.Objects;
 
 public class VueProjectile {
-
     @FXML
     private Pane centerPane;
-
-    public final static String BOULE_DE_FEU_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/Projectiles/bouleDeFeu.png";
-    public final static String BOMBE_PATH = "/fr/iut/montreuil/Red_Line_Defense/Images/Projectiles/bombe.png";
-
-
-    public VueProjectile(Pane centerPane,Projectile p){
+    public VueProjectile(Pane centerPane,Projectile p) {
 
         this.centerPane = centerPane;
         CreationSprite(p);
     }
-
-    //TODO
-    //Le truc en bas est moche (redondance) il faut le refactorer
     public void CreationSprite(Projectile p) {
+
         ImageView projectile;
-        String nomAffichage;
-        if (p instanceof Missile) {
-            nomAffichage = BOMBE_PATH;
-        }
-        else {
-            nomAffichage = BOULE_DE_FEU_PATH;
-        }
+        String nomAffichage = p.getPath();
         projectile = new ImageView(loadImage(nomAffichage));
         orientationImage(p,projectile);
-
-        /*if (p instanceof Missile) {
-            double angle = p.calculerAngle(p.getX(), p.getY(), p.getxCible(), p.getyCible());
-            projectile.setRotate(Math.toDegrees(angle));}
-            */
     }
     public void orientationImage(Projectile p, ImageView i) {
 
@@ -52,7 +33,6 @@ public class VueProjectile {
         i.setId(p.getId());
         this.centerPane.getChildren().addAll(i);
     }
-
     private Image loadImage(String path) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
     }

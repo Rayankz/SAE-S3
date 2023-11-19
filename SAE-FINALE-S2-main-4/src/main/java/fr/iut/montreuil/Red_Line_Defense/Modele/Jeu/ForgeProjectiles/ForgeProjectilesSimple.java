@@ -12,8 +12,8 @@ public class ForgeProjectilesSimple extends ForgeProjectiles {
         super(e);
     }
 
-    public Projectile générerProjectile(double x, double y, Soldat s, int vitesse, int degats, ToursOffensives tourOffensive){
+    public Projectile générerProjectile(double x, double y, Soldat s, int vitesse, int degats, ToursOffensives tourOffensive) {
 
-        return new Projectile(x, y, s, vitesse, degats, super.e, tourOffensive);
+        return new Projectile(x, y, s, vitesse, degats, super.e, tourOffensive, "/fr/iut/montreuil/Red_Line_Defense/Images/Projectiles/bouleDeFeu.png");
     }
 }

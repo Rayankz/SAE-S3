@@ -44,6 +44,5 @@ public class EcouteInterface {
             environnement.getVagues().resetTours();
             vueInterface.boucleImagesVagues(nbVague);
         });
-
     }
 }

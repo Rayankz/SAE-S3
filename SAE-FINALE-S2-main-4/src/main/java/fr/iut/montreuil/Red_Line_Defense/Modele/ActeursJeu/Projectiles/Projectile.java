@@ -19,7 +19,9 @@ public class Projectile {
     private ToursOffensives tourLauncher;
     public static int compteur = 1;
 
-    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement environnement, ToursOffensives tourLauncher) {
+    private String path;
+
+    public Projectile(double x, double y, Soldat s, double v, int degats, Environnement environnement, ToursOffensives tourLauncher, String path) {
 
         this.x = new SimpleDoubleProperty(x);
 
@@ -46,6 +48,8 @@ public class Projectile {
         this.tourLauncher = tourLauncher;
 
         setDirection();
+
+        this.path = path;
     }
     public void setDirection() {
 
@@ -155,5 +159,9 @@ public class Projectile {
     }
     public Soldat getS() {
         return this.s;
+    }
+    public String getPath() {
+
+        return this.path;
     }
 }
