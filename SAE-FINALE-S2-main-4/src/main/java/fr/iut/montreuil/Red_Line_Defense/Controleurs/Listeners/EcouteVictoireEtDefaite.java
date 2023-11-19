@@ -33,9 +33,9 @@ public class EcouteVictoireEtDefaite {
 
     private void ajouterEcouteurVictoire() {
 
-        this.environnement.getVagueProperty().addListener((observable, oldValue, newValue) -> {
+        this.environnement.getVagues().getStrategyChangeante().getVagueCourante().addListener((observable, oldValue, newValue) -> {
 
-            if (newValue.intValue() > 5) {
+            if (newValue.intValue() > 4) {
 
                 ajouterVictoire();
             }

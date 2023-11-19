@@ -221,4 +221,7 @@ public class Environnement {
 
         return this.vague;
     }
+    public void IncrVagueValue(){
+        vague.setValue(vague.getValue()+1);
+    }
 }

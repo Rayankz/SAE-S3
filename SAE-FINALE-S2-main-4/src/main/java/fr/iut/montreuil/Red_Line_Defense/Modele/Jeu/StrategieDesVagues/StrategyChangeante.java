@@ -44,7 +44,9 @@ public class StrategyChangeante implements Strategy {
             this.setVagueCourante(this.vagueCourante.get() + 1);
             this.environnement.setEnnemisTuesCetteVague(0);
         }
-        this.toutesLesVagues.get(this.vagueCourante.get()).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
+        if(vagueCourante.get() < 5) {
+            this.toutesLesVagues.get(this.vagueCourante.get()).faireApparaitreEnnemi(this.environnement.getNbrTours(), this.environnement);
+        }
     }
 
 
