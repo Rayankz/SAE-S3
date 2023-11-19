@@ -43,5 +43,6 @@ public class Vagues {
     public Environnement getEnvironnement() {
 
         return this.environnement;
+
     }
 }
