@@ -16,7 +16,7 @@ import java.util.*;
 
 public class Environnement {
     private static Environnement uniqueInstance = null;
-    private IntegerProperty vague, ennemisTues;
+    private IntegerProperty detectionDefaite, ennemisTues;
     private int ennemisTuesCetteVague;
     private ListProperty<Projectile> listeProjectiles;
     private ListProperty<Tour> listeTours;
@@ -34,7 +34,7 @@ public class Environnement {
 
         this.joueur = joueur;
 
-        this.vague = new SimpleIntegerProperty(1);
+        this.detectionDefaite = new SimpleIntegerProperty(1);
         this.ennemisTues = new SimpleIntegerProperty(0);
 
         this.ennemisTuesCetteVague = 0;
@@ -99,7 +99,7 @@ public class Environnement {
 
         if (this.basePrincipale.getPointsDeVieValue() < 1) {
 
-            this.vague.setValue(-1);
+            this.detectionDefaite.setValue(-1);
         }
     }
     public void actionDesTours(int n) {
@@ -141,8 +141,8 @@ public class Environnement {
     //--------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------- INTERFACE --------------------------------------------------------------
     //--------------------------------------------------------------------------------------------------------------------------------
-    public IntegerProperty getVagueProperty() { return this.vague; }
-    public int getVagueValue() { return this.vague.getValue(); }
+    public IntegerProperty getDetectionDefaiteValue() { return this.detectionDefaite; }
+    public int getVagueValue() { return this.detectionDefaite.getValue(); }
     public IntegerProperty getEnnemisTuesProperty() { return this.ennemisTues;}
     public int getNbrTours() {
 
@@ -217,11 +217,11 @@ public class Environnement {
 
         return this.vaguesDeJeu;
     }
-    public IntegerProperty getVague() {
+    public IntegerProperty getDetectionDefaite() {
 
-        return this.vague;
+        return this.detectionDefaite;
     }
     public void IncrVagueValue(){
-        vague.setValue(vague.getValue()+1);
+        detectionDefaite.setValue(detectionDefaite.getValue()+1);
     }
 }

@@ -37,7 +37,7 @@ public class EcouteInterface {
     private void ajouterListenerVague() {
 
         int nbVague = 0;
-        this.environnement.getVagueProperty().addListener((observable, oldValue, newValue) -> {
+        this.environnement.getDetectionDefaiteValue().addListener((observable, oldValue, newValue) -> {
 
             environnement.getJoueur().créditerSolde(800); // Chaque Vague le Joueur Gagne 800 Berrys
             environnement.getVagues().majDefenseSoldats();

@@ -44,7 +44,7 @@ public class EcouteVictoireEtDefaite {
 
     private void ajouterEcouteurDefaite() {
 
-        this.environnement.getVagueProperty().addListener((observable, oldValue, newValue) -> {
+        this.environnement.getDetectionDefaiteValue().addListener((observable, oldValue, newValue) -> {
 
             if (newValue.intValue() < 1) {
 

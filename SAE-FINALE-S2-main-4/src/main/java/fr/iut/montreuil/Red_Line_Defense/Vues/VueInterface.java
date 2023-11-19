@@ -1,29 +1,17 @@
 package fr.iut.montreuil.Red_Line_Defense.Vues;
 
-import fr.iut.montreuil.Red_Line_Defense.Controleurs.ControleurDefaite;
-import fr.iut.montreuil.Red_Line_Defense.Main;
 import fr.iut.montreuil.Red_Line_Defense.Modele.Jeu.Environnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class VueInterface {
@@ -47,7 +35,7 @@ public class VueInterface {
                         HBox prix200b, HBox prix400b, HBox prix600b, HBox prix800b, ImageView berryBot200b, ImageView berryBot600b, ImageView berryBot400b, ImageView berryBot800b, VBox vboxRight,
                         ImageView wpp, StackPane stackpane, Scene scene, BorderPane borderpane, Label vague) {
 
-        vague.textProperty().bind(terrain.getVague().asString());
+        vague.textProperty().bind(terrain.getDetectionDefaite().asString());
         solde.setText(String.valueOf(terrain.getJoueur().getSoldeJoueurValue()));
         this.lancerButton = lancerButton;
         this.test = test;
